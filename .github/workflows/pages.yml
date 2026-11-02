@@ -37,6 +37,9 @@ jobs:
         run: python build_static.py
 
       - uses: actions/configure-pages@v5
+        with:
+          # 首次运行自动开启 Pages（Source = GitHub Actions），省得手动去设置里点
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
