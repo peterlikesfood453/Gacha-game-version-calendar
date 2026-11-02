@@ -4,6 +4,10 @@
 
 在网页上勾选你在玩的游戏，点一下，日程就进手机日历了。退坑了就把对应的那个日历删掉，提醒一起消失。
 
+### 👉 在线直接用：[peterlikesfood453.github.io/Gacha-game-version-calendar](https://peterlikesfood453.github.io/Gacha-game-version-calendar/)
+
+手机浏览器打开上面这个地址就能用，不用注册、不用装 App、完全免费。微信里打不开的话点右上角 `···` → 在浏览器打开。
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](#在自己电脑上跑)
@@ -27,7 +31,7 @@
 | 运行成本 | 零，纯静态托管在 GitHub Pages | 要一台能跑 Python 的机器 |
 | 位置 | `static/` 目录 | 仓库根目录 |
 
-**静态版在线地址**：`https://peterlikesfood453.github.io/Gacha-game-version-calendar/`
+**静态版在线地址**：https://peterlikesfood453.github.io/Gacha-game-version-calendar/
 
 想省事、想把这站分享给朋友 → 用静态版。想长期维护、需要「原神 + 鸣潮」这种自定义组合的订阅链接 → 用完整版。
 
@@ -124,13 +128,19 @@
 
 ## 不想自己部署：用现成链接
 
-作者维护了一个示例站：
+**静态版（推荐，永久免费，作者已验证可用）**
+
+https://peterlikesfood453.github.io/Gacha-game-version-calendar/
+
+托管在 GitHub Pages 上，只要仓库还在就不会挂，速度也够用。缺点是订阅链接只有「单款游戏」和「全部」两种组合。
+
+**完整版（作者的个人实例，可能随时下线）**
 
 ```
 https://game-version-calendar-88236.app.workbuddy.host/?sharecode=ZLRI2TFV7G
 ```
 
-可以直接用，但请注意：**这是个人实例，可能随时下线**。想让服务长期稳定，最好自己部署一份（见下文），或者把项目跑在自己电脑上。
+好处是可以订阅任意勾选组合（比如只要原神 + 鸣潮）。但这是临时性的托管，**别把它当成长期服务**，想稳定就自己部署一份（见下文），或者用上面的静态版。
 
 ## 在自己电脑上跑
 
@@ -379,7 +389,7 @@ python -m http.server 8000 --directory static
 ## 路线图
 
 - **v1 完整版（已完成）**：Python 服务端，任意游戏组合都能生成可订阅的网址，退坑按游戏删。需要自己部署一份。
-- **v2 静态版（已完成）**：纯静态，日历在浏览器里现算，托管到 GitHub Pages，零成本、零服务器，谁都能开一份。多选后一键导入照样能用，只是订阅只能"按游戏一份"。
+- **v2 静态版（已完成并上线）**：纯静态，日历在浏览器里现算，托管到 GitHub Pages，零成本、零服务器，谁都能开一份。多选后一键导入照样能用，只是订阅只能"按游戏一份"。线上地址：https://peterlikesfood453.github.io/Gacha-game-version-calendar/
 - **v3（可选）**：接入社区数据源自动更新排期，减少人工维护成本。
 
 ## License
