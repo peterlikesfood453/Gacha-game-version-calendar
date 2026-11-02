@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.ics
+_s*.png
+_c*.png
+_v*.png
+_p.html
+_q.html
+.venv/
+.DS_Store
+Thumbs.db
