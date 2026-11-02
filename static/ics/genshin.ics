@@ -1,0 +1,188 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//CN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:原神 · 版本日历
+X-WR-CALDESC:只订阅「原神」的前瞻与版本更新。不玩了就
+ 删掉这个日历，其他游戏不受影响。
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:genshin-72-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261104T030000Z
+DTEND:20261104T033000Z
+SUMMARY:原神 7.2「坏灭肇始之时」版本更新
+DESCRIPTION:06:00 起停服维护，预计 11:00 前后开服。新五星
+ 雷系「米提亚」+ 芙宁娜复刻，至冬新主线与新地图。\n
+ \n时间均为北京时间 UTC+8。\n标注「预估 / 待定」的日期
+ 是按版本周期推算的，官方公布后会有偏差。
+LOCATION:原神
+CATEGORIES:原神
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:明天是版本更新日
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:版本更新，准备开服
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-73-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261204T120000Z
+DTEND:20261204T130000Z
+SUMMARY:原神 7.3 前瞻特别节目（预估）
+DESCRIPTION:按 42 天周期推算。B站 / 抖音 / 米游社 官方直播
+ 间，直播中发 3 组兑换码，合计 300 原石。\n\n兑换码有
+ 效期至 12/07 12:00（直播后第 3 天中午 12:00），即直播结
+ 束后 64 小时。\n\n时间均为北京时间 UTC+8。\n标注「预估 
+ / 待定」的日期是按版本周期推算的，官方公布后会有偏
+ 差。
+LOCATION:原神 官方直播间
+CATEGORIES:原神
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:前瞻直播 30 分钟后开始
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-73-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261207T040000Z
+DTEND:20261207T041500Z
+SUMMARY:原神 7.3 前瞻兑换码失效（规则推算）
+DESCRIPTION:有效 64 小时：12/04 20:00 开播 → 12/07 12:00 截止（
+ 北京时间）。\n\n3 组码合计 300 原石，外加精锻用魔矿、
+ 大英雄的经验、摩拉。\n过期立即作废，官方不补发，也
+ 不接受事后申诉。\n\n兑换入口：游戏内 设置 → 账户 →
+  兑换码，或米游社「兑换中心」网页。\n没看直播也能
+ 补：官方前瞻回放的简介区、米游社前瞻专题页都会挂
+ 出这三组码。\n\n时间均为北京时间 UTC+8。\n标注「预估 /
+  待定」的日期是按版本周期推算的，官方公布后会有偏
+ 差。
+LOCATION:原神 兑换入口
+CATEGORIES:原神
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:兑换码 2 小时后失效，还没换的现在去换
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:兑换码 30 分钟后失效，过期不补
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-73-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261216T030000Z
+DTEND:20261216T033000Z
+SUMMARY:原神 7.3 版本更新（预估）
+DESCRIPTION:按 42 天版本周期推算（7.2 于 11/4 上线）。\n\n时
+ 间均为北京时间 UTC+8。\n标注「预估 / 待定」的日期是按
+ 版本周期推算的，官方公布后会有偏差。
+LOCATION:原神
+CATEGORIES:原神
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:明天是版本更新日
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:版本更新，准备开服
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-74-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270115T120000Z
+DTEND:20270115T130000Z
+SUMMARY:原神 7.4 前瞻特别节目（预估）
+DESCRIPTION:推算日期，官方一般提前约 12 天公布确切时间
+ 。\n\n兑换码有效期至 01/18 12:00（直播后第 3 天中午 12:00
+ ），即直播结束后 64 小时。\n\n时间均为北京时间 UTC+8。
+ \n标注「预估 / 待定」的日期是按版本周期推算的，官方
+ 公布后会有偏差。
+LOCATION:原神 官方直播间
+CATEGORIES:原神
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:前瞻直播 30 分钟后开始
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-74-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270118T040000Z
+DTEND:20270118T041500Z
+SUMMARY:原神 7.4 前瞻兑换码失效（规则推算）
+DESCRIPTION:有效 64 小时：01/15 20:00 开播 → 01/18 12:00 截止（
+ 北京时间）。\n\n3 组码合计 300 原石，外加精锻用魔矿、
+ 大英雄的经验、摩拉。\n过期立即作废，官方不补发，也
+ 不接受事后申诉。\n\n兑换入口：游戏内 设置 → 账户 →
+  兑换码，或米游社「兑换中心」网页。\n没看直播也能
+ 补：官方前瞻回放的简介区、米游社前瞻专题页都会挂
+ 出这三组码。\n\n时间均为北京时间 UTC+8。\n标注「预估 /
+  待定」的日期是按版本周期推算的，官方公布后会有偏
+ 差。
+LOCATION:原神 兑换入口
+CATEGORIES:原神
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:兑换码 2 小时后失效，还没换的现在去换
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:兑换码 30 分钟后失效，过期不补
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-74-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270127T030000Z
+DTEND:20270127T033000Z
+SUMMARY:原神 7.4 版本更新（海灯节）（预估）
+DESCRIPTION:海灯节版本，按 42 天周期推算。\n\n时间均为北
+ 京时间 UTC+8。\n标注「预估 / 待定」的日期是按版本周期
+ 推算的，官方公布后会有偏差。
+LOCATION:原神
+CATEGORIES:原神
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:明天是版本更新日
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:版本更新，准备开服
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,11 +1,13 @@
+# Python
 __pycache__/
 *.py[cod]
-*.ics
-_s*.png
-_c*.png
-_v*.png
-_p.html
-_q.html
 .venv/
+
+# 系统
 .DS_Store
 Thumbs.db
+
+# 本地临时产物（截图、调试页、手工导出的日历）
+_*.ics
+_*.png
+_*.html

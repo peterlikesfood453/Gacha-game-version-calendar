@@ -1,0 +1,184 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//CN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:星铁 · 版本日历
+X-WR-CALDESC:只订阅「崩坏：星穹铁道」的前瞻与版本更新
+ 。不玩了就删掉这个日历，其他游戏不受影响。
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:hsr-47-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261111T030000Z
+DTEND:20261111T033000Z
+SUMMARY:星穹铁道 4.7「此刻，将群星付之一笑」版本更新
+DESCRIPTION:星神「阿哈」首次进池，卡池一直开到 12/22 15:00
+ 。版本 11:00 前后开服。\n\n时间均为北京时间 UTC+8。\n标
+ 注「预估 / 待定」的日期是按版本周期推算的，官方公
+ 布后会有偏差。
+LOCATION:崩坏：星穹铁道
+CATEGORIES:崩坏：星穹铁道
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:明天是版本更新日
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:版本更新，准备开服
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-48-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261211T113000Z
+DTEND:20261211T123000Z
+SUMMARY:星穹铁道 4.8 前瞻特别节目（预估）
+DESCRIPTION:按 42 天周期、前瞻提前 12 天推算（4.7 于 11/11 
+ 上线）。\n\n兑换码有效期至 12/12 23:59（直播次日 23:59）
+ ，即直播结束后 28 小时。\n\n时间均为北京时间 UTC+8。\n
+ 标注「预估 / 待定」的日期是按版本周期推算的，官方
+ 公布后会有偏差。
+LOCATION:崩坏：星穹铁道 官方直播间
+CATEGORIES:崩坏：星穹铁道
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:前瞻直播 30 分钟后开始
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-48-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261212T155900Z
+DTEND:20261212T161400Z
+SUMMARY:星铁 4.8 前瞻兑换码失效（规则推算）
+DESCRIPTION:有效 28 小时：12/11 19:30 开播 → 12/12 23:59 截止（
+ 北京时间）。\n\n3 组码合计 300 星琼，外加角色与光锥培
+ 养材料。\n过期立即作废，官方不补发，也不接受事后申
+ 诉。\n\n兑换入口：游戏内 手机 → 右上角「···」→ 兑
+ 换码，或米哈游兑换中心网页。\n没看直播也能补：官方
+ 前瞻回放的简介区、米游社前瞻专题页都会挂出这三组
+ 码。\n\n时间均为北京时间 UTC+8。\n标注「预估 / 待定」
+ 的日期是按版本周期推算的，官方公布后会有偏差。
+LOCATION:崩坏：星穹铁道 兑换入口
+CATEGORIES:崩坏：星穹铁道
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:兑换码 2 小时后失效，还没换的现在去换
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:兑换码 30 分钟后失效，过期不补
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-48-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261223T030000Z
+DTEND:20261223T033000Z
+SUMMARY:星穹铁道 4.8 版本更新（预估）
+DESCRIPTION:4.7 卡池排到 12/22 15:00，4.8 大概率 12/23 上线。\n
+ \n时间均为北京时间 UTC+8。\n标注「预估 / 待定」的日期
+ 是按版本周期推算的，官方公布后会有偏差。
+LOCATION:崩坏：星穹铁道
+CATEGORIES:崩坏：星穹铁道
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:明天是版本更新日
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:版本更新，准备开服
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-50-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270122T113000Z
+DTEND:20270122T123000Z
+SUMMARY:星穹铁道 5.0 前瞻特别节目（预估）
+DESCRIPTION:推算日期，按 42 天周期。\n\n兑换码有效期至 01/
+ 23 23:59（直播次日 23:59），即直播结束后 28 小时。\n\n时
+ 间均为北京时间 UTC+8。\n标注「预估 / 待定」的日期是按
+ 版本周期推算的，官方公布后会有偏差。
+LOCATION:崩坏：星穹铁道 官方直播间
+CATEGORIES:崩坏：星穹铁道
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:前瞻直播 30 分钟后开始
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-50-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270123T155900Z
+DTEND:20270123T161400Z
+SUMMARY:星铁 5.0 前瞻兑换码失效（规则推算）
+DESCRIPTION:有效 28 小时：01/22 19:30 开播 → 01/23 23:59 截止（
+ 北京时间）。\n\n3 组码合计 300 星琼，外加角色与光锥培
+ 养材料。\n过期立即作废，官方不补发，也不接受事后申
+ 诉。\n\n兑换入口：游戏内 手机 → 右上角「···」→ 兑
+ 换码，或米哈游兑换中心网页。\n没看直播也能补：官方
+ 前瞻回放的简介区、米游社前瞻专题页都会挂出这三组
+ 码。\n\n时间均为北京时间 UTC+8。\n标注「预估 / 待定」
+ 的日期是按版本周期推算的，官方公布后会有偏差。
+LOCATION:崩坏：星穹铁道 兑换入口
+CATEGORIES:崩坏：星穹铁道
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:兑换码 2 小时后失效，还没换的现在去换
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:兑换码 30 分钟后失效，过期不补
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-50-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270203T030000Z
+DTEND:20270203T033000Z
+SUMMARY:星穹铁道 5.0 版本更新（预估）
+DESCRIPTION:推算日期，按 42 天周期。\n\n时间均为北京时间 
+ UTC+8。\n标注「预估 / 待定」的日期是按版本周期推算的
+ ，官方公布后会有偏差。
+LOCATION:崩坏：星穹铁道
+CATEGORIES:崩坏：星穹铁道
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:明天是版本更新日
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:版本更新，准备开服
+END:VALARM
+END:VEVENT
+END:VCALENDAR

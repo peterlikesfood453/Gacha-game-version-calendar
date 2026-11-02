@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F5F4F0">
+<title>我的二游版本日历 · 静态版</title>
+<link rel="icon" href="data:,">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:#F5F4F0;color:#1B1B1F;line-height:1.6;
+       font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:640px;margin:0 auto;padding:22px 16px 188px}
+
+  header{text-align:center;padding:4px 0 20px}
+  h1{font-size:24px;letter-spacing:-.4px;font-weight:700}
+  .sub{color:#6B6B76;font-size:13.5px;margin-top:8px}
+  .meta{font-size:11.5px;color:#A0A0AA;margin-top:10px}
+
+  .warn{display:none;background:#FFF4E0;border:1px solid #F0D9AE;color:#8A5B00;
+        border-radius:12px;padding:10px 13px;font-size:12.5px;margin-bottom:16px;line-height:1.55}
+
+  .selbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .selbar .t{font-size:13px;font-weight:700;color:#3A3A44}
+  .selbar .sp{flex:1}
+  .selbar button{background:none;border:none;font-size:12.5px;color:#5B5BE0;
+                 font-weight:600;padding:4px 2px;cursor:pointer;font-family:inherit}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:26px}
+  .g{position:relative;display:flex;flex-direction:column;gap:2px;text-align:left;
+     background:#fff;border:1.5px solid #E9E8E3;border-radius:14px;padding:12px 13px 11px;
+     cursor:pointer;font-family:inherit;transition:border-color .12s,background .12s,transform .1s}
+  .g:active{transform:scale(.985)}
+  .g .gname{font-size:14px;font-weight:600;letter-spacing:-.15px;color:#1B1B1F;
+            padding-right:16px;line-height:1.35}
+  .g .gver{font-size:11px;color:#9A9AA4;font-variant-numeric:tabular-nums}
+  .g .gdot{width:7px;height:7px;border-radius:50%;background:var(--c);margin-bottom:5px}
+  .g .tick{position:absolute;top:11px;right:11px;width:16px;height:16px;border-radius:50%;
+           border:1.5px solid #D6D5CF;background:#fff;display:flex;align-items:center;
+           justify-content:center;transition:all .12s}
+  .g .tick svg{width:10px;height:10px;opacity:0;transition:opacity .12s}
+  .g[aria-checked="true"]{border-color:var(--c);background:var(--bg)}
+  .g[aria-checked="true"] .tick{background:var(--c);border-color:var(--c)}
+  .g[aria-checked="true"] .tick svg{opacity:1}
+
+  .phead{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+  .phead .t{font-size:15px;font-weight:700;letter-spacing:-.2px}
+  .phead .n{font-size:12px;color:#9A9AA4;margin-left:auto}
+
+  .ev{display:flex;gap:12px;background:#fff;border:1px solid #EDECE7;border-radius:13px;
+      padding:11px 13px;margin-bottom:8px;position:relative;overflow:hidden}
+  .ev::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c)}
+  .ev .d{flex:none;width:46px;text-align:center;padding-top:1px}
+  .ev .d b{display:block;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;
+           letter-spacing:-.3px;color:#2A2A33}
+  .ev .d span{display:block;font-size:10.5px;color:#A0A0AA;margin-top:1px}
+  .ev .b{flex:1;min-width:0}
+  .ev .tt{font-size:13.5px;font-weight:600;color:#1B1B1F;letter-spacing:-.15px;
+          line-height:1.45;overflow-wrap:anywhere}
+  .ev .mm{font-size:11.5px;color:#8A8A95;margin-top:4px;display:flex;flex-wrap:wrap;
+          align-items:center;gap:6px}
+  .ev .tag{font-size:10px;padding:1.5px 6px;border-radius:5px;font-weight:700;letter-spacing:.2px}
+  .ev .kk{font-size:10px;padding:1.5px 5px;border-radius:5px;font-weight:700;letter-spacing:.2px;
+          background:#FDEDE8;color:#B4502F}
+  .tag.official{background:#E8F6EC;color:#1B7A44}
+  .tag.est{background:#F2F1ED;color:#84848F;border:1px dashed #D2D1CA}
+  .tag.tbd{background:#FDEDE8;color:#B4502F}
+  .tag.rule{background:#EAF1FB;color:#2F5FA8}
+  .ev.past{opacity:.45}
+  .empty{background:#fff;border:1px dashed #DEDDD6;border-radius:13px;padding:22px;
+         text-align:center;font-size:13px;color:#9A9AA4}
+
+  .note{background:#fff;border-radius:14px;padding:16px 17px;border:1px solid #EDECE7;
+        font-size:12.5px;color:#5A5A64;line-height:1.75;margin-top:26px}
+  .note h3{font-size:13.5px;color:#1B1B1F;margin-bottom:7px;font-weight:700}
+  .note b{color:#1B1B1F}
+  .note ol{padding-left:18px}
+  .note li{margin-top:4px}
+  .note .k{display:inline-block;background:#F2F1ED;border-radius:5px;padding:0 5px;
+           font-size:11.5px;font-weight:600}
+  .note .lead{font-size:12.5px;color:#5A5A64;margin-bottom:2px}
+  .note .fine{font-size:11.5px;color:#9A9AA4;line-height:1.65;margin-top:10px}
+
+  .sh{font-size:11.5px;font-weight:700;color:#9A9AA4;letter-spacing:.3px;margin:14px 0 2px}
+  .srow{display:flex;align-items:center;gap:9px;padding:9px 0;border-top:1px solid #F2F1EC}
+  .srow:first-of-type{border-top:none}
+  .sdot{width:8px;height:8px;border-radius:50%;flex:none}
+  .sinfo{flex:1;min-width:0}
+  .sinfo b{display:block;font-size:13px;font-weight:600;color:#1B1B1F;letter-spacing:-.1px;
+           white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sinfo span{display:block;font-size:10.5px;color:#A0A0AA;margin-top:1px}
+  .sbtn{flex:none;font-size:12px;font-weight:700;color:#fff;background:#1B1B1F;
+        border:none;border-radius:8px;padding:7px 11px;text-decoration:none;font-family:inherit;
+        cursor:pointer}
+  .sbtn:active{opacity:.8}
+  .scx{flex:none;font-size:12px;font-weight:600;color:#7A7A85;background:#F2F1ED;border:none;
+       border-radius:8px;padding:7px 10px;font-family:inherit;cursor:pointer}
+
+  .cxhelp{background:#FBF7F0;border:1px solid #F0E4CE;border-radius:11px;
+          padding:12px 13px;margin-top:12px;font-size:12.5px;color:#6A5230;line-height:1.72}
+  .cxhelp b{color:#1B1B1F}
+  .cxhelp ol{padding-left:17px;margin-top:4px}
+  .cxhelp .hd{font-size:12.5px;font-weight:700;color:#1B1B1F;margin-bottom:5px}
+  .cxhelp .alt{margin-top:9px;padding-top:9px;border-top:1px dashed #E6D9C2;color:#7A6446}
+
+  details.imp{margin-top:12px;border-top:1px solid #F2F1EC;padding-top:10px}
+  details.imp summary{font-size:12.5px;font-weight:600;color:#5B5BE0;cursor:pointer;list-style:none}
+  details.imp summary::-webkit-details-marker{display:none}
+  details.imp summary::after{content:" ›"}
+  details.imp[open] summary::after{content:" ﹀"}
+  details.imp p{font-size:12.5px;color:#5A5A64;margin-top:8px}
+  details.imp ol{padding-left:17px;margin-top:4px}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:20;
+       background:rgba(245,244,240,.92);backdrop-filter:blur(14px);
+       -webkit-backdrop-filter:blur(14px);border-top:1px solid #E4E3DD;
+       padding:11px 16px calc(11px + env(safe-area-inset-bottom))}
+  .bar .in{max-width:640px;margin:0 auto}
+  .barmeta{font-size:11.5px;color:#8A8A95;text-align:center;margin-bottom:8px}
+  .barmeta b{color:#1B1B1F;font-variant-numeric:tabular-nums}
+  .btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;
+       padding:14px;border-radius:14px;font-size:15px;font-weight:600;text-decoration:none;
+       border:1px solid transparent;transition:transform .12s;font-family:inherit;cursor:pointer}
+  .btn:active{transform:scale(.985)}
+  .btn.primary{background:#1B1B1F;color:#fff;box-shadow:0 6px 18px rgba(27,27,31,.18)}
+  .btn.off{background:#DFDED8;color:#9A9AA4;box-shadow:none;pointer-events:none}
+  .sublink{display:block;text-align:center;font-size:12px;color:#5B5BE0;
+           text-decoration:none;font-weight:600;margin-top:9px}
+  footer{text-align:center;font-size:11px;color:#ACACB5;margin-top:22px;line-height:1.8}
+
+  .toast{position:fixed;left:50%;bottom:96px;transform:translate(-50%,10px);z-index:50;
+         background:rgba(27,27,31,.94);color:#fff;font-size:13px;font-weight:500;
+         padding:10px 16px;border-radius:11px;opacity:0;pointer-events:none;
+         transition:opacity .18s,transform .18s;max-width:80vw;text-align:center;line-height:1.5}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>我的二游版本日历</h1>
+    <div class="sub">勾选你在玩的游戏，生成一份专属日历</div>
+    <div class="meta">静态版 · 日程最远到 <span id="latest">—</span> · 时间为北京时间 UTC+8</div>
+  </header>
+
+  <div class="warn" id="wxwarn">
+    当前在微信里打开。微信不允许直接导入日历，请点右上角 <b>···</b> → <b>在浏览器打开</b> 再操作。
+  </div>
+
+  <div class="selbar">
+    <span class="t">选择游戏</span>
+    <span class="sp"></span>
+    <button type="button" id="allBtn">全选</button>
+    <button type="button" id="noneBtn">清空</button>
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <div class="phead">
+    <span class="t">日程预览</span>
+    <span class="n" id="cnt"></span>
+  </div>
+  <div id="list"></div>
+
+  <div class="note">
+    <h3>怎么加到自己手机上</h3>
+    <ol>
+      <li><b>iPhone</b>：用 Safari 打开本页 → 点底部黑按钮。只选了一款会直接跳进日历，弹窗点 <b>「全部添加」</b>；选了好几款会下载一个文件，到「文件」App 里点开它即可。</li>
+      <li><b>安卓 / 华为 / 小米</b>：点黑按钮会下载 .ics 文件，再用系统日历的「导入」选中它。</li>
+      <li>想长期跟着更新，别用导入，用下面的<b>订阅</b>：以后数据更新了，手机上自动同步。</li>
+      <li>提醒都设好了：前瞻提前 30 分钟；兑换码失效提前 2 小时和 30 分钟；版本更新提前 1 天和 2 小时。</li>
+    </ol>
+    <p class="fine">日程里那条「兑换码失效」，时间就是官方的截止时刻。各游戏口径不同：原神是直播后第 3 天中午 12:00，星铁是次日 23:59，绝区零和鸣潮是第 2 天 23:59，异环是第 4 天 23:59。终末地、燕云十六声、王者荣耀世界不发前瞻兑换码，所以没有这一条。</p>
+  </div>
+
+  <div class="note" id="sub">
+    <h3>订阅与取消</h3>
+    <p class="lead">一个游戏一个日历。退坑了，删掉对应那一个日历，那个游戏的前瞻和更新提醒就一起没了，其他游戏照常。</p>
+
+    <div class="sh">按游戏订阅</div>
+    <div id="subrows"></div>
+
+    <div class="cxhelp" id="cxhelp" hidden>
+      <div class="hd" id="cxtitle">取消「」的提醒</div>
+      <ol>
+        <li>打开手机自带的<b>日历</b> App，点底部的「日历」列表</li>
+        <li>找到 <b id="cxname">原神 · 版本日历</b>，点它右边的 <b>ⓘ</b>（安卓是长按或点右上角菜单）</li>
+        <li>选 <b>删除日历</b> 并确认，这个游戏的提醒就全清掉了</li>
+      </ol>
+      <div class="alt">只是暂时不想被打扰，不用删：把那个日历前面的勾去掉（隐藏），提醒也会停；或者进订阅设置点「移除提醒」。</div>
+    </div>
+
+    <details class="imp">
+      <summary>安卓怎么订阅（按钮提示"已复制"时看这里）</summary>
+      <p>安卓的日历 App 不吃 <b class="k">webcal://</b> 开头的地址，所以按钮会改成复制 <b class="k">https://</b> 开头的地址。复制之后：</p>
+      <ol>
+        <li>打开日历 App，找「设置」或「添加日历」里的 <b>从网址添加</b> / <b>通过网址订阅</b></li>
+        <li>把地址粘进去，命名随便写，确认</li>
+        <li>之后他会定期去这个网址拉最新数据</li>
+      </ol>
+    </details>
+
+    <details class="imp">
+      <summary>我是「一次性导入」的，怎么取消</summary>
+      <p>一次性导入的日程存在你手机本地，外面够不着，只能在日历 App 里删：</p>
+      <ol>
+        <li>打开日历 App，搜索框输入游戏名，比如「原神」</li>
+        <li>搜出来的每一条都能单独删（iPhone 点进去 → 删除日程；安卓长按 → 删除）</li>
+        <li>嫌麻烦就改用上面的订阅，以后取消只需删一个日历</li>
+      </ol>
+    </details>
+
+    <p class="fine">为什么这里不能点一下就远程删掉？日历订阅是只读的，谁订了只有谁的手机知道。所以取消这一步只能在手机端做，我把它压到三次点击以内。</p>
+  </div>
+
+  <div class="note">
+    <h3>这是静态版，和完整版有什么区别</h3>
+    <p class="lead">本页所有内容都由浏览器自己算，没有任何服务器参与，所以能免费挂在 GitHub Pages 上，谁都能开一份。</p>
+    <ol>
+      <li><b>能做的事</b>：勾选任意几款，一键生成合并的日历文件导进手机；按游戏订阅固定的一份。</li>
+      <li><b>做不到的事</b>：给"原神 + 鸣潮"这种任意组合生成一个可订阅的网址。订阅地址只能是一个事先做好的文件，所以只有按游戏一份、和全部一份。</li>
+      <li><b>数据怎么更新</b>：维护者改了 <b class="k">events.py</b> 并重新生成，页面和订阅文件一起变；订阅的人手机自动跟上，导入的人需要重新导一次。</li>
+    </ol>
+    <p class="fine">需要任意组合的订阅链接，用仓库里的完整版（Python 服务端），那边一个网址就能按你选的组合现算。</p>
+  </div>
+
+  <footer>
+    标「官方确认」的来自官方公告，「预估」是按版本周期推算，「待定」是官方还没公布日期。<br>
+    「规则推算」是兑换码截止时刻：官方还没公布，但按每款游戏历次的口径能卡到分钟，误差一般在 1 小时内。<br>
+    过期不补发，这条日程别当参考价看。
+  </footer>
+</div>
+
+<div class="bar">
+  <div class="in">
+    <div class="barmeta">已选 <b id="pn">0</b> 个游戏 · <b id="en">0</b> 条日程</div>
+    <button type="button" class="btn primary" id="mainBtn">加入手机日历</button>
+    <a class="sublink" href="#sub">订阅日历 · 退坑可以单独取消 ›</a>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script id="data" type="application/json">__DATA_JSON__</script>
+<script>
+(function () {
+  var DATA = JSON.parse(document.getElementById('data').textContent);
+  var GAMES = DATA.games, EVENTS = DATA.events, LABEL = DATA.statusLabel, STAMP = DATA.stamp || '20260101T000000Z';
+  var GMAP = {};
+  GAMES.forEach(function (g) { GMAP[g.id] = g; });
+
+  var WEEK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+  var KEY = 'gcal.static.picked.v1';
+  var IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var picked;
+
+  try { picked = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { picked = null; }
+  if (!Array.isArray(picked) || !picked.length) picked = GAMES.map(function (g) { return g.id; });
+  picked = picked.filter(function (id) { return !!GMAP[id]; });
+  if (!picked.length) picked = GAMES.map(function (g) { return g.id; });
+
+  /* ---------- 时间：全程只用一个"北京时间墙上时钟"，不依赖设备时区 ---------- */
+  function parseBJ(s) {
+    var p = s.split(' '), d = p[0].split('-'), t = p[1].split(':');
+    var y = +d[0], mo = +d[1], da = +d[2], hh = +t[0], mi = +t[1];
+    return { y: y, mo: mo, da: da, hh: hh, mi: mi,
+             ts: Date.UTC(y, mo - 1, da, hh - 8, mi) };  // 真实的绝对时刻
+  }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  /* ---------- ICS 生成：和 events.py 的 build_event() 保持一致 ---------- */
+  var TE = new TextEncoder();
+  function blen(s) { return TE.encode(s).length; }
+
+  function icsEsc(t) {
+    return String(t).replace(/\\/g, '\\\\').replace(/;/g, '\\;')
+                    .replace(/,/g, '\\,').replace(/\n/g, '\\n');
+  }
+  function fold(line) {
+    var chars = Array.from(line), out = [], cur = '', limit = 75;
+    for (var i = 0; i < chars.length; i++) {
+      var ch = chars[i];
+      if (blen(cur + ch) > limit) {
+        if (cur.slice(-1) === '\\') {
+          out.push(cur.slice(0, -1));
+          cur = '\\' + ch;
+        } else {
+          out.push(cur);
+          cur = ch;
+        }
+        limit = 74;
+      } else {
+        cur += ch;
+      }
+    }
+    out.push(cur);
+    return out.join('\r\n ');
+  }
+
+  function utcOf(ts) {
+    var d = new Date(ts);
+    return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) +
+      'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z';
+  }
+
+  function slug(e) { return e.g + '-' + e.ver.replace(/\./g, '') + '-' + e.kind; }
+
+  function buildEvent(e) {
+    var s = parseBJ(e.dt);
+    var endTs = s.ts + (e.dur || 60) * 60000;
+    var game = GMAP[e.g].name;
+    var label = e.status === 'official' ? '' : '（' + LABEL[e.status] + '）';
+    var place = { preview: ' 官方直播间', release: '', code: ' 兑换入口' }[e.kind] || '';
+    var body = e.desc + '\n\n时间均为北京时间 UTC+8。' +
+      '\n标注「预估 / 待定」的日期是按版本周期推算的，官方公布后会有偏差。';
+
+    var lines = [
+      'BEGIN:VEVENT',
+      'UID:' + slug(e) + '@game-version-calendar',
+      'DTSTAMP:' + STAMP,
+      'DTSTART:' + utcOf(s.ts),
+      'DTEND:' + utcOf(endTs),
+      fold('SUMMARY:' + icsEsc(e.title + label)),
+      fold('DESCRIPTION:' + icsEsc(body)),
+      fold('LOCATION:' + icsEsc(game + place)),
+      fold('CATEGORIES:' + icsEsc(game)),
+      'STATUS:CONFIRMED',
+      'TRANSP:TRANSPARENT'
+    ];
+    if (e.kind === 'preview') {
+      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY',
+        fold('DESCRIPTION:' + icsEsc('前瞻直播 30 分钟后开始')), 'END:VALARM']);
+    } else if (e.kind === 'code') {
+      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:-PT2H', 'ACTION:DISPLAY',
+        fold('DESCRIPTION:' + icsEsc('兑换码 2 小时后失效，还没换的现在去换')), 'END:VALARM',
+        'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY',
+        fold('DESCRIPTION:' + icsEsc('兑换码 30 分钟后失效，过期不补')), 'END:VALARM']);
+    } else {
+      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY',
+        fold('DESCRIPTION:' + icsEsc('明天是版本更新日')), 'END:VALARM',
+        'BEGIN:VALARM', 'TRIGGER:-PT2H', 'ACTION:DISPLAY',
+        fold('DESCRIPTION:' + icsEsc('版本更新，准备开服')), 'END:VALARM']);
+    }
+    lines.push('END:VEVENT');
+    return lines.join('\r\n');
+  }
+
+  function buildCalendar(rows, name) {
+    var head = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\n' +
+      'PRODID:-//WorkBuddy//Game Version Calendar//CN\r\n' +
+      'CALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n' +
+      fold('X-WR-CALNAME:' + icsEsc(name)) + '\r\n' +
+      fold('X-WR-CALDESC:' + icsEsc('前瞻直播与版本更新的提醒。退坑了就在日历 App 里删掉本日历，提醒会一起消失。')) + '\r\n' +
+      'X-WR-TIMEZONE:Asia/Shanghai\r\n' +
+      'REFRESH-INTERVAL;VALUE=DURATION:PT6H\r\n' +
+      'X-PUBLISHED-TTL:PT6H\r\n';
+    return head + rows.map(function (x) { return buildEvent(x.raw) + '\r\n'; }).join('') +
+      'END:VCALENDAR\r\n';
+  }
+
+  /* ---------- 数据准备 ---------- */
+  var EV = EVENTS.map(function (e) {
+    var s = parseBJ(e.dt);
+    return { raw: e, bj: s };
+  }).sort(function (a, b) { return a.bj.ts - b.bj.ts; });
+
+  document.getElementById('latest').textContent = DATA.latest ? DATA.latest.slice(0, 10) : '—';
+
+  /* ---------- 勾选区 ---------- */
+  var grid = document.getElementById('grid');
+  GAMES.forEach(function (g) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'g';
+    b.setAttribute('role', 'checkbox');
+    b.dataset.id = g.id;
+    b.style.setProperty('--c', g.color);
+    b.style.setProperty('--bg', hexA(g.color, 0.07));
+    b.innerHTML =
+      '<span class="gdot"></span>' +
+      '<span class="gname">' + esc(g.name) + '</span>' +
+      '<span class="gver">当前 ' + esc(g.ver) + '</span>' +
+      '<span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2"' +
+      ' stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.3l2.6 2.6L10 3.4"/></svg></span>';
+    b.addEventListener('click', function () { toggle(g.id); });
+    grid.appendChild(b);
+  });
+
+  function hexA(hex, a) {
+    var n = parseInt(hex.slice(1), 16);
+    return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')';
+  }
+
+  function toggle(id) {
+    var i = picked.indexOf(id);
+    if (i > -1) picked.splice(i, 1); else picked.push(id);
+    render();
+  }
+
+  var listEl = document.getElementById('list');
+
+  function selectedIds() {
+    return GAMES.map(function (g) { return g.id; })
+                .filter(function (id) { return picked.indexOf(id) > -1; });
+  }
+
+  function render() {
+    Array.prototype.forEach.call(grid.children, function (b) {
+      b.setAttribute('aria-checked', picked.indexOf(b.dataset.id) > -1 ? 'true' : 'false');
+    });
+
+    var now = Date.now();
+    var rows = EV.filter(function (x) { return picked.indexOf(x.raw.g) > -1; });
+
+    listEl.innerHTML = '';
+    if (!rows.length) {
+      listEl.innerHTML = '<div class="empty">至少选一个游戏</div>';
+    } else {
+      rows.forEach(function (x) {
+        var e = x.raw, g = GMAP[e.g], d = x.bj;
+        var el = document.createElement('div');
+        el.className = 'ev' + (d.ts < now ? ' past' : '');
+        el.style.setProperty('--c', g.color);
+        el.innerHTML =
+          '<div class="d"><b>' + pad(d.mo) + '/' + pad(d.da) + '</b>' +
+          '<span>' + WEEK[new Date(Date.UTC(d.y, d.mo - 1, d.da)).getUTCDay()] + '</span></div>' +
+          '<div class="b"><div class="tt">' + esc(e.title) + '</div>' +
+          '<div class="mm">' +
+          (e.kind === 'code' ? '<span class="kk">兑换码</span>' : '') +
+          '<span>' + pad(d.hh) + ':' + pad(d.mi) +
+          (e.kind === 'release' ? ' 开服' : e.kind === 'code' ? ' 失效' : ' 开播') + '</span>' +
+          '<span class="tag ' + e.status + '">' + LABEL[e.status] + '</span></div></div>';
+        listEl.appendChild(el);
+      });
+    }
+
+    document.getElementById('pn').textContent = picked.length;
+    document.getElementById('en').textContent = rows.length;
+    document.getElementById('cnt').textContent = rows.length ? '按时间排序' : '';
+
+    try { localStorage.setItem(KEY, JSON.stringify(picked)); } catch (e) {}
+
+    var main = document.getElementById('mainBtn');
+    if (!picked.length) {
+      main.textContent = '先选一个游戏';
+      main.classList.add('off');
+    } else {
+      main.textContent = '加入手机日历（' + rows.length + ' 条）';
+      main.classList.remove('off');
+    }
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  /* ---------- 下载 / 跳转 ---------- */
+  function toast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { t.classList.remove('on'); }, 2600);
+  }
+
+  function absUrl(rel) {
+    return new URL(rel, location.href).href;
+  }
+
+  function icsDownloadName(ids) {
+    if (ids.length === 1) return GMAP[ids[0]].short + '-版本日历.ics';
+    return '二游版本日历-' + ids.length + '款.ics';
+  }
+
+  document.getElementById('mainBtn').addEventListener('click', function () {
+    var ids = selectedIds();
+    if (!ids.length) return;
+
+    // iPhone 只选一款：直接跳到事先做好的文件，Safari 会交给日历处理，体验最好
+    if (IS_IOS && ids.length === 1) {
+      location.href = absUrl('ics/' + ids[0] + '.ics');
+      return;
+    }
+
+    var rows = EV.filter(function (x) { return ids.indexOf(x.raw.g) > -1; });
+    var name = '二游版本日历 · ' + ids.map(function (id) { return GMAP[id].short; }).join('、');
+    var text = buildCalendar(rows, name);
+
+    var blob = new Blob([text], { type: 'text/calendar;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = icsDownloadName(ids);
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+      if (a.parentNode) a.parentNode.removeChild(a);
+    }, 5000);
+
+    toast(IS_IOS
+      ? '已生成 ' + rows.length + ' 条，去「文件」App 点开它'
+      : '已生成 ' + rows.length + ' 条，选「日历」打开');
+  });
+
+  /* ---------- 订阅列表 ---------- */
+  var subRows = document.getElementById('subrows');
+
+  function addSubRow(g, count, label, rel) {
+    var dot = document.createElement('span');
+    dot.className = 'sdot';
+    dot.style.background = g.color;
+
+    var info = document.createElement('div');
+    info.className = 'sinfo';
+    info.innerHTML = '<b>' + esc(label) + '</b><span>' + count + ' 条</span>';
+
+    var sub = document.createElement('button');
+    sub.type = 'button';
+    sub.className = 'sbtn';
+    sub.textContent = '订阅';
+    sub.addEventListener('click', function () { subscribe(rel); });
+
+    var cx = document.createElement('button');
+    cx.type = 'button';
+    cx.className = 'scx';
+    cx.textContent = '取消';
+    cx.addEventListener('click', function () { askCancel(label); });
+
+    var row = document.createElement('div');
+    row.className = 'srow';
+    row.appendChild(dot);
+    row.appendChild(info);
+    row.appendChild(sub);
+    row.appendChild(cx);
+    subRows.appendChild(row);
+  }
+
+  GAMES.forEach(function (g) {
+    var n = EV.filter(function (x) { return x.raw.g === g.id; }).length;
+    addSubRow(g, n, g.short + ' · 版本日历', 'ics/' + g.id + '.ics');
+  });
+  addSubRow({ color: '#1B1B1F' }, EV.length, '全部游戏 · 一个日历', 'ics/all.ics');
+
+  function subscribe(rel) {
+    var https = absUrl(rel);
+    if (IS_IOS) {
+      location.href = https.replace(/^https:/, 'webcal:');
+      return;
+    }
+    // 安卓 / 桌面：日历 App 普遍不吃 webcal，给 https 地址去粘贴
+    copy(https);
+    toast('订阅地址已复制，去日历 App「从网址添加」粘贴');
+  }
+
+  function copy(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(function () { fallbackCopy(text); });
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  function askCancel(label) {
+    var box = document.getElementById('cxhelp');
+    document.getElementById('cxtitle').textContent = '取消「' + label.replace(' · 版本日历', '') + '」的提醒';
+    document.getElementById('cxname').textContent = label;
+    box.hidden = false;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  /* ---------- 其他 ---------- */
+  document.getElementById('allBtn').addEventListener('click', function () {
+    picked = GAMES.map(function (g) { return g.id; });
+    render();
+  });
+  document.getElementById('noneBtn').addEventListener('click', function () {
+    picked = [];
+    render();
+  });
+  document.getElementById('wxwarn').style.display =
+    /MicroMessenger/i.test(navigator.userAgent) ? 'block' : 'none';
+
+  render();
+})();
+</script>
+</body>
+</html>

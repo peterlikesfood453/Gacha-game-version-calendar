@@ -1,0 +1,160 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//CN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:鸣潮 · 版本日历
+X-WR-CALDESC:只订阅「鸣潮」的前瞻与版本更新。不玩了就
+ 删掉这个日历，其他游戏不受影响。
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:wuwa-38-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261106T110000Z
+DTEND:20261106T123000Z
+SUMMARY:鸣潮 3.8 前瞻通讯
+DESCRIPTION:官方直播间。公布 3.8 卡池与新五星「莉莉」，
+ 发 300 星声兑换码。\n\n兑换码有效期至 11/08 23:59（直播
+ 后第 2 天 23:59），即直播结束后 53 小时。\n\n时间均为北
+ 京时间 UTC+8。\n标注「预估 / 待定」的日期是按版本周期
+ 推算的，官方公布后会有偏差。
+LOCATION:鸣潮 官方直播间
+CATEGORIES:鸣潮
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:前瞻直播 30 分钟后开始
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-38-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261108T155900Z
+DTEND:20261108T161400Z
+SUMMARY:鸣潮 3.8 前瞻兑换码失效（规则推算）
+DESCRIPTION:有效 53 小时：11/06 19:00 开播 → 11/08 23:59 截止（
+ 北京时间）。\n\n3 组码合计 300 星声。\n过期立即作废，
+ 官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 
+ 设置 → 其他设置（扳手图标）→ 兑换。\n没看直播也能
+ 补：官方前瞻回放的简介区、米游社前瞻专题页都会挂
+ 出这三组码。\n\n时间均为北京时间 UTC+8。\n标注「预估 /
+  待定」的日期是按版本周期推算的，官方公布后会有偏
+ 差。
+LOCATION:鸣潮 兑换入口
+CATEGORIES:鸣潮
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:兑换码 2 小时后失效，还没换的现在去换
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:兑换码 30 分钟后失效，过期不补
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-38-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261112T030000Z
+DTEND:20261112T033000Z
+SUMMARY:鸣潮 3.8 版本更新
+DESCRIPTION:11/10 开放预下载。更新后邮件领 600 星声修复补
+ 偿。\n\n时间均为北京时间 UTC+8。\n标注「预估 / 待定」
+ 的日期是按版本周期推算的，官方公布后会有偏差。
+LOCATION:鸣潮
+CATEGORIES:鸣潮
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:明天是版本更新日
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:版本更新，准备开服
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-40-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261218T110000Z
+DTEND:20261218T123000Z
+SUMMARY:鸣潮 4.0 前瞻通讯（预估）
+DESCRIPTION:推算日期。鸣潮约 6 周一个版本，前瞻一般安排
+ 在更新前 6 天。\n\n兑换码有效期至 12/20 23:59（直播后第 
+ 2 天 23:59），即直播结束后 53 小时。\n\n时间均为北京时
+ 间 UTC+8。\n标注「预估 / 待定」的日期是按版本周期推算
+ 的，官方公布后会有偏差。
+LOCATION:鸣潮 官方直播间
+CATEGORIES:鸣潮
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:前瞻直播 30 分钟后开始
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-40-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261220T155900Z
+DTEND:20261220T161400Z
+SUMMARY:鸣潮 4.0 前瞻兑换码失效（规则推算）
+DESCRIPTION:有效 53 小时：12/18 19:00 开播 → 12/20 23:59 截止（
+ 北京时间）。\n\n3 组码合计 300 星声。\n过期立即作废，
+ 官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 
+ 设置 → 其他设置（扳手图标）→ 兑换。\n没看直播也能
+ 补：官方前瞻回放的简介区、米游社前瞻专题页都会挂
+ 出这三组码。\n\n时间均为北京时间 UTC+8。\n标注「预估 /
+  待定」的日期是按版本周期推算的，官方公布后会有偏
+ 差。
+LOCATION:鸣潮 兑换入口
+CATEGORIES:鸣潮
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:兑换码 2 小时后失效，还没换的现在去换
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:兑换码 30 分钟后失效，过期不补
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-40-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261224T030000Z
+DTEND:20261224T033000Z
+SUMMARY:鸣潮 4.0 版本更新（预估）
+DESCRIPTION:推算日期，按 6 周周期（3.8 于 11/12 上线）。\n\n
+ 时间均为北京时间 UTC+8。\n标注「预估 / 待定」的日期是
+ 按版本周期推算的，官方公布后会有偏差。
+LOCATION:鸣潮
+CATEGORIES:鸣潮
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:明天是版本更新日
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:版本更新，准备开服
+END:VALARM
+END:VEVENT
+END:VCALENDAR
