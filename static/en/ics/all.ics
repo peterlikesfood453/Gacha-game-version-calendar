@@ -1,0 +1,933 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Gacha Version Calendar - All
+X-WR-CALDESC:Preview streams and version updates. Leaving a game? On iPhone
+  just delete that calendar. On Android\, switch OFF "show" in Calendar acc
+ ount settings instead of tapping Delete - deleting one URL subscription re
+ moves all of them.
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:genshin-72-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261104T030000Z
+DTEND:20261104T033000Z
+SUMMARY:Genshin Impact 7.2 Version Update
+DESCRIPTION:Servers go down for maintenance at 06:00 and should be back aro
+ und 11:00 (UTC+8). Adds a new 5-star Electro character\, a Furina rerun\, 
+ and a new Snezhnaya story chapter with a new map area.\n\nAll times are Be
+ ijing time (UTC+8).\nEntries marked Estimated or TBC are projected from ve
+ rsion cycles and may shift once officially announced.
+LOCATION:Genshin Impact
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-15-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261105T030000Z
+DTEND:20261105T033000Z
+SUMMARY:Neverness to Everness 1.5 Version Update
+DESCRIPTION:A new S-rank character in the first half and an EX-tier in the 
+ second half\, plus a new city logistics mode and tank battles. The version
+  runs until Dec 17.\n\nAll times are Beijing time (UTC+8).\nEntries marked
+  Estimated or TBC are projected from version cycles and may shift once off
+ icially announced.
+LOCATION:Neverness to Everness
+CATEGORIES:Neverness to Everness
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wwm-24-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261106T020000Z
+DTEND:20261106T023000Z
+SUMMARY:Where Winds Meet - New Season (Pt. 2) + Twin Spears
+DESCRIPTION:China server date. The same day opens a new Weiyang City area a
+ nd a new questline. Twin spears are the third new weapon style added this 
+ year.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or 
+ TBC are projected from version cycles and may shift once officially announ
+ ced.
+LOCATION:Where Winds Meet
+CATEGORIES:Where Winds Meet
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-38-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261106T110000Z
+DTEND:20261106T123000Z
+SUMMARY:Wuthering Waves 3.8 Preview Broadcast
+DESCRIPTION:Official livestream. Covers the 3.8 convene banners and the new
+  5-star\, plus three codes worth 300 Astrite.\n\nCodes expire at Nov 08\, 
+ 23:59 (UTC+8)\, 23:59 on day 2 after the stream - 53 hours after the strea
+ m ends.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated o
+ r TBC are projected from version cycles and may shift once officially anno
+ unced.
+LOCATION:Wuthering Waves - Official stream
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-38-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261108T155900Z
+DTEND:20261108T161400Z
+SUMMARY:WuWa 3.8 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 53 hours: stream starts Nov 06\, 19:00\, codes die Nov 08
+ \, 23:59 (UTC+8).\n\nThree codes worth 300 Astrite total.\nOnce they expir
+ e they are gone - no reissues\, no appeals.\n\nRedeem in game under Settin
+ gs > Other Settings (wrench icon) > Redeem.\nMissed the stream? The VOD de
+ scription and the official preview page usually list all three codes.\n\nA
+ ll times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are pr
+ ojected from version cycles and may shift once officially announced.
+LOCATION:Wuthering Waves - Redemption page
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-47-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261111T030000Z
+DTEND:20261111T033000Z
+SUMMARY:Honkai: Star Rail 4.7 Version Update
+DESCRIPTION:Aha the Aeon enters the banner pool for the first time\, and th
+ e warp runs until Dec 22\, 15:00 (UTC+8). Servers open around 11:00.\n\nAl
+ l times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are pro
+ jected from version cycles and may shift once officially announced.
+LOCATION:Honkai: Star Rail
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-38-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261112T030000Z
+DTEND:20261112T033000Z
+SUMMARY:Wuthering Waves 3.8 Version Update
+DESCRIPTION:Pre-download opens Nov 10. A 600-Astrite compensation arrives b
+ y in-game mail after the update.\n\nAll times are Beijing time (UTC+8).\nE
+ ntries marked Estimated or TBC are projected from version cycles and may s
+ hift once officially announced.
+LOCATION:Wuthering Waves
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wwm-24-release-20261113@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261113T020000Z
+DTEND:20261113T023000Z
+SUMMARY:Where Winds Meet - Major Update + Global 1st Anniversary
+DESCRIPTION:A new battlefield region\, the Zhongdu Bridge main story and tw
+ o new world bosses\, alongside first-anniversary events. The global releas
+ e follows this date.\n\nAll times are Beijing time (UTC+8).\nEntries marke
+ d Estimated or TBC are projected from version cycles and may shift once of
+ ficially announced.
+LOCATION:Where Winds Meet
+CATEGORIES:Where Winds Meet
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:endfield-17-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261117T113000Z
+DTEND:20261117T130000Z
+SUMMARY:Arknights: Endfield 1.7 Special Program (Estimated)
+DESCRIPTION:The 1.6 program aired 9 days before launch (a Tuesday)\, so thi
+ s follows the same pattern. Preview rewards now have to be claimed on the 
+ event site - they are no longer mailed.\n\nAll times are Beijing time (UTC
+ +8).\nEntries marked Estimated or TBC are projected from version cycles an
+ d may shift once officially announced.
+LOCATION:Arknights: Endfield - Official stream
+CATEGORIES:Arknights: Endfield
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:zzz-34-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261120T113000Z
+DTEND:20261120T130000Z
+SUMMARY:Zenless Zone Zero 3.4 Special Program
+DESCRIPTION:Introduces a new Void Hunter alongside a Honkai: Star Rail cros
+ sover (Robin and Kafka). Three redemption codes worth 300 Polychrome.\n\nC
+ odes expire at Nov 22\, 23:59 (UTC+8)\, 23:59 on day 2 after the stream - 
+ 52 hours after the stream ends.\n\nAll times are Beijing time (UTC+8).\nEn
+ tries marked Estimated or TBC are projected from version cycles and may sh
+ ift once officially announced.
+LOCATION:Zenless Zone Zero - Official stream
+CATEGORIES:Zenless Zone Zero
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:zzz-34-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261122T155900Z
+DTEND:20261122T161400Z
+SUMMARY:ZZZ 3.4 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 52 hours: stream starts Nov 20\, 19:30\, codes die Nov 22
+ \, 23:59 (UTC+8).\n\nThree codes worth 300 Polychrome total.\nOnce they ex
+ pire they are gone - no reissues\, no appeals.\n\nRedeem in game under Mor
+ e > Redemption Code.\nMissed the stream? The VOD description and the offic
+ ial preview page usually list all three codes.\n\nAll times are Beijing ti
+ me (UTC+8).\nEntries marked Estimated or TBC are projected from version cy
+ cles and may shift once officially announced.
+LOCATION:Zenless Zone Zero - Redemption page
+CATEGORIES:Zenless Zone Zero
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hokw-S2-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261126T020000Z
+DTEND:20261126T023000Z
+SUMMARY:Honor of Kings: World - Season 2 Update (TBC) (TBC)
+DESCRIPTION:Season 2 hits the test server in mid-November and the live serv
+ er is expected in late November. No official date yet - this entry is a pl
+ aceholder.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimate
+ d or TBC are projected from version cycles and may shift once officially a
+ nnounced.
+LOCATION:Honor of Kings: World
+CATEGORIES:Honor of Kings: World
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:endfield-17-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261126T030000Z
+DTEND:20261126T033000Z
+SUMMARY:Arknights: Endfield 1.7 Version Update (TBC)
+DESCRIPTION:Community reports point to Nov 26 (a Thursday)\, 42 days after 
+ 1.6. Not officially announced yet - treat the official date as authoritati
+ ve.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or TB
+ C are projected from version cycles and may shift once officially announce
+ d.
+LOCATION:Arknights: Endfield
+CATEGORIES:Arknights: Endfield
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:zzz-34-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261202T030000Z
+DTEND:20261202T033000Z
+SUMMARY:Zenless Zone Zero 3.4 Version Update
+DESCRIPTION:Version 3.3 ends at 06:00 on Dec 2 and 3.4 starts the same day.
+  Maintenance usually runs 06:00-11:00 (UTC+8).\n\nAll times are Beijing ti
+ me (UTC+8).\nEntries marked Estimated or TBC are projected from version cy
+ cles and may shift once officially announced.
+LOCATION:Zenless Zone Zero
+CATEGORIES:Zenless Zone Zero
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-73-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261204T120000Z
+DTEND:20261204T130000Z
+SUMMARY:Genshin Impact 7.3 Special Program (Estimated)
+DESCRIPTION:Projected from the 42-day cycle. Streamed on the official chann
+ els\; three redemption codes (300 Primogems total) are shown during the st
+ ream.\n\nCodes expire at Dec 07\, 12:00 (UTC+8)\, 12:00 on day 3 after the
+  stream - 64 hours after the stream ends.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ and may shift once officially announced.
+LOCATION:Genshin Impact - Official stream
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-73-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261207T040000Z
+DTEND:20261207T041500Z
+SUMMARY:Genshin 7.3 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 64 hours: stream starts Dec 04\, 20:00\, codes die Dec 07
+ \, 12:00 (UTC+8).\n\nThree codes worth 300 Primogems total\, plus Mystic E
+ nhancement Ore\, Hero's Wit and Mora.\nOnce they expire they are gone - no
+  reissues\, no appeals.\n\nRedeem in game under Settings > Account > Redem
+ ption Code\, or on the official redemption website.\nMissed the stream? Th
+ e VOD description and the official preview page usually list all three cod
+ es.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or TB
+ C are projected from version cycles and may shift once officially announce
+ d.
+LOCATION:Genshin Impact - Redemption page
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-16-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261209T113000Z
+DTEND:20261209T130000Z
+SUMMARY:Neverness to Everness 1.6 Special Program (Estimated)
+DESCRIPTION:The 1.5 program aired 8 days before launch (a Wednesday)\, so t
+ his follows the same pattern.\n\nCodes expire at Dec 13\, 23:59 (UTC+8)\, 
+ 23:59 on day 4 after the stream - 100 hours after the stream ends.\n\nAll 
+ times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are proje
+ cted from version cycles and may shift once officially announced.
+LOCATION:Neverness to Everness - Official stream
+CATEGORIES:Neverness to Everness
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-48-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261211T113000Z
+DTEND:20261211T123000Z
+SUMMARY:Honkai: Star Rail 4.8 Special Program (Estimated)
+DESCRIPTION:Projected from the 42-day cycle\, with the stream about 12 days
+  before launch (4.7 launched Nov 11).\n\nCodes expire at Dec 12\, 23:59 (U
+ TC+8)\, 23:59 the day after the stream - 28 hours after the stream ends.\n
+ \nAll times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are
+  projected from version cycles and may shift once officially announced.
+LOCATION:Honkai: Star Rail - Official stream
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-48-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261212T155900Z
+DTEND:20261212T161400Z
+SUMMARY:Star Rail 4.8 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 28 hours: stream starts Dec 11\, 19:30\, codes die Dec 12
+ \, 23:59 (UTC+8).\n\nThree codes worth 300 Stellar Jade total\, plus chara
+ cter and Light Cone ascension materials.\nOnce they expire they are gone -
+  no reissues\, no appeals.\n\nRedeem in game under Phone > the ... menu (t
+ op right) > Redemption Code\, or on the official redemption website.\nMiss
+ ed the stream? The VOD description and the official preview page usually l
+ ist all three codes.\n\nAll times are Beijing time (UTC+8).\nEntries marke
+ d Estimated or TBC are projected from version cycles and may shift once of
+ ficially announced.
+LOCATION:Honkai: Star Rail - Redemption page
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-16-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261213T155900Z
+DTEND:20261213T161400Z
+SUMMARY:NTE 1.6 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 100 hours: stream starts Dec 09\, 19:30\, codes die Dec 1
+ 3\, 23:59 (UTC+8).\n\nThree codes worth 300 premium currency total.\nOnce 
+ they expire they are gone - no reissues\, no appeals.\n\nRedeem in game un
+ der Phone > the ... menu (top right) > Redemption Code.\nMissed the stream
+ ? The VOD description and the official preview page usually list all three
+  codes.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated o
+ r TBC are projected from version cycles and may shift once officially anno
+ unced.
+LOCATION:Neverness to Everness - Redemption page
+CATEGORIES:Neverness to Everness
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-73-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261216T030000Z
+DTEND:20261216T033000Z
+SUMMARY:Genshin Impact 7.3 Version Update (Estimated)
+DESCRIPTION:Projected from the 42-day cycle (7.2 launched on Nov 4).\n\nAll
+  times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are proj
+ ected from version cycles and may shift once officially announced.
+LOCATION:Genshin Impact
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:nte-16-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261217T030000Z
+DTEND:20261217T033000Z
+SUMMARY:Neverness to Everness 1.6 Version Update
+DESCRIPTION:Every 1.5 banner and event is scheduled to end Dec 17\, 05:59 (
+ UTC+8)\, so 1.6 takes over from there.\n\nAll times are Beijing time (UTC+
+ 8).\nEntries marked Estimated or TBC are projected from version cycles and
+  may shift once officially announced.
+LOCATION:Neverness to Everness
+CATEGORIES:Neverness to Everness
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-40-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261218T110000Z
+DTEND:20261218T123000Z
+SUMMARY:Wuthering Waves 4.0 Preview Broadcast (Estimated)
+DESCRIPTION:Projected. Wuthering Waves runs roughly 6-week versions and usu
+ ally holds the preview 6 days before launch.\n\nCodes expire at Dec 20\, 2
+ 3:59 (UTC+8)\, 23:59 on day 2 after the stream - 53 hours after the stream
+  ends.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or
+  TBC are projected from version cycles and may shift once officially annou
+ nced.
+LOCATION:Wuthering Waves - Official stream
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-40-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261220T155900Z
+DTEND:20261220T161400Z
+SUMMARY:WuWa 4.0 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 53 hours: stream starts Dec 18\, 19:00\, codes die Dec 20
+ \, 23:59 (UTC+8).\n\nThree codes worth 300 Astrite total.\nOnce they expir
+ e they are gone - no reissues\, no appeals.\n\nRedeem in game under Settin
+ gs > Other Settings (wrench icon) > Redeem.\nMissed the stream? The VOD de
+ scription and the official preview page usually list all three codes.\n\nA
+ ll times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are pr
+ ojected from version cycles and may shift once officially announced.
+LOCATION:Wuthering Waves - Redemption page
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-48-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261223T030000Z
+DTEND:20261223T033000Z
+SUMMARY:Honkai: Star Rail 4.8 Version Update (Estimated)
+DESCRIPTION:4.7's warp ends Dec 22\, 15:00\, so 4.8 most likely lands on De
+ c 23.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or 
+ TBC are projected from version cycles and may shift once officially announ
+ ced.
+LOCATION:Honkai: Star Rail
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-40-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261224T030000Z
+DTEND:20261224T033000Z
+SUMMARY:Wuthering Waves 4.0 Version Update (Estimated)
+DESCRIPTION:Projected on the 6-week cycle (3.8 launches Nov 12).\n\nAll tim
+ es are Beijing time (UTC+8).\nEntries marked Estimated or TBC are projecte
+ d from version cycles and may shift once officially announced.
+LOCATION:Wuthering Waves
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:endfield-18-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261229T113000Z
+DTEND:20261229T130000Z
+SUMMARY:Arknights: Endfield 1.8 Special Program (Estimated)
+DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nAll times are Be
+ ijing time (UTC+8).\nEntries marked Estimated or TBC are projected from ve
+ rsion cycles and may shift once officially announced.
+LOCATION:Arknights: Endfield - Official stream
+CATEGORIES:Arknights: Endfield
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:zzz-35-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270101T113000Z
+DTEND:20270101T130000Z
+SUMMARY:Zenless Zone Zero 3.5 Special Program (Estimated)
+DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nCodes expire at 
+ Jan 03\, 23:59 (UTC+8)\, 23:59 on day 2 after the stream - 52 hours after 
+ the stream ends.\n\nAll times are Beijing time (UTC+8).\nEntries marked Es
+ timated or TBC are projected from version cycles and may shift once offici
+ ally announced.
+LOCATION:Zenless Zone Zero - Official stream
+CATEGORIES:Zenless Zone Zero
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:zzz-35-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270103T155900Z
+DTEND:20270103T161400Z
+SUMMARY:ZZZ 3.5 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 52 hours: stream starts Jan 01\, 19:30\, codes die Jan 03
+ \, 23:59 (UTC+8).\n\nThree codes worth 300 Polychrome total.\nOnce they ex
+ pire they are gone - no reissues\, no appeals.\n\nRedeem in game under Mor
+ e > Redemption Code.\nMissed the stream? The VOD description and the offic
+ ial preview page usually list all three codes.\n\nAll times are Beijing ti
+ me (UTC+8).\nEntries marked Estimated or TBC are projected from version cy
+ cles and may shift once officially announced.
+LOCATION:Zenless Zone Zero - Redemption page
+CATEGORIES:Zenless Zone Zero
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:endfield-18-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270107T030000Z
+DTEND:20270107T033000Z
+SUMMARY:Arknights: Endfield 1.8 Version Update (Estimated)
+DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nAll times are Be
+ ijing time (UTC+8).\nEntries marked Estimated or TBC are projected from ve
+ rsion cycles and may shift once officially announced.
+LOCATION:Arknights: Endfield
+CATEGORIES:Arknights: Endfield
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:zzz-35-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270113T030000Z
+DTEND:20270113T033000Z
+SUMMARY:Zenless Zone Zero 3.5 Version Update (Estimated)
+DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nAll times are Be
+ ijing time (UTC+8).\nEntries marked Estimated or TBC are projected from ve
+ rsion cycles and may shift once officially announced.
+LOCATION:Zenless Zone Zero
+CATEGORIES:Zenless Zone Zero
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-74-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270115T120000Z
+DTEND:20270115T130000Z
+SUMMARY:Genshin Impact 7.4 Special Program (Estimated)
+DESCRIPTION:Projected date. The exact time is usually confirmed about 12 da
+ ys ahead.\n\nCodes expire at Jan 18\, 12:00 (UTC+8)\, 12:00 on day 3 after
+  the stream - 64 hours after the stream ends.\n\nAll times are Beijing tim
+ e (UTC+8).\nEntries marked Estimated or TBC are projected from version cyc
+ les and may shift once officially announced.
+LOCATION:Genshin Impact - Official stream
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-74-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270118T040000Z
+DTEND:20270118T041500Z
+SUMMARY:Genshin 7.4 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 64 hours: stream starts Jan 15\, 20:00\, codes die Jan 18
+ \, 12:00 (UTC+8).\n\nThree codes worth 300 Primogems total\, plus Mystic E
+ nhancement Ore\, Hero's Wit and Mora.\nOnce they expire they are gone - no
+  reissues\, no appeals.\n\nRedeem in game under Settings > Account > Redem
+ ption Code\, or on the official redemption website.\nMissed the stream? Th
+ e VOD description and the official preview page usually list all three cod
+ es.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or TB
+ C are projected from version cycles and may shift once officially announce
+ d.
+LOCATION:Genshin Impact - Redemption page
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-50-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270122T113000Z
+DTEND:20270122T123000Z
+SUMMARY:Honkai: Star Rail 5.0 Special Program (Estimated)
+DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nCodes expire at 
+ Jan 23\, 23:59 (UTC+8)\, 23:59 the day after the stream - 28 hours after t
+ he stream ends.\n\nAll times are Beijing time (UTC+8).\nEntries marked Est
+ imated or TBC are projected from version cycles and may shift once officia
+ lly announced.
+LOCATION:Honkai: Star Rail - Official stream
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-50-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270123T155900Z
+DTEND:20270123T161400Z
+SUMMARY:Star Rail 5.0 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 28 hours: stream starts Jan 22\, 19:30\, codes die Jan 23
+ \, 23:59 (UTC+8).\n\nThree codes worth 300 Stellar Jade total\, plus chara
+ cter and Light Cone ascension materials.\nOnce they expire they are gone -
+  no reissues\, no appeals.\n\nRedeem in game under Phone > the ... menu (t
+ op right) > Redemption Code\, or on the official redemption website.\nMiss
+ ed the stream? The VOD description and the official preview page usually l
+ ist all three codes.\n\nAll times are Beijing time (UTC+8).\nEntries marke
+ d Estimated or TBC are projected from version cycles and may shift once of
+ ficially announced.
+LOCATION:Honkai: Star Rail - Redemption page
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-74-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270127T030000Z
+DTEND:20270127T033000Z
+SUMMARY:Genshin Impact 7.4 Version Update (Lantern Rite) (Estimated)
+DESCRIPTION:Lantern Rite version\, projected from the 42-day cycle.\n\nAll 
+ times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are proje
+ cted from version cycles and may shift once officially announced.
+LOCATION:Genshin Impact
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-50-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270203T030000Z
+DTEND:20270203T033000Z
+SUMMARY:Honkai: Star Rail 5.0 Version Update (Estimated)
+DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nAll times are Be
+ ijing time (UTC+8).\nEntries marked Estimated or TBC are projected from ve
+ rsion cycles and may shift once officially announced.
+LOCATION:Honkai: Star Rail
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,191 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Genshin - Version Calendar
+X-WR-CALDESC:Only Genshin Impact previews and version updates. Leaving a ga
+ me? On iPhone just delete that calendar. On Android\, switch OFF "show" in
+  Calendar account settings instead of tapping Delete - deleting one URL su
+ bscription removes all of them.
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:genshin-72-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261104T030000Z
+DTEND:20261104T033000Z
+SUMMARY:Genshin Impact 7.2 Version Update
+DESCRIPTION:Servers go down for maintenance at 06:00 and should be back aro
+ und 11:00 (UTC+8). Adds a new 5-star Electro character\, a Furina rerun\, 
+ and a new Snezhnaya story chapter with a new map area.\n\nAll times are Be
+ ijing time (UTC+8).\nEntries marked Estimated or TBC are projected from ve
+ rsion cycles and may shift once officially announced.
+LOCATION:Genshin Impact
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-73-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261204T120000Z
+DTEND:20261204T130000Z
+SUMMARY:Genshin Impact 7.3 Special Program (Estimated)
+DESCRIPTION:Projected from the 42-day cycle. Streamed on the official chann
+ els\; three redemption codes (300 Primogems total) are shown during the st
+ ream.\n\nCodes expire at Dec 07\, 12:00 (UTC+8)\, 12:00 on day 3 after the
+  stream - 64 hours after the stream ends.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ and may shift once officially announced.
+LOCATION:Genshin Impact - Official stream
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-73-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261207T040000Z
+DTEND:20261207T041500Z
+SUMMARY:Genshin 7.3 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 64 hours: stream starts Dec 04\, 20:00\, codes die Dec 07
+ \, 12:00 (UTC+8).\n\nThree codes worth 300 Primogems total\, plus Mystic E
+ nhancement Ore\, Hero's Wit and Mora.\nOnce they expire they are gone - no
+  reissues\, no appeals.\n\nRedeem in game under Settings > Account > Redem
+ ption Code\, or on the official redemption website.\nMissed the stream? Th
+ e VOD description and the official preview page usually list all three cod
+ es.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or TB
+ C are projected from version cycles and may shift once officially announce
+ d.
+LOCATION:Genshin Impact - Redemption page
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-73-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261216T030000Z
+DTEND:20261216T033000Z
+SUMMARY:Genshin Impact 7.3 Version Update (Estimated)
+DESCRIPTION:Projected from the 42-day cycle (7.2 launched on Nov 4).\n\nAll
+  times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are proj
+ ected from version cycles and may shift once officially announced.
+LOCATION:Genshin Impact
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-74-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270115T120000Z
+DTEND:20270115T130000Z
+SUMMARY:Genshin Impact 7.4 Special Program (Estimated)
+DESCRIPTION:Projected date. The exact time is usually confirmed about 12 da
+ ys ahead.\n\nCodes expire at Jan 18\, 12:00 (UTC+8)\, 12:00 on day 3 after
+  the stream - 64 hours after the stream ends.\n\nAll times are Beijing tim
+ e (UTC+8).\nEntries marked Estimated or TBC are projected from version cyc
+ les and may shift once officially announced.
+LOCATION:Genshin Impact - Official stream
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-74-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270118T040000Z
+DTEND:20270118T041500Z
+SUMMARY:Genshin 7.4 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 64 hours: stream starts Jan 15\, 20:00\, codes die Jan 18
+ \, 12:00 (UTC+8).\n\nThree codes worth 300 Primogems total\, plus Mystic E
+ nhancement Ore\, Hero's Wit and Mora.\nOnce they expire they are gone - no
+  reissues\, no appeals.\n\nRedeem in game under Settings > Account > Redem
+ ption Code\, or on the official redemption website.\nMissed the stream? Th
+ e VOD description and the official preview page usually list all three cod
+ es.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or TB
+ C are projected from version cycles and may shift once officially announce
+ d.
+LOCATION:Genshin Impact - Redemption page
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:genshin-74-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270127T030000Z
+DTEND:20270127T033000Z
+SUMMARY:Genshin Impact 7.4 Version Update (Lantern Rite) (Estimated)
+DESCRIPTION:Lantern Rite version\, projected from the 42-day cycle.\n\nAll 
+ times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are proje
+ cted from version cycles and may shift once officially announced.
+LOCATION:Genshin Impact
+CATEGORIES:Genshin Impact
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+END:VCALENDAR

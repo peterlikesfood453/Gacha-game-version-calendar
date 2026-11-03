@@ -1,0 +1,104 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Endfield - Version Calendar
+X-WR-CALDESC:Only Arknights: Endfield previews and version updates. Leaving
+  a game? On iPhone just delete that calendar. On Android\, switch OFF "sho
+ w" in Calendar account settings instead of tapping Delete - deleting one U
+ RL subscription removes all of them.
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:endfield-17-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261117T113000Z
+DTEND:20261117T130000Z
+SUMMARY:Arknights: Endfield 1.7 Special Program (Estimated)
+DESCRIPTION:The 1.6 program aired 9 days before launch (a Tuesday)\, so thi
+ s follows the same pattern. Preview rewards now have to be claimed on the 
+ event site - they are no longer mailed.\n\nAll times are Beijing time (UTC
+ +8).\nEntries marked Estimated or TBC are projected from version cycles an
+ d may shift once officially announced.
+LOCATION:Arknights: Endfield - Official stream
+CATEGORIES:Arknights: Endfield
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:endfield-17-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261126T030000Z
+DTEND:20261126T033000Z
+SUMMARY:Arknights: Endfield 1.7 Version Update (TBC)
+DESCRIPTION:Community reports point to Nov 26 (a Thursday)\, 42 days after 
+ 1.6. Not officially announced yet - treat the official date as authoritati
+ ve.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or TB
+ C are projected from version cycles and may shift once officially announce
+ d.
+LOCATION:Arknights: Endfield
+CATEGORIES:Arknights: Endfield
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:endfield-18-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261229T113000Z
+DTEND:20261229T130000Z
+SUMMARY:Arknights: Endfield 1.8 Special Program (Estimated)
+DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nAll times are Be
+ ijing time (UTC+8).\nEntries marked Estimated or TBC are projected from ve
+ rsion cycles and may shift once officially announced.
+LOCATION:Arknights: Endfield - Official stream
+CATEGORIES:Arknights: Endfield
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:endfield-18-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270107T030000Z
+DTEND:20270107T033000Z
+SUMMARY:Arknights: Endfield 1.8 Version Update (Estimated)
+DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nAll times are Be
+ ijing time (UTC+8).\nEntries marked Estimated or TBC are projected from ve
+ rsion cycles and may shift once officially announced.
+LOCATION:Arknights: Endfield
+CATEGORIES:Arknights: Endfield
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+END:VCALENDAR

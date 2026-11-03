@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F5F4F0">
+<title>Gacha Version Calendar</title>
+<meta name="description" content="Pick the gacha games you play and add every preview stream, version update and promo-code expiry to your phone calendar in one tap.">
+<link rel="icon" href="data:,">
+<link rel="alternate" hreflang="zh-CN" href="../">
+<link rel="alternate" hreflang="en" href="./">
+<link rel="alternate" hreflang="x-default" href="../">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:#F5F4F0;color:#1B1B1F;line-height:1.6;
+       font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:640px;margin:0 auto;padding:18px 16px 188px;overflow-x:hidden}
+
+  .langbar{display:flex;justify-content:flex-end;margin-bottom:6px}
+  .langbar a{font-size:12px;font-weight:600;color:#5B5BE0;text-decoration:none;background:#fff;
+             border:1px solid #E4E3DD;border-radius:999px;padding:4px 11px;line-height:1.4}
+  .langbar a:active{opacity:.7}
+
+  header{text-align:center;padding:4px 0 20px}
+  h1{font-size:24px;letter-spacing:-.4px;font-weight:700}
+  .sub{color:#6B6B76;font-size:13.5px;margin-top:8px}
+  .meta{font-size:11.5px;color:#A0A0AA;margin-top:10px}
+
+  .warn{display:none;background:#FFF4E0;border:1px solid #F0D9AE;color:#8A5B00;
+        border-radius:12px;padding:10px 13px;font-size:12.5px;margin-bottom:16px;line-height:1.55}
+
+  .selbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .selbar .t{font-size:13px;font-weight:700;color:#3A3A44}
+  .selbar .sp{flex:1}
+  .selbar button{background:none;border:none;font-size:12.5px;color:#5B5BE0;
+                 font-weight:600;padding:4px 2px;cursor:pointer;font-family:inherit}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:26px}
+  .g{position:relative;display:flex;flex-direction:column;gap:2px;text-align:left;min-width:0;
+     background:#fff;border:1.5px solid #E9E8E3;border-radius:14px;padding:12px 13px 11px;
+     cursor:pointer;font-family:inherit;transition:border-color .12s,background .12s,transform .1s}
+  .g:active{transform:scale(.985)}
+  .g .gname{font-size:14px;font-weight:600;letter-spacing:-.15px;color:#1B1B1F;
+            padding-right:20px;line-height:1.35;overflow-wrap:break-word;word-break:break-word}
+  .g .gver{font-size:11px;color:#9A9AA4;font-variant-numeric:tabular-nums}
+  .g .gdot{width:7px;height:7px;border-radius:50%;background:var(--c);margin-bottom:5px}
+  .g .tick{position:absolute;top:11px;right:11px;width:16px;height:16px;border-radius:50%;
+           border:1.5px solid #D6D5CF;background:#fff;display:flex;align-items:center;
+           justify-content:center;transition:all .12s}
+  .g .tick svg{width:10px;height:10px;opacity:0;transition:opacity .12s}
+  .g[aria-checked="true"]{border-color:var(--c);background:var(--bg)}
+  .g[aria-checked="true"] .tick{background:var(--c);border-color:var(--c)}
+  .g[aria-checked="true"] .tick svg{opacity:1}
+
+  .phead{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
+  .phead .t{font-size:15px;font-weight:700;letter-spacing:-.2px}
+  .phead .n{font-size:12px;color:#9A9AA4;margin-left:auto}
+
+  .ev{display:flex;gap:12px;background:#fff;border:1px solid #EDECE7;border-radius:13px;
+      padding:11px 13px;margin-bottom:8px;position:relative;overflow:hidden}
+  .ev::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c)}
+  .ev .d{flex:none;width:46px;text-align:center;padding-top:1px}
+  .ev .d b{display:block;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums;
+           letter-spacing:-.3px;color:#2A2A33}
+  .ev .d span{display:block;font-size:10.5px;color:#A0A0AA;margin-top:1px}
+  .ev .b{flex:1;min-width:0}
+  .ev .tt{font-size:13.5px;font-weight:600;color:#1B1B1F;letter-spacing:-.15px;
+          line-height:1.45;overflow-wrap:anywhere}
+  .ev .mm{font-size:11.5px;color:#8A8A95;margin-top:4px;display:flex;flex-wrap:wrap;
+          align-items:center;gap:6px}
+  .ev .tag{font-size:10px;padding:1.5px 6px;border-radius:5px;font-weight:700;letter-spacing:.2px}
+  .ev .kk{font-size:10px;padding:1.5px 5px;border-radius:5px;font-weight:700;letter-spacing:.2px;
+          background:#FDEDE8;color:#B4502F}
+  .tag.official{background:#E8F6EC;color:#1B7A44}
+  .tag.est{background:#F2F1ED;color:#84848F;border:1px dashed #D2D1CA}
+  .tag.tbd{background:#FDEDE8;color:#B4502F}
+  .tag.rule{background:#EAF1FB;color:#2F5FA8}
+  .ev.past{opacity:.45}
+  .empty{background:#fff;border:1px dashed #DEDDD6;border-radius:13px;padding:22px;
+         text-align:center;font-size:13px;color:#9A9AA4}
+
+  .note{background:#fff;border-radius:14px;padding:16px 17px;border:1px solid #EDECE7;
+        font-size:12.5px;color:#5A5A64;line-height:1.75;margin-top:26px}
+  .note h3{font-size:13.5px;color:#1B1B1F;margin-bottom:7px;font-weight:700}
+  .note b{color:#1B1B1F}
+  .note ol{padding-left:18px}
+  .note li{margin-top:4px}
+  .note .k{display:inline-block;background:#F2F1ED;border-radius:5px;padding:0 5px;
+           font-size:11.5px;font-weight:600}
+  .note .lead{font-size:12.5px;color:#5A5A64;margin-bottom:2px}
+  .note .fine{font-size:11.5px;color:#9A9AA4;line-height:1.65;margin-top:10px}
+
+  .sh{font-size:11.5px;font-weight:700;color:#9A9AA4;letter-spacing:.3px;margin:14px 0 2px}
+  .srow{display:flex;align-items:center;gap:9px;padding:9px 0;border-top:1px solid #F2F1EC}
+  .srow:first-of-type{border-top:none}
+  .sdot{width:8px;height:8px;border-radius:50%;flex:none}
+  .sinfo{flex:1;min-width:0}
+  .sinfo b{display:block;font-size:13px;font-weight:600;color:#1B1B1F;letter-spacing:-.1px;
+           white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sinfo span{display:block;font-size:10.5px;color:#A0A0AA;margin-top:1px}
+  .sbtn{flex:none;font-size:12px;font-weight:700;color:#fff;background:#1B1B1F;
+        border:none;border-radius:8px;padding:7px 11px;text-decoration:none;font-family:inherit;
+        cursor:pointer}
+  .sbtn:active{opacity:.8}
+  .scx{flex:none;font-size:12px;font-weight:600;color:#7A7A85;background:#F2F1ED;border:none;
+       border-radius:8px;padding:7px 10px;font-family:inherit;cursor:pointer}
+
+  .cxhelp{background:#FBF7F0;border:1px solid #F0E4CE;border-radius:11px;
+          padding:12px 13px;margin-top:12px;font-size:12.5px;color:#6A5230;line-height:1.72}
+  .cxhelp b{color:#1B1B1F}
+  .cxhelp ol{padding-left:17px;margin-top:4px}
+  .cxhelp .hd{font-size:12.5px;font-weight:700;color:#1B1B1F;margin-bottom:5px}
+  .cxhelp .alt{margin-top:9px;padding-top:9px;border-top:1px dashed #E6D9C2;color:#7A6446}
+  .cxhelp .danger{background:#FDECEA;border:1px solid #F3C7C1;border-radius:9px;
+                  padding:9px 10px;margin:6px 0 10px;color:#A3342A;font-size:12px;line-height:1.68}
+  .cxhelp .danger b{color:#8A2318}
+  .cxhelp .plat{font-size:11.5px;font-weight:700;color:#8A6A3C;letter-spacing:.3px;
+                margin:10px 0 2px;text-transform:uppercase}
+  .cxhelp .plat:first-of-type{margin-top:8px}
+
+  details.imp{margin-top:12px;border-top:1px solid #F2F1EC;padding-top:10px}
+  details.imp summary{font-size:12.5px;font-weight:600;color:#5B5BE0;cursor:pointer;list-style:none}
+  details.imp summary::-webkit-details-marker{display:none}
+  details.imp summary::after{content:" ›"}
+  details.imp[open] summary::after{content:" ﹀"}
+  details.imp p{font-size:12.5px;color:#5A5A64;margin-top:8px}
+  details.imp ol{padding-left:17px;margin-top:4px}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:20;
+       background:rgba(245,244,240,.92);backdrop-filter:blur(14px);
+       -webkit-backdrop-filter:blur(14px);border-top:1px solid #E4E3DD;
+       padding:11px 16px calc(11px + env(safe-area-inset-bottom))}
+  .bar .in{max-width:640px;margin:0 auto}
+  .barmeta{font-size:11.5px;color:#8A8A95;text-align:center;margin-bottom:8px}
+  .barmeta b{color:#1B1B1F;font-variant-numeric:tabular-nums}
+  .btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;
+       padding:14px;border-radius:14px;font-size:15px;font-weight:600;text-decoration:none;
+       border:1px solid transparent;transition:transform .12s;font-family:inherit;cursor:pointer}
+  .btn:active{transform:scale(.985)}
+  .btn.primary{background:#1B1B1F;color:#fff;box-shadow:0 6px 18px rgba(27,27,31,.18)}
+  .btn.off{background:#DFDED8;color:#9A9AA4;box-shadow:none;pointer-events:none}
+  .sublink{display:block;text-align:center;font-size:12px;color:#5B5BE0;
+           text-decoration:none;font-weight:600;margin-top:9px}
+  footer{text-align:center;font-size:11px;color:#ACACB5;margin-top:22px;line-height:1.8}
+
+  .toast{position:fixed;left:50%;bottom:96px;transform:translate(-50%,10px);z-index:50;
+         background:rgba(27,27,31,.94);color:#fff;font-size:13px;font-weight:500;
+         padding:10px 16px;border-radius:11px;opacity:0;pointer-events:none;
+         transition:opacity .18s,transform .18s;max-width:80vw;text-align:center;line-height:1.5}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="langbar"><a href="../" rel="alternate" hreflang="alternate">中文</a></div>
+
+  <header>
+    <h1>Gacha Version Calendar</h1>
+    <div class="sub">Pick the games you play, get a calendar that only has what you need</div>
+    <div class="meta">Static build · schedule runs to <span id="latest">—</span> · All times Beijing time (UTC+8)</div>
+  </header>
+
+  <div class="warn" id="wxwarn">You are in the WeChat browser. WeChat will not open calendar files - tap <b>···</b> (top right) → <b>Open in browser</b> first.</div>
+
+  <div class="selbar">
+    <span class="t">Choose games</span>
+    <span class="sp"></span>
+    <button type="button" id="allBtn">All</button>
+    <button type="button" id="noneBtn">None</button>
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <div class="phead">
+    <span class="t">Upcoming</span>
+    <span class="n" id="cnt"></span>
+  </div>
+  <div id="list"></div>
+
+  <div class="note">
+    <h3>How to get it on your phone</h3>
+    <ol>
+      <li><b>iPhone</b>: open this page in Safari and tap the black button. With one game selected it opens straight in Calendar - tap <b>Add All</b>. With several, it downloads a file: open it from the Files app.</li>
+      <li><b>Android / Huawei / Xiaomi</b>: the button downloads a .ics file - import it with your calendar app.</li>
+      <li>To follow updates long-term, skip importing and use <b>Subscribe</b> below - your phone syncs automatically when the data changes.</li>
+      <li>Reminders are already set: 30 min before a stream, 2 h and 30 min before codes expire, 1 day and 2 h before a version update.</li>
+    </ol>
+    <p class="fine">The "codes expire" entry is the official cut-off time exactly. The rule differs per game: Genshin noon on day 3 after the stream, Star Rail 23:59 the next day, ZZZ and WuWa 23:59 on day 2, NTE 23:59 on day 4. Endfield, Where Winds Meet and HoK: World do not hand out preview codes, so they have no such entry.</p>
+  </div>
+
+  <div class="note" id="sub">
+    <h3>Subscribe &amp; remove</h3>
+    <p class="lead">One game, one calendar. If you quit a game, turn off or delete just that calendar and its reminders go away while the rest keep working. iPhone can delete directly; on Android read the red box below first.</p>
+
+    <div class="sh">Subscribe per game</div>
+    <div id="subrows"></div>
+
+    <div class="cxhelp" id="cxhelp" hidden>
+      <div class="hd" id="cxtitle">Stop reminders for</div>
+
+      <div class="danger"><b>Android: read this before deleting anything.</b> Many Chinese calendar apps (vivo / OPPO / Xiaomi / Huawei) put every URL subscription you add under a single account called <b>Subscription Calendar</b>. Deleting one of them there <b>deletes all of them at once</b> - that is why Genshin and Star Rail vanished together. This is how the vendor app works, not a bug in this site. On Android, use step 2 below.</div>
+
+      <div class="plat" data-plat="ios">iPhone / iPad</div>
+      <ol data-plat="ios">
+        <li>Open the <b>Calendar</b> app and tap <b>Calendars</b> at the bottom</li>
+        <li>Find <b id="cxname">Genshin - Version Calendar</b> and tap the <b>ⓘ</b> next to it</li>
+        <li>Scroll down, tap <b>Delete Calendar</b> and confirm. Every iOS subscription is independent, so only this one goes away</li>
+      </ol>
+
+      <div class="plat" data-plat="android">Android (turn off a single game)</div>
+      <ol data-plat="android">
+        <li>Open your calendar app: <b>Settings → Calendar accounts</b> (names vary by vendor)</li>
+        <li>Tap the <b id="cxname2">Genshin - Version Calendar</b> row (the titles all read "Subscription Calendar" - match the small text underneath)</li>
+        <li>Switch <b>"show" off</b> - <b>do not tap Delete</b></li>
+        <li>Reminders for that game stop immediately and nothing else is affected. To delete them properly one by one, use ICSx⁵ below</li>
+      </ol>
+
+      <div class="plat" data-plat="android">Not worth the hassle: use a different calendar app</div>
+      <p data-plat="android" style="margin-top:4px">Install <b>ICSx⁵</b> (open source, free, on every app store). Each subscription becomes an independent calendar there, so deleting one never touches the others. Just paste the subscribe URL - the Subscribe button copies it for you.</p>
+
+      <div class="alt">Only want some quiet? You do not have to delete anything: switch that calendar's visibility off and reminders stop too, or hit "remove alerts" in the subscription settings and keep the events.</div>
+    </div>
+
+    <details class="imp">
+      <summary>How to subscribe on Android (when the button says "copied")</summary>
+      <p>Android calendar apps do not accept <b class="k">webcal://</b> links, so the button copies an <b class="k">https://</b> URL instead.</p>
+      <p><b>Recommended</b>: install <b>ICSx⁵</b> (open source, free). Open it → <b>+</b> (top right) → paste the URL → save. Every game becomes its own calendar, deleting one never affects the others, and you dodge the vendor account behaviour entirely.</p>
+      <p>The built-in calendar app works too, with a catch:</p>
+      <ol>
+        <li>Open the calendar app and find <b>Add calendar from URL</b> / <b>Subscribe by URL</b> in settings</li>
+        <li>Paste the URL, name it whatever you like, confirm</li>
+        <li>It re-fetches the URL periodically. Note that subscriptions added this way all land in one account, so deleting one deletes all - turn off "show" instead when you stop playing a game</li>
+      </ol>
+    </details>
+
+    <details class="imp">
+      <summary>I imported the file once - how do I undo it?</summary>
+      <p>Imported events live on your phone, so nothing on my side can reach them. Delete them in the calendar app:</p>
+      <ol>
+        <li>Open your calendar app and search for the game name</li>
+        <li>Each result can be deleted on its own (iPhone: tap in → Delete Event; Android: long-press → Delete)</li>
+        <li>Or switch to subscribing instead - then removing a game means deleting one calendar</li>
+      </ol>
+    </details>
+
+    <p class="fine">Why can't this page just delete it remotely? Calendar subscriptions are read-only - only your own phone knows what you subscribed to. So removal has to happen on your device. I kept it to three taps.</p>
+  </div>
+
+  <div class="note">
+    <h3>This is the static build - how is it different?</h3>
+    <p class="lead">Everything on this page is computed in your browser, with no server involved, so it can live on GitHub Pages for free and anyone can host a copy.</p>
+    <ol>
+      <li><b>What works</b>: tick any set of games and download one merged .ics file for your phone; subscribe per game to a pre-built file.</li>
+      <li><b>What does not</b>: a subscribable URL for an arbitrary mix like "Genshin + WuWa". A subscription URL has to point at a file made in advance, so you get one per game plus one for everything.</li>
+      <li><b>How data updates</b>: the maintainer edits <b class="k">events.py</b> and rebuilds - page and subscriptions change together. Subscribers sync automatically; people who imported need to import again.</li>
+    </ol>
+    <p class="fine">Need a subscribe link for a custom mix? Use the full version in the repo (a small Python server) - there the URL is generated from whatever you pick.</p>
+  </div>
+
+  <footer>
+    Confirmed comes from official announcements, Estimated is projected from the version cycle, TBC means no date announced yet.<br>
+    Computed is the code expiry time: not announced officially, but derived from each game's past record to the minute - usually within an hour.<br>
+    Expired codes are never reissued, so do not treat that entry as a price reference.
+  </footer>
+</div>
+
+<div class="bar">
+  <div class="in">
+    <div class="barmeta"><b id="pn">0</b> games · <b id="en">0</b> events</div>
+    <button type="button" class="btn primary" id="mainBtn">Add to phone calendar</button>
+    <a class="sublink" href="#sub">Subscribe · drop one game anytime ›</a>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script id="data" type="application/json">{"games":[{"id":"genshin","name":"Genshin Impact","short":"Genshin","ver":"7.2","color":"#C9A227"},{"id":"hsr","name":"Honkai: Star Rail","short":"Star Rail","ver":"4.7","color":"#7B6CF6"},{"id":"zzz","name":"Zenless Zone Zero","short":"ZZZ","ver":"3.3","color":"#D99A00"},{"id":"wuwa","name":"Wuthering Waves","short":"WuWa","ver":"3.7","color":"#2E7D8F"},{"id":"endfield","name":"Arknights: Endfield","short":"Endfield","ver":"1.6","color":"#5A6472"},{"id":"nte","name":"Neverness to Everness","short":"NTE","ver":"1.5","color":"#D94F3D"},{"id":"wwm","name":"Where Winds Meet","short":"Where Winds Meet","ver":"2.3","color":"#7A5C3E"},{"id":"hokw","name":"Honor of Kings: World","short":"HoK: World","ver":"S1","color":"#2B7CD3"}],"events":[{"g":"genshin","ver":"7.2","kind":"release","dt":"2026-11-04 11:00","dur":30,"status":"official","title":"Genshin Impact 7.2 Version Update","desc":"Servers go down for maintenance at 06:00 and should be back around 11:00 (UTC+8). Adds a new 5-star Electro character, a Furina rerun, and a new Snezhnaya story chapter with a new map area."},{"g":"nte","ver":"1.5","kind":"release","dt":"2026-11-05 11:00","dur":30,"status":"official","title":"Neverness to Everness 1.5 Version Update","desc":"A new S-rank character in the first half and an EX-tier in the second half, plus a new city logistics mode and tank battles. The version runs until Dec 17."},{"g":"wwm","ver":"2.4","kind":"release","dt":"2026-11-06 10:00","dur":30,"status":"official","title":"Where Winds Meet - New Season (Pt. 2) + Twin Spears","desc":"China server date. The same day opens a new Weiyang City area and a new questline. Twin spears are the third new weapon style added this year."},{"g":"wuwa","ver":"3.8","kind":"preview","dt":"2026-11-06 19:00","dur":90,"status":"official","title":"Wuthering Waves 3.8 Preview Broadcast","desc":"Official livestream. Covers the 3.8 convene banners and the new 5-star, plus three codes worth 300 Astrite.\n\nCodes expire at Nov 08, 23:59 (UTC+8), 23:59 on day 2 after the stream - 53 hours after the stream ends."},{"g":"wuwa","ver":"3.8","kind":"code","dt":"2026-11-08 23:59","dur":15,"status":"rule","title":"WuWa 3.8 - Redemption codes expire","desc":"Valid 53 hours: stream starts Nov 06, 19:00, codes die Nov 08, 23:59 (UTC+8).\n\nThree codes worth 300 Astrite total.\nOnce they expire they are gone - no reissues, no appeals.\n\nRedeem in game under Settings > Other Settings (wrench icon) > Redeem.\nMissed the stream? The VOD description and the official preview page usually list all three codes."},{"g":"hsr","ver":"4.7","kind":"release","dt":"2026-11-11 11:00","dur":30,"status":"official","title":"Honkai: Star Rail 4.7 Version Update","desc":"Aha the Aeon enters the banner pool for the first time, and the warp runs until Dec 22, 15:00 (UTC+8). Servers open around 11:00."},{"g":"wuwa","ver":"3.8","kind":"release","dt":"2026-11-12 11:00","dur":30,"status":"official","title":"Wuthering Waves 3.8 Version Update","desc":"Pre-download opens Nov 10. A 600-Astrite compensation arrives by in-game mail after the update."},{"g":"wwm","ver":"2.4","kind":"release","dt":"2026-11-13 10:00","dur":30,"status":"official","title":"Where Winds Meet - Major Update + Global 1st Anniversary","desc":"A new battlefield region, the Zhongdu Bridge main story and two new world bosses, alongside first-anniversary events. The global release follows this date."},{"g":"endfield","ver":"1.7","kind":"preview","dt":"2026-11-17 19:30","dur":90,"status":"est","title":"Arknights: Endfield 1.7 Special Program","desc":"The 1.6 program aired 9 days before launch (a Tuesday), so this follows the same pattern. Preview rewards now have to be claimed on the event site - they are no longer mailed."},{"g":"zzz","ver":"3.4","kind":"preview","dt":"2026-11-20 19:30","dur":90,"status":"official","title":"Zenless Zone Zero 3.4 Special Program","desc":"Introduces a new Void Hunter alongside a Honkai: Star Rail crossover (Robin and Kafka). Three redemption codes worth 300 Polychrome.\n\nCodes expire at Nov 22, 23:59 (UTC+8), 23:59 on day 2 after the stream - 52 hours after the stream ends."},{"g":"zzz","ver":"3.4","kind":"code","dt":"2026-11-22 23:59","dur":15,"status":"rule","title":"ZZZ 3.4 - Redemption codes expire","desc":"Valid 52 hours: stream starts Nov 20, 19:30, codes die Nov 22, 23:59 (UTC+8).\n\nThree codes worth 300 Polychrome total.\nOnce they expire they are gone - no reissues, no appeals.\n\nRedeem in game under More > Redemption Code.\nMissed the stream? The VOD description and the official preview page usually list all three codes."},{"g":"hokw","ver":"S2","kind":"release","dt":"2026-11-26 10:00","dur":30,"status":"tbd","title":"Honor of Kings: World - Season 2 Update (TBC)","desc":"Season 2 hits the test server in mid-November and the live server is expected in late November. No official date yet - this entry is a placeholder."},{"g":"endfield","ver":"1.7","kind":"release","dt":"2026-11-26 11:00","dur":30,"status":"tbd","title":"Arknights: Endfield 1.7 Version Update","desc":"Community reports point to Nov 26 (a Thursday), 42 days after 1.6. Not officially announced yet - treat the official date as authoritative."},{"g":"zzz","ver":"3.4","kind":"release","dt":"2026-12-02 11:00","dur":30,"status":"official","title":"Zenless Zone Zero 3.4 Version Update","desc":"Version 3.3 ends at 06:00 on Dec 2 and 3.4 starts the same day. Maintenance usually runs 06:00-11:00 (UTC+8)."},{"g":"genshin","ver":"7.3","kind":"preview","dt":"2026-12-04 20:00","dur":60,"status":"est","title":"Genshin Impact 7.3 Special Program","desc":"Projected from the 42-day cycle. Streamed on the official channels; three redemption codes (300 Primogems total) are shown during the stream.\n\nCodes expire at Dec 07, 12:00 (UTC+8), 12:00 on day 3 after the stream - 64 hours after the stream ends."},{"g":"genshin","ver":"7.3","kind":"code","dt":"2026-12-07 12:00","dur":15,"status":"rule","title":"Genshin 7.3 - Redemption codes expire","desc":"Valid 64 hours: stream starts Dec 04, 20:00, codes die Dec 07, 12:00 (UTC+8).\n\nThree codes worth 300 Primogems total, plus Mystic Enhancement Ore, Hero's Wit and Mora.\nOnce they expire they are gone - no reissues, no appeals.\n\nRedeem in game under Settings > Account > Redemption Code, or on the official redemption website.\nMissed the stream? The VOD description and the official preview page usually list all three codes."},{"g":"nte","ver":"1.6","kind":"preview","dt":"2026-12-09 19:30","dur":90,"status":"est","title":"Neverness to Everness 1.6 Special Program","desc":"The 1.5 program aired 8 days before launch (a Wednesday), so this follows the same pattern.\n\nCodes expire at Dec 13, 23:59 (UTC+8), 23:59 on day 4 after the stream - 100 hours after the stream ends."},{"g":"hsr","ver":"4.8","kind":"preview","dt":"2026-12-11 19:30","dur":60,"status":"est","title":"Honkai: Star Rail 4.8 Special Program","desc":"Projected from the 42-day cycle, with the stream about 12 days before launch (4.7 launched Nov 11).\n\nCodes expire at Dec 12, 23:59 (UTC+8), 23:59 the day after the stream - 28 hours after the stream ends."},{"g":"hsr","ver":"4.8","kind":"code","dt":"2026-12-12 23:59","dur":15,"status":"rule","title":"Star Rail 4.8 - Redemption codes expire","desc":"Valid 28 hours: stream starts Dec 11, 19:30, codes die Dec 12, 23:59 (UTC+8).\n\nThree codes worth 300 Stellar Jade total, plus character and Light Cone ascension materials.\nOnce they expire they are gone - no reissues, no appeals.\n\nRedeem in game under Phone > the ... menu (top right) > Redemption Code, or on the official redemption website.\nMissed the stream? The VOD description and the official preview page usually list all three codes."},{"g":"nte","ver":"1.6","kind":"code","dt":"2026-12-13 23:59","dur":15,"status":"rule","title":"NTE 1.6 - Redemption codes expire","desc":"Valid 100 hours: stream starts Dec 09, 19:30, codes die Dec 13, 23:59 (UTC+8).\n\nThree codes worth 300 premium currency total.\nOnce they expire they are gone - no reissues, no appeals.\n\nRedeem in game under Phone > the ... menu (top right) > Redemption Code.\nMissed the stream? The VOD description and the official preview page usually list all three codes."},{"g":"genshin","ver":"7.3","kind":"release","dt":"2026-12-16 11:00","dur":30,"status":"est","title":"Genshin Impact 7.3 Version Update","desc":"Projected from the 42-day cycle (7.2 launched on Nov 4)."},{"g":"nte","ver":"1.6","kind":"release","dt":"2026-12-17 11:00","dur":30,"status":"official","title":"Neverness to Everness 1.6 Version Update","desc":"Every 1.5 banner and event is scheduled to end Dec 17, 05:59 (UTC+8), so 1.6 takes over from there."},{"g":"wuwa","ver":"4.0","kind":"preview","dt":"2026-12-18 19:00","dur":90,"status":"est","title":"Wuthering Waves 4.0 Preview Broadcast","desc":"Projected. Wuthering Waves runs roughly 6-week versions and usually holds the preview 6 days before launch.\n\nCodes expire at Dec 20, 23:59 (UTC+8), 23:59 on day 2 after the stream - 53 hours after the stream ends."},{"g":"wuwa","ver":"4.0","kind":"code","dt":"2026-12-20 23:59","dur":15,"status":"rule","title":"WuWa 4.0 - Redemption codes expire","desc":"Valid 53 hours: stream starts Dec 18, 19:00, codes die Dec 20, 23:59 (UTC+8).\n\nThree codes worth 300 Astrite total.\nOnce they expire they are gone - no reissues, no appeals.\n\nRedeem in game under Settings > Other Settings (wrench icon) > Redeem.\nMissed the stream? The VOD description and the official preview page usually list all three codes."},{"g":"hsr","ver":"4.8","kind":"release","dt":"2026-12-23 11:00","dur":30,"status":"est","title":"Honkai: Star Rail 4.8 Version Update","desc":"4.7's warp ends Dec 22, 15:00, so 4.8 most likely lands on Dec 23."},{"g":"wuwa","ver":"4.0","kind":"release","dt":"2026-12-24 11:00","dur":30,"status":"est","title":"Wuthering Waves 4.0 Version Update","desc":"Projected on the 6-week cycle (3.8 launches Nov 12)."},{"g":"endfield","ver":"1.8","kind":"preview","dt":"2026-12-29 19:30","dur":90,"status":"est","title":"Arknights: Endfield 1.8 Special Program","desc":"Projected date, based on the 42-day cycle."},{"g":"zzz","ver":"3.5","kind":"preview","dt":"2027-01-01 19:30","dur":90,"status":"est","title":"Zenless Zone Zero 3.5 Special Program","desc":"Projected date, based on the 42-day cycle.\n\nCodes expire at Jan 03, 23:59 (UTC+8), 23:59 on day 2 after the stream - 52 hours after the stream ends."},{"g":"zzz","ver":"3.5","kind":"code","dt":"2027-01-03 23:59","dur":15,"status":"rule","title":"ZZZ 3.5 - Redemption codes expire","desc":"Valid 52 hours: stream starts Jan 01, 19:30, codes die Jan 03, 23:59 (UTC+8).\n\nThree codes worth 300 Polychrome total.\nOnce they expire they are gone - no reissues, no appeals.\n\nRedeem in game under More > Redemption Code.\nMissed the stream? The VOD description and the official preview page usually list all three codes."},{"g":"endfield","ver":"1.8","kind":"release","dt":"2027-01-07 11:00","dur":30,"status":"est","title":"Arknights: Endfield 1.8 Version Update","desc":"Projected date, based on the 42-day cycle."},{"g":"zzz","ver":"3.5","kind":"release","dt":"2027-01-13 11:00","dur":30,"status":"est","title":"Zenless Zone Zero 3.5 Version Update","desc":"Projected date, based on the 42-day cycle."},{"g":"genshin","ver":"7.4","kind":"preview","dt":"2027-01-15 20:00","dur":60,"status":"est","title":"Genshin Impact 7.4 Special Program","desc":"Projected date. The exact time is usually confirmed about 12 days ahead.\n\nCodes expire at Jan 18, 12:00 (UTC+8), 12:00 on day 3 after the stream - 64 hours after the stream ends."},{"g":"genshin","ver":"7.4","kind":"code","dt":"2027-01-18 12:00","dur":15,"status":"rule","title":"Genshin 7.4 - Redemption codes expire","desc":"Valid 64 hours: stream starts Jan 15, 20:00, codes die Jan 18, 12:00 (UTC+8).\n\nThree codes worth 300 Primogems total, plus Mystic Enhancement Ore, Hero's Wit and Mora.\nOnce they expire they are gone - no reissues, no appeals.\n\nRedeem in game under Settings > Account > Redemption Code, or on the official redemption website.\nMissed the stream? The VOD description and the official preview page usually list all three codes."},{"g":"hsr","ver":"5.0","kind":"preview","dt":"2027-01-22 19:30","dur":60,"status":"est","title":"Honkai: Star Rail 5.0 Special Program","desc":"Projected date, based on the 42-day cycle.\n\nCodes expire at Jan 23, 23:59 (UTC+8), 23:59 the day after the stream - 28 hours after the stream ends."},{"g":"hsr","ver":"5.0","kind":"code","dt":"2027-01-23 23:59","dur":15,"status":"rule","title":"Star Rail 5.0 - Redemption codes expire","desc":"Valid 28 hours: stream starts Jan 22, 19:30, codes die Jan 23, 23:59 (UTC+8).\n\nThree codes worth 300 Stellar Jade total, plus character and Light Cone ascension materials.\nOnce they expire they are gone - no reissues, no appeals.\n\nRedeem in game under Phone > the ... menu (top right) > Redemption Code, or on the official redemption website.\nMissed the stream? The VOD description and the official preview page usually list all three codes."},{"g":"genshin","ver":"7.4","kind":"release","dt":"2027-01-27 11:00","dur":30,"status":"est","title":"Genshin Impact 7.4 Version Update (Lantern Rite)","desc":"Lantern Rite version, projected from the 42-day cycle."},{"g":"hsr","ver":"5.0","kind":"release","dt":"2027-02-03 11:00","dur":30,"status":"est","title":"Honkai: Star Rail 5.0 Version Update","desc":"Projected date, based on the 42-day cycle."}],"statusLabel":{"official":"Confirmed","est":"Estimated","tbd":"TBC","rule":"Computed"},"ui":{"week":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"empty":"Pick at least one game","pick_first":"Pick a game first","add_btn":"Add to phone calendar (%d)","sorted":"Sorted by date","kind_code":"Codes","suf_release":" live","suf_code":" expires","suf_preview":" starts","current":"Current %s","sub":"Subscribe","cancel":"Remove","sub_count":"%d events","all_label":"All games - one calendar","cal_suffix":" - Version Calendar","cal_prefix":"Gacha Version Calendar - ","cal_join":" & ","cx_title":"Stop reminders for %s","toast_ios":"Created %d events - open the file from the Files app","toast_gen":"Created %d events - choose Calendar to open it","toast_copy":"Subscribe URL copied - paste it into your calendar app","file_one":"%s-Version-Calendar.ics","file_many":"Gacha-Version-Calendar-%d-games.ics","label_wrap":" (%s)","prodid":"EN","cal_desc":"Preview streams and version updates. Leaving a game? On iPhone just delete that calendar. On Android, switch OFF \"show\" in Calendar account settings instead of tapping Delete - deleting one URL subscription removes all of them.","ics_tail":"\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are projected from version cycles and may shift once officially announced.","loc":{"preview":" - Official stream","release":"","code":" - Redemption page"},"alarm":{"preview":["Special Program starts in 30 minutes"],"code":["Codes expire in 2 hours - redeem now if you haven't","Codes expire in 30 minutes, no reissues"],"release":["Version update tomorrow","Version update - servers opening soon"]}},"stamp":"20261102T120000Z","latest":"2027-02-03 11:00"}</script>
+<script>
+(function () {
+  var DATA = JSON.parse(document.getElementById('data').textContent);
+  var GAMES = DATA.games, EVENTS = DATA.events, LABEL = DATA.statusLabel,
+      STAMP = DATA.stamp || '20260101T000000Z', U = DATA.ui;
+  var GMAP = {};
+  GAMES.forEach(function (g) { GMAP[g.id] = g; });
+
+  var WEEK = U.week;
+  var KEY = 'gcal.static.picked.v2';
+  var IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var IS_ANDROID = /Android/i.test(navigator.userAgent);
+
+  // Keep only this platform's cancel steps, so nobody follows the wrong recipe
+  (function () {
+    var keep = IS_IOS ? 'ios' : (IS_ANDROID ? 'android' : '');
+    if (!keep) return;
+    var nodes = document.querySelectorAll('#cxhelp [data-plat]');
+    for (var i = nodes.length - 1; i >= 0; i--) {
+      if (nodes[i].getAttribute('data-plat') !== keep) nodes[i].parentNode.removeChild(nodes[i]);
+    }
+    if (IS_IOS) {
+      var d = document.querySelector('#cxhelp .danger');
+      if (d) d.parentNode.removeChild(d);
+    }
+  })();
+  var picked;
+
+  try { picked = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { picked = null; }
+  if (!Array.isArray(picked) || !picked.length) picked = GAMES.map(function (g) { return g.id; });
+  picked = picked.filter(function (id) { return !!GMAP[id]; });
+  if (!picked.length) picked = GAMES.map(function (g) { return g.id; });
+
+  /* ---------- Time: one fixed Beijing wall clock, never the device timezone ---------- */
+  function parseBJ(s) {
+    var p = s.split(' '), d = p[0].split('-'), t = p[1].split(':');
+    var y = +d[0], mo = +d[1], da = +d[2], hh = +t[0], mi = +t[1];
+    return { y: y, mo: mo, da: da, hh: hh, mi: mi,
+             ts: Date.UTC(y, mo - 1, da, hh - 8, mi) };  // the real absolute instant
+  }
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  /* ---------- ICS generation: must stay byte-identical to build_event() in events.py ---------- */
+  var TE = new TextEncoder();
+  function blen(s) { return TE.encode(s).length; }
+
+  function icsEsc(t) {
+    return String(t).replace(/\\/g, '\\\\').replace(/;/g, '\\;')
+                    .replace(/,/g, '\\,').replace(/\n/g, '\\n');
+  }
+  function fold(line) {
+    var chars = Array.from(line), out = [], cur = '', limit = 75;
+    for (var i = 0; i < chars.length; i++) {
+      var ch = chars[i];
+      if (blen(cur + ch) > limit) {
+        if (cur.slice(-1) === '\\') {
+          out.push(cur.slice(0, -1));
+          cur = '\\' + ch;
+        } else {
+          out.push(cur);
+          cur = ch;
+        }
+        limit = 74;
+      } else {
+        cur += ch;
+      }
+    }
+    out.push(cur);
+    return out.join('\r\n ');
+  }
+
+  function utcOf(ts) {
+    var d = new Date(ts);
+    return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) +
+      'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z';
+  }
+
+  function baseSlug(e) { return e.g + '-' + e.ver.replace(/\./g, '') + '-' + e.kind; }
+
+  // One version can hold several events of the same kind (Where Winds Meet 2.4 has two updates).
+  // The earliest keeps the plain UID so existing imports do not duplicate; the rest get a date suffix.
+  var SUFFIX = {};
+  (function () {
+    var seen = {};
+    EVENTS.slice().sort(function (a, b) { return a.dt < b.dt ? -1 : a.dt > b.dt ? 1 : 0; })
+      .forEach(function (e) {
+        var b = baseSlug(e);
+        if (seen[b]) { SUFFIX[b + '|' + e.dt] = 1; } else { seen[b] = 1; }
+      });
+  })();
+
+  function slug(e) {
+    var b = baseSlug(e);
+    return SUFFIX[b + '|' + e.dt] ? b + '-' + e.dt.slice(0, 10).replace(/-/g, '') : b;
+  }
+
+  var ALARM_TRIGGER = { preview: ['-PT30M'], code: ['-PT2H', '-PT30M'], release: ['-P1D', '-PT2H'] };
+
+  function buildEvent(e) {
+    var s = parseBJ(e.dt);
+    var endTs = s.ts + (e.dur || 60) * 60000;
+    var game = GMAP[e.g].name;
+    var label = e.status === 'official' ? '' : U.label_wrap.replace('%s', LABEL[e.status]);
+    var place = U.loc[e.kind] || '';
+    var body = e.desc + U.ics_tail;
+
+    var lines = [
+      'BEGIN:VEVENT',
+      'UID:' + slug(e) + '@game-version-calendar',
+      'DTSTAMP:' + STAMP,
+      'DTSTART:' + utcOf(s.ts),
+      'DTEND:' + utcOf(endTs),
+      fold('SUMMARY:' + icsEsc(e.title + label)),
+      fold('DESCRIPTION:' + icsEsc(body)),
+      fold('LOCATION:' + icsEsc(game + place)),
+      fold('CATEGORIES:' + icsEsc(game)),
+      'STATUS:CONFIRMED',
+      'TRANSP:TRANSPARENT'
+    ];
+    var texts = U.alarm[e.kind] || [];
+    (ALARM_TRIGGER[e.kind] || []).forEach(function (trig, i) {
+      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:' + trig, 'ACTION:DISPLAY',
+        fold('DESCRIPTION:' + icsEsc(texts[i])), 'END:VALARM']);
+    });
+    lines.push('END:VEVENT');
+    return lines.join('\r\n');
+  }
+
+  function buildCalendar(rows, name) {
+    var head = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\n' +
+      'PRODID:-//WorkBuddy//Game Version Calendar//' + (U.prodid || 'CN') + '\r\n' +
+      'CALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n' +
+      fold('X-WR-CALNAME:' + icsEsc(name)) + '\r\n' +
+      fold('X-WR-CALDESC:' + icsEsc(U.cal_desc)) + '\r\n' +
+      'X-WR-TIMEZONE:Asia/Shanghai\r\n' +
+      'REFRESH-INTERVAL;VALUE=DURATION:PT6H\r\n' +
+      'X-PUBLISHED-TTL:PT6H\r\n';
+    return head + rows.map(function (x) { return buildEvent(x.raw) + '\r\n'; }).join('') +
+      'END:VCALENDAR\r\n';
+  }
+
+  /* ---------- Prepare data ---------- */
+  var EV = EVENTS.map(function (e) {
+    var s = parseBJ(e.dt);
+    return { raw: e, bj: s };
+  }).sort(function (a, b) { return a.bj.ts - b.bj.ts; });
+
+  document.getElementById('latest').textContent = DATA.latest ? DATA.latest.slice(0, 10) : '—';
+
+  /* ---------- Game picker ---------- */
+  var grid = document.getElementById('grid');
+  GAMES.forEach(function (g) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'g';
+    b.setAttribute('role', 'checkbox');
+    b.dataset.id = g.id;
+    b.style.setProperty('--c', g.color);
+    b.style.setProperty('--bg', hexA(g.color, 0.07));
+    b.innerHTML =
+      '<span class="gdot"></span>' +
+      '<span class="gname">' + esc(g.name) + '</span>' +
+      '<span class="gver">' + esc(U.current.replace('%s', g.ver)) + '</span>' +
+      '<span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2"' +
+      ' stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.3l2.6 2.6L10 3.4"/></svg></span>';
+    b.addEventListener('click', function () { toggle(g.id); });
+    grid.appendChild(b);
+  });
+
+  function hexA(hex, a) {
+    var n = parseInt(hex.slice(1), 16);
+    return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')';
+  }
+
+  function toggle(id) {
+    var i = picked.indexOf(id);
+    if (i > -1) picked.splice(i, 1); else picked.push(id);
+    render();
+  }
+
+  var listEl = document.getElementById('list');
+
+  function selectedIds() {
+    return GAMES.map(function (g) { return g.id; })
+                .filter(function (id) { return picked.indexOf(id) > -1; });
+  }
+
+  function render() {
+    Array.prototype.forEach.call(grid.children, function (b) {
+      b.setAttribute('aria-checked', picked.indexOf(b.dataset.id) > -1 ? 'true' : 'false');
+    });
+
+    var now = Date.now();
+    var rows = EV.filter(function (x) { return picked.indexOf(x.raw.g) > -1; });
+
+    listEl.innerHTML = '';
+    if (!rows.length) {
+      listEl.innerHTML = '<div class="empty">' + esc(U.empty) + '</div>';
+    } else {
+      rows.forEach(function (x) {
+        var e = x.raw, g = GMAP[e.g], d = x.bj;
+        var el = document.createElement('div');
+        el.className = 'ev' + (d.ts < now ? ' past' : '');
+        el.style.setProperty('--c', g.color);
+        el.innerHTML =
+          '<div class="d"><b>' + pad(d.mo) + '/' + pad(d.da) + '</b>' +
+          '<span>' + WEEK[new Date(Date.UTC(d.y, d.mo - 1, d.da)).getUTCDay()] + '</span></div>' +
+          '<div class="b"><div class="tt">' + esc(e.title) + '</div>' +
+          '<div class="mm">' +
+          (e.kind === 'code' ? '<span class="kk">' + esc(U.kind_code) + '</span>' : '') +
+          '<span>' + pad(d.hh) + ':' + pad(d.mi) +
+          (e.kind === 'release' ? U.suf_release : e.kind === 'code' ? U.suf_code : U.suf_preview) + '</span>' +
+          '<span class="tag ' + e.status + '">' + LABEL[e.status] + '</span></div></div>';
+        listEl.appendChild(el);
+      });
+    }
+
+    document.getElementById('pn').textContent = picked.length;
+    document.getElementById('en').textContent = rows.length;
+    document.getElementById('cnt').textContent = rows.length ? U.sorted : '';
+
+    try { localStorage.setItem(KEY, JSON.stringify(picked)); } catch (e) {}
+
+    var main = document.getElementById('mainBtn');
+    if (!picked.length) {
+      main.textContent = U.pick_first;
+      main.classList.add('off');
+    } else {
+      main.textContent = U.add_btn.replace('%d', rows.length);
+      main.classList.remove('off');
+    }
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  /* ---------- Download / redirect ---------- */
+  function toast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { t.classList.remove('on'); }, 2600);
+  }
+
+  function absUrl(rel) {
+    return new URL(rel, location.href).href;
+  }
+
+  function icsDownloadName(ids) {
+    if (ids.length === 1) return U.file_one.replace('%s', GMAP[ids[0]].short);
+    return U.file_many.replace('%d', ids.length);
+  }
+
+  document.getElementById('mainBtn').addEventListener('click', function () {
+    var ids = selectedIds();
+    if (!ids.length) return;
+
+    // iOS with a single game: go straight to the prebuilt file, Safari hands it to Calendar
+    if (IS_IOS && ids.length === 1) {
+      location.href = absUrl('ics/' + ids[0] + '.ics');
+      return;
+    }
+
+    var rows = EV.filter(function (x) { return ids.indexOf(x.raw.g) > -1; });
+    var name = U.cal_prefix + ids.map(function (id) { return GMAP[id].short; }).join(U.cal_join);
+    var text = buildCalendar(rows, name);
+
+    var blob = new Blob([text], { type: 'text/calendar;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = icsDownloadName(ids);
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+      if (a.parentNode) a.parentNode.removeChild(a);
+    }, 5000);
+
+    toast((IS_IOS ? U.toast_ios : U.toast_gen).replace('%d', rows.length));
+  });
+
+  /* ---------- Subscription list ---------- */
+  var subRows = document.getElementById('subrows');
+
+  function addSubRow(g, count, label, rel) {
+    var dot = document.createElement('span');
+    dot.className = 'sdot';
+    dot.style.background = g.color;
+
+    var info = document.createElement('div');
+    info.className = 'sinfo';
+    info.innerHTML = '<b>' + esc(label) + '</b><span>' + esc(U.sub_count.replace('%d', count)) + '</span>';
+
+    var sub = document.createElement('button');
+    sub.type = 'button';
+    sub.className = 'sbtn';
+    sub.textContent = U.sub;
+    sub.addEventListener('click', function () { subscribe(rel); });
+
+    var cx = document.createElement('button');
+    cx.type = 'button';
+    cx.className = 'scx';
+    cx.textContent = U.cancel;
+    cx.addEventListener('click', function () { askCancel(label, g.short); });
+
+    var row = document.createElement('div');
+    row.className = 'srow';
+    row.appendChild(dot);
+    row.appendChild(info);
+    row.appendChild(sub);
+    row.appendChild(cx);
+    subRows.appendChild(row);
+  }
+
+  GAMES.forEach(function (g) {
+    var n = EV.filter(function (x) { return x.raw.g === g.id; }).length;
+    addSubRow(g, n, g.short + U.cal_suffix, 'ics/' + g.id + '.ics');
+  });
+  addSubRow({ color: '#1B1B1F' }, EV.length, U.all_label, 'ics/all.ics');
+
+  function subscribe(rel) {
+    var https = absUrl(rel);
+    if (IS_IOS) {
+      location.href = https.replace(/^https:/, 'webcal:');
+      return;
+    }
+    // Android / desktop: calendar apps usually reject webcal, so hand out the https URL to paste
+    copy(https);
+    toast(U.toast_copy);
+  }
+
+  function copy(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(function () { fallbackCopy(text); });
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  function askCancel(label, shortName) {
+    var box = document.getElementById('cxhelp');
+    document.getElementById('cxtitle').textContent = U.cx_title.replace('%s', shortName);
+    ['cxname', 'cxname2'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = label;
+    });
+    box.hidden = false;
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  /* ---------- Misc ---------- */
+  document.getElementById('allBtn').addEventListener('click', function () {
+    picked = GAMES.map(function (g) { return g.id; });
+    render();
+  });
+  document.getElementById('noneBtn').addEventListener('click', function () {
+    picked = [];
+    render();
+  });
+  document.getElementById('wxwarn').style.display =
+    /MicroMessenger/i.test(navigator.userAgent) ? 'block' : 'none';
+
+  render();
+})();
+</script>
+</body>
+</html>

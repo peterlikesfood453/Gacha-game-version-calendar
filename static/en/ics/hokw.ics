@@ -1,0 +1,40 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HoK: World - Version Calendar
+X-WR-CALDESC:Only Honor of Kings: World previews and version updates. Leavi
+ ng a game? On iPhone just delete that calendar. On Android\, switch OFF "s
+ how" in Calendar account settings instead of tapping Delete - deleting one
+  URL subscription removes all of them.
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:hokw-S2-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261126T020000Z
+DTEND:20261126T023000Z
+SUMMARY:Honor of Kings: World - Season 2 Update (TBC) (TBC)
+DESCRIPTION:Season 2 hits the test server in mid-November and the live serv
+ er is expected in late November. No official date yet - this entry is a pl
+ aceholder.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimate
+ d or TBC are projected from version cycles and may shift once officially a
+ nnounced.
+LOCATION:Honor of Kings: World
+CATEGORIES:Honor of Kings: World
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,66 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Where Winds Meet - Version Calendar
+X-WR-CALDESC:Only Where Winds Meet previews and version updates. Leaving a 
+ game? On iPhone just delete that calendar. On Android\, switch OFF "show" 
+ in Calendar account settings instead of tapping Delete - deleting one URL 
+ subscription removes all of them.
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:wwm-24-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261106T020000Z
+DTEND:20261106T023000Z
+SUMMARY:Where Winds Meet - New Season (Pt. 2) + Twin Spears
+DESCRIPTION:China server date. The same day opens a new Weiyang City area a
+ nd a new questline. Twin spears are the third new weapon style added this 
+ year.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or 
+ TBC are projected from version cycles and may shift once officially announ
+ ced.
+LOCATION:Where Winds Meet
+CATEGORIES:Where Winds Meet
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wwm-24-release-20261113@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261113T020000Z
+DTEND:20261113T023000Z
+SUMMARY:Where Winds Meet - Major Update + Global 1st Anniversary
+DESCRIPTION:A new battlefield region\, the Zhongdu Bridge main story and tw
+ o new world bosses\, alongside first-anniversary events. The global releas
+ e follows this date.\n\nAll times are Beijing time (UTC+8).\nEntries marke
+ d Estimated or TBC are projected from version cycles and may shift once of
+ ficially announced.
+LOCATION:Where Winds Meet
+CATEGORIES:Where Winds Meet
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
-"""游戏版本日历 —— 单端口 HTTP 服务。
+"""游戏版本日历 —— 单端口 HTTP 服务（中 / 英双语）。
 
-/                     选择页（服务端把游戏与事件数据注入页面）
-/calendar.ics?games=  按所选游戏生成日历
-/game/<id>.ics        单个游戏的日历
-/all.ics              全部游戏
+/                         中文选择页（服务端把游戏与事件数据注入页面）
+/en                       英文选择页
+/calendar.ics?games=&lang= 按所选游戏生成日历
+/game/<id>.ics            单个游戏的日历
+/all.ics                  全部游戏
+/sub/<id>.ics             同 game/<id>.ics（订阅用的别名）
+
+语言优先级：?lang=en → 路径 /en → Accept-Language 含中文则中文，否则英文。
 """
 import json
 import os
@@ -13,21 +17,29 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, unquote, urlparse
 
 import events as E
+import strings as S
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 STATIC_EXT = {".css", ".js", ".png", ".jpg", ".svg", ".webp", ".ico", ".woff2"}
 
 
-def render_index() -> str:
+def render_index(lang: str = "zh") -> str:
     with open(os.path.join(BASE, "index.html"), encoding="utf-8") as f:
         tpl = f.read()
-    payload = {"games": E.GAMES, "events": E.EVENTS, "statusLabel": E.STATUS_LABEL}
+    payload = {
+        "games": E.page_games(lang),
+        "events": E.page_events(lang),
+        "statusLabel": E.STATUS_LABEL_EN if lang == "en" else E.STATUS_LABEL,
+        "ui": S.JS[lang],
+        "lang": lang,
+    }
     blob = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
-    return tpl.replace("__DATA_JSON__", blob)
+    page = S.render(tpl, lang, ("href_zh", "/"), ("href_en", "/en"))
+    return page.replace("__DATA_JSON__", blob)
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "GameCalendar/2.0"
+    server_version = "GameCalendar/2.1"
 
     def log_message(self, *args):  # 静音
         pass
@@ -43,10 +55,25 @@ class Handler(BaseHTTPRequestHandler):
         if self.command != "HEAD":
             self.wfile.write(body)
 
-    def _ics(self, ids, name, desc=None):
-        body = E.calendar(set(ids), name, desc).encode("utf-8")
+    def _ics(self, ids, lang: str, title=None, desc=None):
+        body = E.calendar(set(ids), title=title, desc=desc, lang=lang).encode("utf-8")
         self._send(200, body, "text/calendar; charset=utf-8",
                    {"Content-Disposition": 'inline; filename="game-calendar.ics"'})
+
+    def _lang(self, qs, prefix_en: bool) -> str:
+        q = (qs.get("lang", [""])[0] or "").lower()
+        if q.startswith("en"):
+            return "en"
+        if q.startswith("zh"):
+            return "zh"
+        if prefix_en:
+            return "en"
+        accept = (self.headers.get("Accept-Language") or "").strip()
+        if not accept:
+            return "zh"
+        # 取第一顺位语言，en 开头就给英文，其余给中文
+        first = accept.split(",")[0].strip().lower()
+        return "en" if first.startswith("en") else "zh"
 
     def do_HEAD(self):
         self.do_GET()
@@ -56,8 +83,13 @@ class Handler(BaseHTTPRequestHandler):
         path = unquote(url.path)
         qs = parse_qs(url.query)
 
+        prefix_en = path == "/en" or path.startswith("/en/")
+        lang = self._lang(qs, prefix_en)
+        if prefix_en:
+            path = path[3:] or "/"
+
         if path in ("/", "/index.html"):
-            self._send(200, render_index().encode("utf-8"), "text/html; charset=utf-8")
+            self._send(200, render_index(lang).encode("utf-8"), "text/html; charset=utf-8")
             return
 
         if path == "/calendar.ics":
@@ -67,12 +99,11 @@ class Handler(BaseHTTPRequestHandler):
                 ids = [g["id"] for g in E.GAMES]
             # 保持 GAMES 的定义顺序
             ids = [g["id"] for g in E.GAMES if g["id"] in ids]
-            self._ics(ids, "二游版本日历 · " + "、".join(E.GAME_BY_ID[i]["short"] for i in ids))
+            self._ics(ids, lang)
             return
 
         if path == "/all.ics":
-            ids = [g["id"] for g in E.GAMES]
-            self._ics(ids, "二游版本日历")
+            self._ics([g["id"] for g in E.GAMES], lang)
             return
 
         if path.startswith("/game/") or path.startswith("/sub/"):
@@ -83,9 +114,8 @@ class Handler(BaseHTTPRequestHandler):
             gid = path[len(prefix):-len(".ics")]
             if gid in E.GAME_BY_ID:
                 g = E.GAME_BY_ID[gid]
-                self._ics([gid], g["short"] + " · 版本日历",
-                          "只订阅「%s」的前瞻与版本更新。不玩了：iPhone 直接删掉本日历；安卓在「日程账号管理」里关掉「显示」开关，别点删除（会连带其他订阅）。"
-                          % g["name"])
+                self._ics([gid], lang, title=E.game_cal_name(g, lang),
+                          desc=E.game_cal_desc(g, lang))
                 return
             self._send(404, b"unknown game", "text/plain; charset=utf-8")
             return

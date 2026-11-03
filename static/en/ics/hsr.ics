@@ -1,0 +1,190 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Star Rail - Version Calendar
+X-WR-CALDESC:Only Honkai: Star Rail previews and version updates. Leaving a
+  game? On iPhone just delete that calendar. On Android\, switch OFF "show"
+  in Calendar account settings instead of tapping Delete - deleting one URL
+  subscription removes all of them.
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:hsr-47-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261111T030000Z
+DTEND:20261111T033000Z
+SUMMARY:Honkai: Star Rail 4.7 Version Update
+DESCRIPTION:Aha the Aeon enters the banner pool for the first time\, and th
+ e warp runs until Dec 22\, 15:00 (UTC+8). Servers open around 11:00.\n\nAl
+ l times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are pro
+ jected from version cycles and may shift once officially announced.
+LOCATION:Honkai: Star Rail
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-48-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261211T113000Z
+DTEND:20261211T123000Z
+SUMMARY:Honkai: Star Rail 4.8 Special Program (Estimated)
+DESCRIPTION:Projected from the 42-day cycle\, with the stream about 12 days
+  before launch (4.7 launched Nov 11).\n\nCodes expire at Dec 12\, 23:59 (U
+ TC+8)\, 23:59 the day after the stream - 28 hours after the stream ends.\n
+ \nAll times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are
+  projected from version cycles and may shift once officially announced.
+LOCATION:Honkai: Star Rail - Official stream
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-48-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261212T155900Z
+DTEND:20261212T161400Z
+SUMMARY:Star Rail 4.8 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 28 hours: stream starts Dec 11\, 19:30\, codes die Dec 12
+ \, 23:59 (UTC+8).\n\nThree codes worth 300 Stellar Jade total\, plus chara
+ cter and Light Cone ascension materials.\nOnce they expire they are gone -
+  no reissues\, no appeals.\n\nRedeem in game under Phone > the ... menu (t
+ op right) > Redemption Code\, or on the official redemption website.\nMiss
+ ed the stream? The VOD description and the official preview page usually l
+ ist all three codes.\n\nAll times are Beijing time (UTC+8).\nEntries marke
+ d Estimated or TBC are projected from version cycles and may shift once of
+ ficially announced.
+LOCATION:Honkai: Star Rail - Redemption page
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-48-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261223T030000Z
+DTEND:20261223T033000Z
+SUMMARY:Honkai: Star Rail 4.8 Version Update (Estimated)
+DESCRIPTION:4.7's warp ends Dec 22\, 15:00\, so 4.8 most likely lands on De
+ c 23.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or 
+ TBC are projected from version cycles and may shift once officially announ
+ ced.
+LOCATION:Honkai: Star Rail
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-50-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270122T113000Z
+DTEND:20270122T123000Z
+SUMMARY:Honkai: Star Rail 5.0 Special Program (Estimated)
+DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nCodes expire at 
+ Jan 23\, 23:59 (UTC+8)\, 23:59 the day after the stream - 28 hours after t
+ he stream ends.\n\nAll times are Beijing time (UTC+8).\nEntries marked Est
+ imated or TBC are projected from version cycles and may shift once officia
+ lly announced.
+LOCATION:Honkai: Star Rail - Official stream
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-50-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270123T155900Z
+DTEND:20270123T161400Z
+SUMMARY:Star Rail 5.0 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 28 hours: stream starts Jan 22\, 19:30\, codes die Jan 23
+ \, 23:59 (UTC+8).\n\nThree codes worth 300 Stellar Jade total\, plus chara
+ cter and Light Cone ascension materials.\nOnce they expire they are gone -
+  no reissues\, no appeals.\n\nRedeem in game under Phone > the ... menu (t
+ op right) > Redemption Code\, or on the official redemption website.\nMiss
+ ed the stream? The VOD description and the official preview page usually l
+ ist all three codes.\n\nAll times are Beijing time (UTC+8).\nEntries marke
+ d Estimated or TBC are projected from version cycles and may shift once of
+ ficially announced.
+LOCATION:Honkai: Star Rail - Redemption page
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hsr-50-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20270203T030000Z
+DTEND:20270203T033000Z
+SUMMARY:Honkai: Star Rail 5.0 Version Update (Estimated)
+DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nAll times are Be
+ ijing time (UTC+8).\nEntries marked Estimated or TBC are projected from ve
+ rsion cycles and may shift once officially announced.
+LOCATION:Honkai: Star Rail
+CATEGORIES:Honkai: Star Rail
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+END:VCALENDAR

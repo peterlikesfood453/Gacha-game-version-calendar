@@ -1,0 +1,163 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:WuWa - Version Calendar
+X-WR-CALDESC:Only Wuthering Waves previews and version updates. Leaving a g
+ ame? On iPhone just delete that calendar. On Android\, switch OFF "show" i
+ n Calendar account settings instead of tapping Delete - deleting one URL s
+ ubscription removes all of them.
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:wuwa-38-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261106T110000Z
+DTEND:20261106T123000Z
+SUMMARY:Wuthering Waves 3.8 Preview Broadcast
+DESCRIPTION:Official livestream. Covers the 3.8 convene banners and the new
+  5-star\, plus three codes worth 300 Astrite.\n\nCodes expire at Nov 08\, 
+ 23:59 (UTC+8)\, 23:59 on day 2 after the stream - 53 hours after the strea
+ m ends.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated o
+ r TBC are projected from version cycles and may shift once officially anno
+ unced.
+LOCATION:Wuthering Waves - Official stream
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-38-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261108T155900Z
+DTEND:20261108T161400Z
+SUMMARY:WuWa 3.8 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 53 hours: stream starts Nov 06\, 19:00\, codes die Nov 08
+ \, 23:59 (UTC+8).\n\nThree codes worth 300 Astrite total.\nOnce they expir
+ e they are gone - no reissues\, no appeals.\n\nRedeem in game under Settin
+ gs > Other Settings (wrench icon) > Redeem.\nMissed the stream? The VOD de
+ scription and the official preview page usually list all three codes.\n\nA
+ ll times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are pr
+ ojected from version cycles and may shift once officially announced.
+LOCATION:Wuthering Waves - Redemption page
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-38-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261112T030000Z
+DTEND:20261112T033000Z
+SUMMARY:Wuthering Waves 3.8 Version Update
+DESCRIPTION:Pre-download opens Nov 10. A 600-Astrite compensation arrives b
+ y in-game mail after the update.\n\nAll times are Beijing time (UTC+8).\nE
+ ntries marked Estimated or TBC are projected from version cycles and may s
+ hift once officially announced.
+LOCATION:Wuthering Waves
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-40-preview@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261218T110000Z
+DTEND:20261218T123000Z
+SUMMARY:Wuthering Waves 4.0 Preview Broadcast (Estimated)
+DESCRIPTION:Projected. Wuthering Waves runs roughly 6-week versions and usu
+ ally holds the preview 6 days before launch.\n\nCodes expire at Dec 20\, 2
+ 3:59 (UTC+8)\, 23:59 on day 2 after the stream - 53 hours after the stream
+  ends.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated or
+  TBC are projected from version cycles and may shift once officially annou
+ nced.
+LOCATION:Wuthering Waves - Official stream
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Special Program starts in 30 minutes
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-40-code@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261220T155900Z
+DTEND:20261220T161400Z
+SUMMARY:WuWa 4.0 - Redemption codes expire (Computed)
+DESCRIPTION:Valid 53 hours: stream starts Dec 18\, 19:00\, codes die Dec 20
+ \, 23:59 (UTC+8).\n\nThree codes worth 300 Astrite total.\nOnce they expir
+ e they are gone - no reissues\, no appeals.\n\nRedeem in game under Settin
+ gs > Other Settings (wrench icon) > Redeem.\nMissed the stream? The VOD de
+ scription and the official preview page usually list all three codes.\n\nA
+ ll times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are pr
+ ojected from version cycles and may shift once officially announced.
+LOCATION:Wuthering Waves - Redemption page
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 2 hours - redeem now if you haven't
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Codes expire in 30 minutes\, no reissues
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:wuwa-40-release@game-version-calendar
+DTSTAMP:20261102T120000Z
+DTSTART:20261224T030000Z
+DTEND:20261224T033000Z
+SUMMARY:Wuthering Waves 4.0 Version Update (Estimated)
+DESCRIPTION:Projected on the 6-week cycle (3.8 launches Nov 12).\n\nAll tim
+ es are Beijing time (UTC+8).\nEntries marked Estimated or TBC are projecte
+ d from version cycles and may shift once officially announced.
+LOCATION:Wuthering Waves
+CATEGORIES:Wuthering Waves
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Version update tomorrow
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT2H
+ACTION:DISPLAY
+DESCRIPTION:Version update - servers opening soon
+END:VALARM
+END:VEVENT
+END:VCALENDAR

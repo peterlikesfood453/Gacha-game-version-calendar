@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="{{html_lang}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F5F4F0">
-<title>我的二游版本日历 · 静态版</title>
+<title>{{title}}</title>
+<meta name="description" content="{{meta_desc}}">
 <link rel="icon" href="data:,">
+<link rel="alternate" hreflang="zh-CN" href="{{href_zh}}">
+<link rel="alternate" hreflang="en" href="{{href_en}}">
+<link rel="alternate" hreflang="x-default" href="{{href_zh}}">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   body{background:#F5F4F0;color:#1B1B1F;line-height:1.6;
        font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
        -webkit-font-smoothing:antialiased}
-  .wrap{max-width:640px;margin:0 auto;padding:22px 16px 188px}
+  .wrap{max-width:640px;margin:0 auto;padding:18px 16px 188px;overflow-x:hidden}
+
+  .langbar{display:flex;justify-content:flex-end;margin-bottom:6px}
+  .langbar a{font-size:12px;font-weight:600;color:#5B5BE0;text-decoration:none;background:#fff;
+             border:1px solid #E4E3DD;border-radius:999px;padding:4px 11px;line-height:1.4}
+  .langbar a:active{opacity:.7}
 
   header{text-align:center;padding:4px 0 20px}
   h1{font-size:24px;letter-spacing:-.4px;font-weight:700}
@@ -28,12 +37,12 @@
                  font-weight:600;padding:4px 2px;cursor:pointer;font-family:inherit}
 
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:26px}
-  .g{position:relative;display:flex;flex-direction:column;gap:2px;text-align:left;
+  .g{position:relative;display:flex;flex-direction:column;gap:2px;text-align:left;min-width:0;
      background:#fff;border:1.5px solid #E9E8E3;border-radius:14px;padding:12px 13px 11px;
      cursor:pointer;font-family:inherit;transition:border-color .12s,background .12s,transform .1s}
   .g:active{transform:scale(.985)}
   .g .gname{font-size:14px;font-weight:600;letter-spacing:-.15px;color:#1B1B1F;
-            padding-right:16px;line-height:1.35}
+            padding-right:20px;line-height:1.35;overflow-wrap:break-word;word-break:break-word}
   .g .gver{font-size:11px;color:#9A9AA4;font-variant-numeric:tabular-nums}
   .g .gdot{width:7px;height:7px;border-radius:50%;background:var(--c);margin-bottom:5px}
   .g .tick{position:absolute;top:11px;right:11px;width:16px;height:16px;border-radius:50%;
@@ -145,126 +154,122 @@
 <body>
 <div class="wrap">
 
+  <div class="langbar"><a href="{{lang_href}}" rel="alternate" hreflang="alternate">{{lang_switch}}</a></div>
+
   <header>
-    <h1>我的二游版本日历</h1>
-    <div class="sub">勾选你在玩的游戏，生成一份专属日历</div>
-    <div class="meta">静态版 · 日程最远到 <span id="latest">—</span> · 时间为北京时间 UTC+8</div>
+    <h1>{{h1}}</h1>
+    <div class="sub">{{sub}}</div>
+    <div class="meta">{{meta_static}}</div>
   </header>
 
-  <div class="warn" id="wxwarn">
-    当前在微信里打开。微信不允许直接导入日历，请点右上角 <b>···</b> → <b>在浏览器打开</b> 再操作。
-  </div>
+  <div class="warn" id="wxwarn">{{wx_warn}}</div>
 
   <div class="selbar">
-    <span class="t">选择游戏</span>
+    <span class="t">{{pick_title}}</span>
     <span class="sp"></span>
-    <button type="button" id="allBtn">全选</button>
-    <button type="button" id="noneBtn">清空</button>
+    <button type="button" id="allBtn">{{btn_all}}</button>
+    <button type="button" id="noneBtn">{{btn_none}}</button>
   </div>
   <div class="grid" id="grid"></div>
 
   <div class="phead">
-    <span class="t">日程预览</span>
+    <span class="t">{{preview_title}}</span>
     <span class="n" id="cnt"></span>
   </div>
   <div id="list"></div>
 
   <div class="note">
-    <h3>怎么加到自己手机上</h3>
+    <h3>{{how_title}}</h3>
     <ol>
-      <li><b>iPhone</b>：用 Safari 打开本页 → 点底部黑按钮。只选了一款会直接跳进日历，弹窗点 <b>「全部添加」</b>；选了好几款会下载一个文件，到「文件」App 里点开它即可。</li>
-      <li><b>安卓 / 华为 / 小米</b>：点黑按钮会下载 .ics 文件，再用系统日历的「导入」选中它。</li>
-      <li>想长期跟着更新，别用导入，用下面的<b>订阅</b>：以后数据更新了，手机上自动同步。</li>
-      <li>提醒都设好了：前瞻提前 30 分钟；兑换码失效提前 2 小时和 30 分钟；版本更新提前 1 天和 2 小时。</li>
+      <li>{{how_static_1}}</li>
+      <li>{{how_static_2}}</li>
+      <li>{{how_static_3}}</li>
+      <li>{{how_static_4}}</li>
     </ol>
-    <p class="fine">日程里那条「兑换码失效」，时间就是官方的截止时刻。各游戏口径不同：原神是直播后第 3 天中午 12:00，星铁是次日 23:59，绝区零和鸣潮是第 2 天 23:59，异环是第 4 天 23:59。终末地、燕云十六声、王者荣耀世界不发前瞻兑换码，所以没有这一条。</p>
+    <p class="fine">{{how_fine}}</p>
   </div>
 
   <div class="note" id="sub">
-    <h3>订阅与取消</h3>
-    <p class="lead">一个游戏一个日历。退坑了，关掉或删掉对应那一个日历，那个游戏的前瞻和更新提醒就一起没了，其他游戏照常。iPhone 可以直接删；安卓要看清下面那条红字。</p>
+    <h3>{{sub_title}}</h3>
+    <p class="lead">{{sub_lead}}</p>
 
-    <div class="sh">按游戏订阅</div>
+    <div class="sh">{{sub_sh_static}}</div>
     <div id="subrows"></div>
 
     <div class="cxhelp" id="cxhelp" hidden>
-      <div class="hd" id="cxtitle">取消「」的提醒</div>
+      <div class="hd" id="cxtitle">{{cx_hd}}</div>
 
-      <div class="danger">
-        <b>安卓先看这条，别直接点删除。</b>很多国产日历（vivo / OPPO / 小米 / 华为）用「导入账号 · 从网址订阅」加进去的多个日历，会全部塞在同一个叫
-        <b>Subscription Calendar</b> 的账号下面。你在账号管理里删掉其中一个，会把<b>所有同类订阅一起删掉</b>，原神和星铁同时消失就是这么来的。
-        这不是本站的问题，是厂商日历 App 的实现方式。安卓请按下面第 2 条做。
-      </div>
+      <div class="danger">{{cx_danger}}</div>
 
-      <div class="plat" data-plat="ios">iPhone / iPad</div>
+      <div class="plat" data-plat="ios">{{cx_ios_plat}}</div>
       <ol data-plat="ios">
-        <li>打开<b>日历</b> App，点屏幕最下方的<b>「日历」</b>按钮</li>
-        <li>找到 <b id="cxname">原神 · 版本日历</b>，点它右边的 <b>ⓘ</b></li>
-        <li>往下滑，点<b>删除日历</b>并确认。iOS 每个订阅是独立的，只删这一个</li>
+        <li>{{cx_ios_1}}</li>
+        <li>{{cx_ios_2}}</li>
+        <li>{{cx_ios_3}}</li>
       </ol>
 
-      <div class="plat" data-plat="android">安卓（想单独关掉某一款）</div>
+      <div class="plat" data-plat="android">{{cx_and_plat}}</div>
       <ol data-plat="android">
-        <li>进日历 App 的<b>设置 → 日程账号管理</b>（各家叫法略有不同）</li>
-        <li>点 <b id="cxname2">原神 · 版本日历</b> 那一行（这几行的标题都写「Subscription Calendar」，认下面那行小字）</li>
-        <li>用里面<b>「显示」开关关掉</b>，<b>不要点「删除」</b></li>
-        <li>关掉后这个游戏的提醒立刻停，其他游戏不受影响。想真正逐个删干净，用下面说的 ICSx⁵</li>
+        <li>{{cx_and_1}}</li>
+        <li>{{cx_and_2}}</li>
+        <li>{{cx_and_3}}</li>
+        <li>{{cx_and_4}}</li>
       </ol>
 
-      <div class="plat" data-plat="android">不想折腾：换一个日历 App</div>
-      <p data-plat="android" style="margin-top:4px">装 <b>ICSx⁵</b>（开源免费，应用商店搜得到），每条订阅在它里面是独立日历，删哪条就删哪条，不会连带。把订阅地址粘进去即可，本站的「订阅」按钮复制出来的就是地址。</p>
+      <div class="plat" data-plat="android">{{cx_alt_plat}}</div>
+      <p data-plat="android" style="margin-top:4px">{{cx_alt_p}}</p>
 
-      <div class="alt">只是暂时不想被打扰，不用删：把那个日历的「显示」关掉（隐藏），提醒也会停；或者进订阅设置点「移除提醒」，日程留着。</div>
+      <div class="alt">{{cx_alt_note}}</div>
     </div>
 
     <details class="imp">
-      <summary>安卓怎么订阅（按钮提示"已复制"时看这里）</summary>
-      <p>安卓的日历 App 不吃 <b class="k">webcal://</b> 开头的地址，所以按钮会改成复制 <b class="k">https://</b> 开头的地址。</p>
-      <p><b>推荐做法</b>：装 <b>ICSx⁵</b>（开源免费）。打开它 → 右上角「+」→ 粘贴地址 → 保存。以后每款游戏在它里面是一个独立日历，删哪个都不会连带，也不受厂商日历的账号机制影响。</p>
-      <p>用系统日历也行，但有代价：</p>
+      <summary>{{imp_android_summary}}</summary>
+      <p>{{imp_android_p1}}</p>
+      <p>{{imp_android_p2}}</p>
+      <p>{{imp_android_p3}}</p>
       <ol>
-        <li>打开日历 App，找「设置」或「添加日历」里的 <b>从网址添加</b> / <b>通过网址订阅</b></li>
-        <li>把地址粘进去，命名随便写，确认</li>
-        <li>它会定期去这个网址拉最新数据。注意：这样加的多个订阅会被塞进同一个账号，删一个会全删，取消时改用「显示」开关</li>
+        <li>{{imp_android_1}}</li>
+        <li>{{imp_android_2}}</li>
+        <li>{{imp_android_3}}</li>
       </ol>
     </details>
 
     <details class="imp">
-      <summary>我是「一次性导入」的，怎么取消</summary>
-      <p>一次性导入的日程存在你手机本地，外面够不着，只能在日历 App 里删：</p>
+      <summary>{{imp_import_summary}}</summary>
+      <p>{{imp_import_p}}</p>
       <ol>
-        <li>打开日历 App，搜索框输入游戏名，比如「原神」</li>
-        <li>搜出来的每一条都能单独删（iPhone 点进去 → 删除日程；安卓长按 → 删除）</li>
-        <li>嫌麻烦就改用上面的订阅，以后取消只需删一个日历</li>
+        <li>{{imp_import_1}}</li>
+        <li>{{imp_import_2}}</li>
+        <li>{{imp_import_3}}</li>
       </ol>
     </details>
 
-    <p class="fine">为什么这里不能点一下就远程删掉？日历订阅是只读的，谁订了只有谁的手机知道。所以取消这一步只能在手机端做，我把它压到三次点击以内。</p>
+    <p class="fine">{{why_fine}}</p>
   </div>
 
   <div class="note">
-    <h3>这是静态版，和完整版有什么区别</h3>
-    <p class="lead">本页所有内容都由浏览器自己算，没有任何服务器参与，所以能免费挂在 GitHub Pages 上，谁都能开一份。</p>
+    <h3>{{static_title}}</h3>
+    <p class="lead">{{static_lead}}</p>
     <ol>
-      <li><b>能做的事</b>：勾选任意几款，一键生成合并的日历文件导进手机；按游戏订阅固定的一份。</li>
-      <li><b>做不到的事</b>：给"原神 + 鸣潮"这种任意组合生成一个可订阅的网址。订阅地址只能是一个事先做好的文件，所以只有按游戏一份、和全部一份。</li>
-      <li><b>数据怎么更新</b>：维护者改了 <b class="k">events.py</b> 并重新生成，页面和订阅文件一起变；订阅的人手机自动跟上，导入的人需要重新导一次。</li>
+      <li>{{static_1}}</li>
+      <li>{{static_2}}</li>
+      <li>{{static_3}}</li>
     </ol>
-    <p class="fine">需要任意组合的订阅链接，用仓库里的完整版（Python 服务端），那边一个网址就能按你选的组合现算。</p>
+    <p class="fine">{{static_fine}}</p>
   </div>
 
   <footer>
-    标「官方确认」的来自官方公告，「预估」是按版本周期推算，「待定」是官方还没公布日期。<br>
-    「规则推算」是兑换码截止时刻：官方还没公布，但按每款游戏历次的口径能卡到分钟，误差一般在 1 小时内。<br>
-    过期不补发，这条日程别当参考价看。
+    {{foot1}}<br>
+    {{foot2}}<br>
+    {{foot3}}
   </footer>
 </div>
 
 <div class="bar">
   <div class="in">
-    <div class="barmeta">已选 <b id="pn">0</b> 个游戏 · <b id="en">0</b> 条日程</div>
-    <button type="button" class="btn primary" id="mainBtn">加入手机日历</button>
-    <a class="sublink" href="#sub">订阅日历 · 退坑可以单独取消 ›</a>
+    <div class="barmeta">{{bar_meta}}</div>
+    <button type="button" class="btn primary" id="mainBtn">{{bar_btn}}</button>
+    <a class="sublink" href="#sub">{{bar_link}}</a>
   </div>
 </div>
 
@@ -274,17 +279,18 @@
 <script>
 (function () {
   var DATA = JSON.parse(document.getElementById('data').textContent);
-  var GAMES = DATA.games, EVENTS = DATA.events, LABEL = DATA.statusLabel, STAMP = DATA.stamp || '20260101T000000Z';
+  var GAMES = DATA.games, EVENTS = DATA.events, LABEL = DATA.statusLabel,
+      STAMP = DATA.stamp || '20260101T000000Z', U = DATA.ui;
   var GMAP = {};
   GAMES.forEach(function (g) { GMAP[g.id] = g; });
 
-  var WEEK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-  var KEY = 'gcal.static.picked.v1';
+  var WEEK = U.week;
+  var KEY = 'gcal.static.picked.v2';
   var IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   var IS_ANDROID = /Android/i.test(navigator.userAgent);
 
-  // 取消步骤按平台只留对应那一套，避免看错方法把别的日历一起删掉
+  // Keep only this platform's cancel steps, so nobody follows the wrong recipe
   (function () {
     var keep = IS_IOS ? 'ios' : (IS_ANDROID ? 'android' : '');
     if (!keep) return;
@@ -292,7 +298,8 @@
     for (var i = nodes.length - 1; i >= 0; i--) {
       if (nodes[i].getAttribute('data-plat') !== keep) nodes[i].parentNode.removeChild(nodes[i]);
     }
-    if (IS_IOS) {      var d = document.querySelector('#cxhelp .danger');
+    if (IS_IOS) {
+      var d = document.querySelector('#cxhelp .danger');
       if (d) d.parentNode.removeChild(d);
     }
   })();
@@ -303,16 +310,15 @@
   picked = picked.filter(function (id) { return !!GMAP[id]; });
   if (!picked.length) picked = GAMES.map(function (g) { return g.id; });
 
-  /* ---------- 时间：全程只用一个"北京时间墙上时钟"，不依赖设备时区 ---------- */
+  /* ---------- Time: one fixed Beijing wall clock, never the device timezone ---------- */
   function parseBJ(s) {
     var p = s.split(' '), d = p[0].split('-'), t = p[1].split(':');
     var y = +d[0], mo = +d[1], da = +d[2], hh = +t[0], mi = +t[1];
     return { y: y, mo: mo, da: da, hh: hh, mi: mi,
-             ts: Date.UTC(y, mo - 1, da, hh - 8, mi) };  // 真实的绝对时刻
+             ts: Date.UTC(y, mo - 1, da, hh - 8, mi) };  // the real absolute instant
   }
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-  /* ---------- ICS 生成：和 events.py 的 build_event() 保持一致 ---------- */
+  /* ---------- ICS generation: must stay byte-identical to build_event() in events.py ---------- */
   var TE = new TextEncoder();
   function blen(s) { return TE.encode(s).length; }
 
@@ -349,7 +355,8 @@
 
   function baseSlug(e) { return e.g + '-' + e.ver.replace(/\./g, '') + '-' + e.kind; }
 
-  // 同款同版本可能有多条同类型日程。最早那条保留原 UID（已导入的不会重复），其余补日期。
+  // One version can hold several events of the same kind (Where Winds Meet 2.4 has two updates).
+  // The earliest keeps the plain UID so existing imports do not duplicate; the rest get a date suffix.
   var SUFFIX = {};
   (function () {
     var seen = {};
@@ -365,14 +372,15 @@
     return SUFFIX[b + '|' + e.dt] ? b + '-' + e.dt.slice(0, 10).replace(/-/g, '') : b;
   }
 
+  var ALARM_TRIGGER = { preview: ['-PT30M'], code: ['-PT2H', '-PT30M'], release: ['-P1D', '-PT2H'] };
+
   function buildEvent(e) {
     var s = parseBJ(e.dt);
     var endTs = s.ts + (e.dur || 60) * 60000;
     var game = GMAP[e.g].name;
-    var label = e.status === 'official' ? '' : '（' + LABEL[e.status] + '）';
-    var place = { preview: ' 官方直播间', release: '', code: ' 兑换入口' }[e.kind] || '';
-    var body = e.desc + '\n\n时间均为北京时间 UTC+8。' +
-      '\n标注「预估 / 待定」的日期是按版本周期推算的，官方公布后会有偏差。';
+    var label = e.status === 'official' ? '' : U.label_wrap.replace('%s', LABEL[e.status]);
+    var place = U.loc[e.kind] || '';
+    var body = e.desc + U.ics_tail;
 
     var lines = [
       'BEGIN:VEVENT',
@@ -387,30 +395,21 @@
       'STATUS:CONFIRMED',
       'TRANSP:TRANSPARENT'
     ];
-    if (e.kind === 'preview') {
-      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY',
-        fold('DESCRIPTION:' + icsEsc('前瞻直播 30 分钟后开始')), 'END:VALARM']);
-    } else if (e.kind === 'code') {
-      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:-PT2H', 'ACTION:DISPLAY',
-        fold('DESCRIPTION:' + icsEsc('兑换码 2 小时后失效，还没换的现在去换')), 'END:VALARM',
-        'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY',
-        fold('DESCRIPTION:' + icsEsc('兑换码 30 分钟后失效，过期不补')), 'END:VALARM']);
-    } else {
-      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY',
-        fold('DESCRIPTION:' + icsEsc('明天是版本更新日')), 'END:VALARM',
-        'BEGIN:VALARM', 'TRIGGER:-PT2H', 'ACTION:DISPLAY',
-        fold('DESCRIPTION:' + icsEsc('版本更新，准备开服')), 'END:VALARM']);
-    }
+    var texts = U.alarm[e.kind] || [];
+    (ALARM_TRIGGER[e.kind] || []).forEach(function (trig, i) {
+      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:' + trig, 'ACTION:DISPLAY',
+        fold('DESCRIPTION:' + icsEsc(texts[i])), 'END:VALARM']);
+    });
     lines.push('END:VEVENT');
     return lines.join('\r\n');
   }
 
   function buildCalendar(rows, name) {
     var head = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\n' +
-      'PRODID:-//WorkBuddy//Game Version Calendar//CN\r\n' +
+      'PRODID:-//WorkBuddy//Game Version Calendar//' + (U.prodid || 'CN') + '\r\n' +
       'CALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n' +
       fold('X-WR-CALNAME:' + icsEsc(name)) + '\r\n' +
-      fold('X-WR-CALDESC:' + icsEsc('前瞻与版本更新的提醒。不玩了：iPhone 直接删掉本日历；安卓在「日程账号管理」里关掉「显示」开关，别点删除（会连带其他订阅）。')) + '\r\n' +
+      fold('X-WR-CALDESC:' + icsEsc(U.cal_desc)) + '\r\n' +
       'X-WR-TIMEZONE:Asia/Shanghai\r\n' +
       'REFRESH-INTERVAL;VALUE=DURATION:PT6H\r\n' +
       'X-PUBLISHED-TTL:PT6H\r\n';
@@ -418,7 +417,7 @@
       'END:VCALENDAR\r\n';
   }
 
-  /* ---------- 数据准备 ---------- */
+  /* ---------- Prepare data ---------- */
   var EV = EVENTS.map(function (e) {
     var s = parseBJ(e.dt);
     return { raw: e, bj: s };
@@ -426,7 +425,7 @@
 
   document.getElementById('latest').textContent = DATA.latest ? DATA.latest.slice(0, 10) : '—';
 
-  /* ---------- 勾选区 ---------- */
+  /* ---------- Game picker ---------- */
   var grid = document.getElementById('grid');
   GAMES.forEach(function (g) {
     var b = document.createElement('button');
@@ -439,7 +438,7 @@
     b.innerHTML =
       '<span class="gdot"></span>' +
       '<span class="gname">' + esc(g.name) + '</span>' +
-      '<span class="gver">当前 ' + esc(g.ver) + '</span>' +
+      '<span class="gver">' + esc(U.current.replace('%s', g.ver)) + '</span>' +
       '<span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2"' +
       ' stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.3l2.6 2.6L10 3.4"/></svg></span>';
     b.addEventListener('click', function () { toggle(g.id); });
@@ -474,7 +473,7 @@
 
     listEl.innerHTML = '';
     if (!rows.length) {
-      listEl.innerHTML = '<div class="empty">至少选一个游戏</div>';
+      listEl.innerHTML = '<div class="empty">' + esc(U.empty) + '</div>';
     } else {
       rows.forEach(function (x) {
         var e = x.raw, g = GMAP[e.g], d = x.bj;
@@ -486,9 +485,9 @@
           '<span>' + WEEK[new Date(Date.UTC(d.y, d.mo - 1, d.da)).getUTCDay()] + '</span></div>' +
           '<div class="b"><div class="tt">' + esc(e.title) + '</div>' +
           '<div class="mm">' +
-          (e.kind === 'code' ? '<span class="kk">兑换码</span>' : '') +
+          (e.kind === 'code' ? '<span class="kk">' + esc(U.kind_code) + '</span>' : '') +
           '<span>' + pad(d.hh) + ':' + pad(d.mi) +
-          (e.kind === 'release' ? ' 开服' : e.kind === 'code' ? ' 失效' : ' 开播') + '</span>' +
+          (e.kind === 'release' ? U.suf_release : e.kind === 'code' ? U.suf_code : U.suf_preview) + '</span>' +
           '<span class="tag ' + e.status + '">' + LABEL[e.status] + '</span></div></div>';
         listEl.appendChild(el);
       });
@@ -496,16 +495,16 @@
 
     document.getElementById('pn').textContent = picked.length;
     document.getElementById('en').textContent = rows.length;
-    document.getElementById('cnt').textContent = rows.length ? '按时间排序' : '';
+    document.getElementById('cnt').textContent = rows.length ? U.sorted : '';
 
     try { localStorage.setItem(KEY, JSON.stringify(picked)); } catch (e) {}
 
     var main = document.getElementById('mainBtn');
     if (!picked.length) {
-      main.textContent = '先选一个游戏';
+      main.textContent = U.pick_first;
       main.classList.add('off');
     } else {
-      main.textContent = '加入手机日历（' + rows.length + ' 条）';
+      main.textContent = U.add_btn.replace('%d', rows.length);
       main.classList.remove('off');
     }
   }
@@ -516,7 +515,7 @@
     });
   }
 
-  /* ---------- 下载 / 跳转 ---------- */
+  /* ---------- Download / redirect ---------- */
   function toast(msg) {
     var t = document.getElementById('toast');
     t.textContent = msg;
@@ -530,22 +529,22 @@
   }
 
   function icsDownloadName(ids) {
-    if (ids.length === 1) return GMAP[ids[0]].short + '-版本日历.ics';
-    return '二游版本日历-' + ids.length + '款.ics';
+    if (ids.length === 1) return U.file_one.replace('%s', GMAP[ids[0]].short);
+    return U.file_many.replace('%d', ids.length);
   }
 
   document.getElementById('mainBtn').addEventListener('click', function () {
     var ids = selectedIds();
     if (!ids.length) return;
 
-    // iPhone 只选一款：直接跳到事先做好的文件，Safari 会交给日历处理，体验最好
+    // iOS with a single game: go straight to the prebuilt file, Safari hands it to Calendar
     if (IS_IOS && ids.length === 1) {
       location.href = absUrl('ics/' + ids[0] + '.ics');
       return;
     }
 
     var rows = EV.filter(function (x) { return ids.indexOf(x.raw.g) > -1; });
-    var name = '二游版本日历 · ' + ids.map(function (id) { return GMAP[id].short; }).join('、');
+    var name = U.cal_prefix + ids.map(function (id) { return GMAP[id].short; }).join(U.cal_join);
     var text = buildCalendar(rows, name);
 
     var blob = new Blob([text], { type: 'text/calendar;charset=utf-8' });
@@ -560,12 +559,10 @@
       if (a.parentNode) a.parentNode.removeChild(a);
     }, 5000);
 
-    toast(IS_IOS
-      ? '已生成 ' + rows.length + ' 条，去「文件」App 点开它'
-      : '已生成 ' + rows.length + ' 条，选「日历」打开');
+    toast((IS_IOS ? U.toast_ios : U.toast_gen).replace('%d', rows.length));
   });
 
-  /* ---------- 订阅列表 ---------- */
+  /* ---------- Subscription list ---------- */
   var subRows = document.getElementById('subrows');
 
   function addSubRow(g, count, label, rel) {
@@ -575,19 +572,19 @@
 
     var info = document.createElement('div');
     info.className = 'sinfo';
-    info.innerHTML = '<b>' + esc(label) + '</b><span>' + count + ' 条</span>';
+    info.innerHTML = '<b>' + esc(label) + '</b><span>' + esc(U.sub_count.replace('%d', count)) + '</span>';
 
     var sub = document.createElement('button');
     sub.type = 'button';
     sub.className = 'sbtn';
-    sub.textContent = '订阅';
+    sub.textContent = U.sub;
     sub.addEventListener('click', function () { subscribe(rel); });
 
     var cx = document.createElement('button');
     cx.type = 'button';
     cx.className = 'scx';
-    cx.textContent = '取消';
-    cx.addEventListener('click', function () { askCancel(label); });
+    cx.textContent = U.cancel;
+    cx.addEventListener('click', function () { askCancel(label, g.short); });
 
     var row = document.createElement('div');
     row.className = 'srow';
@@ -600,9 +597,9 @@
 
   GAMES.forEach(function (g) {
     var n = EV.filter(function (x) { return x.raw.g === g.id; }).length;
-    addSubRow(g, n, g.short + ' · 版本日历', 'ics/' + g.id + '.ics');
+    addSubRow(g, n, g.short + U.cal_suffix, 'ics/' + g.id + '.ics');
   });
-  addSubRow({ color: '#1B1B1F' }, EV.length, '全部游戏 · 一个日历', 'ics/all.ics');
+  addSubRow({ color: '#1B1B1F' }, EV.length, U.all_label, 'ics/all.ics');
 
   function subscribe(rel) {
     var https = absUrl(rel);
@@ -610,9 +607,9 @@
       location.href = https.replace(/^https:/, 'webcal:');
       return;
     }
-    // 安卓 / 桌面：日历 App 普遍不吃 webcal，给 https 地址去粘贴
+    // Android / desktop: calendar apps usually reject webcal, so hand out the https URL to paste
     copy(https);
-    toast('订阅地址已复制，去日历 App「从网址添加」粘贴');
+    toast(U.toast_copy);
   }
 
   function copy(text) {
@@ -634,9 +631,9 @@
     document.body.removeChild(ta);
   }
 
-  function askCancel(label) {
+  function askCancel(label, shortName) {
     var box = document.getElementById('cxhelp');
-    document.getElementById('cxtitle').textContent = '取消「' + label.replace(' · 版本日历', '') + '」的提醒';
+    document.getElementById('cxtitle').textContent = U.cx_title.replace('%s', shortName);
     ['cxname', 'cxname2'].forEach(function (id) {
       var el = document.getElementById(id);
       if (el) el.textContent = label;
@@ -645,7 +642,7 @@
     box.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  /* ---------- 其他 ---------- */
+  /* ---------- Misc ---------- */
   document.getElementById('allBtn').addEventListener('click', function () {
     picked = GAMES.map(function (g) { return g.id; });
     render();

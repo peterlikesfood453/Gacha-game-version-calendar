@@ -1,14 +1,15 @@
 name: Build static site
 
 # 把 static/ 发布到 GitHub Pages。
-# 触发条件：events.py（数据）、build_static.py（生成脚本）、static/（模板与产物）有改动时自动重新生成再发布。
-# 所以就算你在网页上直接改 events.py，站点也会自动更新，不用本地跑脚本。
+# 触发条件：events.py（数据）、strings.py（页面文案）、build_static.py（生成脚本）、static/（模板与产物）
+# 有改动时自动重新生成再发布。所以就算你在网页上直接改 events.py，站点也会自动更新，不用本地跑脚本。
 
 on:
   push:
     branches: [main]
     paths:
       - 'events.py'
+      - 'strings.py'
       - 'build_static.py'
       - 'static/**'
       - '.github/workflows/pages.yml'
@@ -33,7 +34,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 重新生成 static/index.html 与 static/ics/*.ics
+      - name: 重新生成中英两版页面与 ics
         run: python build_static.py
 
       - uses: actions/configure-pages@v5

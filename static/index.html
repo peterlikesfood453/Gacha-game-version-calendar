@@ -4,14 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F5F4F0">
-<title>我的二游版本日历 · 静态版</title>
+<title>我的二游版本日历</title>
+<meta name="description" content="勾选在玩的二游，一键把前瞻直播、版本更新、兑换码失效时间加进手机日历。">
 <link rel="icon" href="data:,">
+<link rel="alternate" hreflang="zh-CN" href="./">
+<link rel="alternate" hreflang="en" href="en/">
+<link rel="alternate" hreflang="x-default" href="./">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   body{background:#F5F4F0;color:#1B1B1F;line-height:1.6;
        font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
        -webkit-font-smoothing:antialiased}
-  .wrap{max-width:640px;margin:0 auto;padding:22px 16px 188px}
+  .wrap{max-width:640px;margin:0 auto;padding:18px 16px 188px;overflow-x:hidden}
+
+  .langbar{display:flex;justify-content:flex-end;margin-bottom:6px}
+  .langbar a{font-size:12px;font-weight:600;color:#5B5BE0;text-decoration:none;background:#fff;
+             border:1px solid #E4E3DD;border-radius:999px;padding:4px 11px;line-height:1.4}
+  .langbar a:active{opacity:.7}
 
   header{text-align:center;padding:4px 0 20px}
   h1{font-size:24px;letter-spacing:-.4px;font-weight:700}
@@ -28,12 +37,12 @@
                  font-weight:600;padding:4px 2px;cursor:pointer;font-family:inherit}
 
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:26px}
-  .g{position:relative;display:flex;flex-direction:column;gap:2px;text-align:left;
+  .g{position:relative;display:flex;flex-direction:column;gap:2px;text-align:left;min-width:0;
      background:#fff;border:1.5px solid #E9E8E3;border-radius:14px;padding:12px 13px 11px;
      cursor:pointer;font-family:inherit;transition:border-color .12s,background .12s,transform .1s}
   .g:active{transform:scale(.985)}
   .g .gname{font-size:14px;font-weight:600;letter-spacing:-.15px;color:#1B1B1F;
-            padding-right:16px;line-height:1.35}
+            padding-right:20px;line-height:1.35;overflow-wrap:break-word;word-break:break-word}
   .g .gver{font-size:11px;color:#9A9AA4;font-variant-numeric:tabular-nums}
   .g .gdot{width:7px;height:7px;border-radius:50%;background:var(--c);margin-bottom:5px}
   .g .tick{position:absolute;top:11px;right:11px;width:16px;height:16px;border-radius:50%;
@@ -145,15 +154,15 @@
 <body>
 <div class="wrap">
 
+  <div class="langbar"><a href="en/" rel="alternate" hreflang="alternate">English</a></div>
+
   <header>
     <h1>我的二游版本日历</h1>
     <div class="sub">勾选你在玩的游戏，生成一份专属日历</div>
     <div class="meta">静态版 · 日程最远到 <span id="latest">—</span> · 时间为北京时间 UTC+8</div>
   </header>
 
-  <div class="warn" id="wxwarn">
-    当前在微信里打开。微信不允许直接导入日历，请点右上角 <b>···</b> → <b>在浏览器打开</b> 再操作。
-  </div>
+  <div class="warn" id="wxwarn">当前在微信里打开。微信不允许直接导入日历，请点右上角 <b>···</b> → <b>在浏览器打开</b> 再操作。</div>
 
   <div class="selbar">
     <span class="t">选择游戏</span>
@@ -190,16 +199,12 @@
     <div class="cxhelp" id="cxhelp" hidden>
       <div class="hd" id="cxtitle">取消「」的提醒</div>
 
-      <div class="danger">
-        <b>安卓先看这条，别直接点删除。</b>很多国产日历（vivo / OPPO / 小米 / 华为）用「导入账号 · 从网址订阅」加进去的多个日历，会全部塞在同一个叫
-        <b>Subscription Calendar</b> 的账号下面。你在账号管理里删掉其中一个，会把<b>所有同类订阅一起删掉</b>，原神和星铁同时消失就是这么来的。
-        这不是本站的问题，是厂商日历 App 的实现方式。安卓请按下面第 2 条做。
-      </div>
+      <div class="danger"><b>安卓先看这条，别直接点删除。</b>很多国产日历（vivo / OPPO / 小米 / 华为）用「导入账号 · 从网址订阅」加进去的多个日历，会全部塞在同一个叫 <b>Subscription Calendar</b> 的账号下面。你在账号管理里删掉其中一个，会把<b>所有同类订阅一起删掉</b>，原神和星铁同时消失就是这么来的。这不是本站的问题，是厂商日历 App 的实现方式。安卓请按下面第 2 条做。</div>
 
       <div class="plat" data-plat="ios">iPhone / iPad</div>
       <ol data-plat="ios">
         <li>打开<b>日历</b> App，点屏幕最下方的<b>「日历」</b>按钮</li>
-        <li>找到 <b id="cxname">原神 · 版本日历</b>，点它右边的 <b>ⓘ</b></li>
+        <li><b id="cxname">原神 · 版本日历</b>，点它右边的 <b>ⓘ</b></li>
         <li>往下滑，点<b>删除日历</b>并确认。iOS 每个订阅是独立的，只删这一个</li>
       </ol>
 
@@ -270,21 +275,22 @@
 
 <div class="toast" id="toast"></div>
 
-<script id="data" type="application/json">{"games":[{"id":"genshin","name":"原神","short":"原神","ver":"7.2","color":"#C9A227","cycle":"42 天 · 周三更新 · 前瞻约提前 12 天（周五 20:00）"},{"id":"hsr","name":"崩坏：星穹铁道","short":"星铁","ver":"4.7","color":"#7B6CF6","cycle":"42 天 · 周三更新 · 前瞻约提前 12 天（周五 19:30）"},{"id":"zzz","name":"绝区零","short":"绝区零","ver":"3.3","color":"#D99A00","cycle":"42 天 · 周三更新 · 前瞻约提前 12 天（周五 19:30）"},{"id":"wuwa","name":"鸣潮","short":"鸣潮","ver":"3.7","color":"#2E7D8F","cycle":"约 42 天 · 周四更新 · 前瞻约提前 6 天（周五 19:00）"},{"id":"endfield","name":"明日方舟：终末地","short":"终末地","ver":"1.6","color":"#5A6472","cycle":"42 天 · 周四更新 · 前瞻约提前 9 天（周二 19:30）"},{"id":"nte","name":"异环","short":"异环","ver":"1.5","color":"#D94F3D","cycle":"42 天 · 周四更新 · 前瞻约提前 8 天（周三 19:30）"},{"id":"wwm","name":"燕云十六声","short":"燕云","ver":"2.3","color":"#7A5C3E","cycle":"更新不固定，按赛季/大区域推进，无统一前瞻"},{"id":"hokw","name":"王者荣耀世界","short":"王世界","ver":"S1","color":"#2B7CD3","cycle":"按赛季推进，S2 尚未公布确切日期"}],"events":[{"g":"genshin","ver":"7.2","kind":"release","dt":"2026-11-04 11:00","dur":30,"title":"原神 7.2「坏灭肇始之时」版本更新","status":"official","desc":"06:00 起停服维护，预计 11:00 前后开服。新五星雷系「米提亚」+ 芙宁娜复刻，至冬新主线与新地图。"},{"g":"nte","ver":"1.5","kind":"release","dt":"2026-11-05 11:00","dur":30,"title":"异环 1.5「致电，空想迷数」版本更新","status":"official","desc":"新 S 级「曳尔沐」上半、Exe 下半，新增城市物流与坦克对战。版本持续到 12/17。"},{"g":"wwm","ver":"2.4","kind":"release","dt":"2026-11-06 10:00","dur":30,"title":"燕云十六声 新赛季「南吕相和·下」+ 双枪「鸣金·霆」","status":"official","desc":"国服节点。同日开放未央城新区域「幻术森林」、新侠迹「归兮归兮」。双枪是今年第三个新武学流派。"},{"g":"wuwa","ver":"3.8","kind":"preview","dt":"2026-11-06 19:00","dur":90,"title":"鸣潮 3.8 前瞻通讯","status":"official","desc":"官方直播间。公布 3.8 卡池与新五星「莉莉」，发 300 星声兑换码。\n\n兑换码有效期至 11/08 23:59（直播后第 2 天 23:59），即直播结束后 53 小时。"},{"g":"wuwa","ver":"3.8","kind":"code","dt":"2026-11-08 23:59","dur":15,"title":"鸣潮 3.8 前瞻兑换码失效","status":"rule","desc":"有效 53 小时：11/06 19:00 开播 → 11/08 23:59 截止（北京时间）。\n\n3 组码合计 300 星声。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 设置 → 其他设置（扳手图标）→ 兑换。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"hsr","ver":"4.7","kind":"release","dt":"2026-11-11 11:00","dur":30,"title":"星穹铁道 4.7「此刻，将群星付之一笑」版本更新","status":"official","desc":"星神「阿哈」首次进池，卡池一直开到 12/22 15:00。版本 11:00 前后开服。"},{"g":"wuwa","ver":"3.8","kind":"release","dt":"2026-11-12 11:00","dur":30,"title":"鸣潮 3.8 版本更新","status":"official","desc":"11/10 开放预下载。更新后邮件领 600 星声修复补偿。"},{"g":"wwm","ver":"2.4","kind":"release","dt":"2026-11-13 10:00","dur":30,"title":"燕云十六声「滹沱」大版本 + 全球一周年","status":"official","desc":"新战场区域「滹沱」、中渡桥之战主线、两名新世界 BOSS，同步开启一周年活动。国际服以此日期为准。"},{"g":"endfield","ver":"1.7","kind":"preview","dt":"2026-11-17 19:30","dur":90,"title":"终末地 1.7 前瞻特别节目","status":"est","desc":"1.6 前瞻比上线早 9 天（周二），照此外推。前瞻奖励需到专题网页领，不再直邮。"},{"g":"zzz","ver":"3.4","kind":"preview","dt":"2026-11-20 19:30","dur":90,"title":"绝区零 3.4 前瞻特别节目","status":"official","desc":"新虚狩「挽昼」登场，同时开启与崩坏：星穹铁道联动（知更鸟、卡芙卡），发 300 菲林兑换码。\n\n兑换码有效期至 11/22 23:59（直播后第 2 天 23:59），即直播结束后 52 小时。"},{"g":"zzz","ver":"3.4","kind":"code","dt":"2026-11-22 23:59","dur":15,"title":"绝区零 3.4 前瞻兑换码失效","status":"rule","desc":"有效 52 小时：11/20 19:30 开播 → 11/22 23:59 截止（北京时间）。\n\n3 组码合计 300 菲林。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 更多 → 兑换码。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"hokw","ver":"S2","kind":"release","dt":"2026-11-26 10:00","dur":30,"title":"王者荣耀世界 S2 赛季更新（待定）","status":"tbd","desc":"S2 体验服 11 月中上旬开测，正式服预计 11 月下旬。官方还没公布确切日期，这里是占位。"},{"g":"endfield","ver":"1.7","kind":"release","dt":"2026-11-26 11:00","dur":30,"title":"终末地 1.7 版本更新","status":"tbd","desc":"社区情报指向 11/26（周四），与 1.6 相隔 42 天。官方尚未正式公告，以官方为准。"},{"g":"zzz","ver":"3.4","kind":"release","dt":"2026-12-02 11:00","dur":30,"title":"绝区零 3.4 版本更新","status":"official","desc":"3.3 版本于 12/2 06:00 结束，3.4 同日开启。维护通常 06:00–11:00。"},{"g":"genshin","ver":"7.3","kind":"preview","dt":"2026-12-04 20:00","dur":60,"title":"原神 7.3 前瞻特别节目","status":"est","desc":"按 42 天周期推算。B站 / 抖音 / 米游社 官方直播间，直播中发 3 组兑换码，合计 300 原石。\n\n兑换码有效期至 12/07 12:00（直播后第 3 天中午 12:00），即直播结束后 64 小时。"},{"g":"genshin","ver":"7.3","kind":"code","dt":"2026-12-07 12:00","dur":15,"title":"原神 7.3 前瞻兑换码失效","status":"rule","desc":"有效 64 小时：12/04 20:00 开播 → 12/07 12:00 截止（北京时间）。\n\n3 组码合计 300 原石，外加精锻用魔矿、大英雄的经验、摩拉。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 设置 → 账户 → 兑换码，或米游社「兑换中心」网页。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"nte","ver":"1.6","kind":"preview","dt":"2026-12-09 19:30","dur":90,"title":"异环 1.6 前瞻特别节目","status":"est","desc":"1.5 前瞻比上线早 8 天（周三），照此外推。\n\n兑换码有效期至 12/13 23:59（直播后第 4 天 23:59），即直播结束后 100 小时。"},{"g":"hsr","ver":"4.8","kind":"preview","dt":"2026-12-11 19:30","dur":60,"title":"星穹铁道 4.8 前瞻特别节目","status":"est","desc":"按 42 天周期、前瞻提前 12 天推算（4.7 于 11/11 上线）。\n\n兑换码有效期至 12/12 23:59（直播次日 23:59），即直播结束后 28 小时。"},{"g":"hsr","ver":"4.8","kind":"code","dt":"2026-12-12 23:59","dur":15,"title":"星铁 4.8 前瞻兑换码失效","status":"rule","desc":"有效 28 小时：12/11 19:30 开播 → 12/12 23:59 截止（北京时间）。\n\n3 组码合计 300 星琼，外加角色与光锥培养材料。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 手机 → 右上角「···」→ 兑换码，或米哈游兑换中心网页。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"nte","ver":"1.6","kind":"code","dt":"2026-12-13 23:59","dur":15,"title":"异环 1.6 前瞻兑换码失效","status":"rule","desc":"有效 100 小时：12/09 19:30 开播 → 12/13 23:59 截止（北京时间）。\n\n3 组码合计 300 环石。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内手机 → 右上角「···」→ 兑换码。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"genshin","ver":"7.3","kind":"release","dt":"2026-12-16 11:00","dur":30,"title":"原神 7.3 版本更新","status":"est","desc":"按 42 天版本周期推算（7.2 于 11/4 上线）。"},{"g":"nte","ver":"1.6","kind":"release","dt":"2026-12-17 11:00","dur":30,"title":"异环 1.6 版本更新","status":"official","desc":"1.5 的卡池与活动排期全部写到 12/17 05:59，1.6 以此接档。"},{"g":"wuwa","ver":"4.0","kind":"preview","dt":"2026-12-18 19:00","dur":90,"title":"鸣潮 4.0 前瞻通讯","status":"est","desc":"推算日期。鸣潮约 6 周一个版本，前瞻一般安排在更新前 6 天。\n\n兑换码有效期至 12/20 23:59（直播后第 2 天 23:59），即直播结束后 53 小时。"},{"g":"wuwa","ver":"4.0","kind":"code","dt":"2026-12-20 23:59","dur":15,"title":"鸣潮 4.0 前瞻兑换码失效","status":"rule","desc":"有效 53 小时：12/18 19:00 开播 → 12/20 23:59 截止（北京时间）。\n\n3 组码合计 300 星声。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 设置 → 其他设置（扳手图标）→ 兑换。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"hsr","ver":"4.8","kind":"release","dt":"2026-12-23 11:00","dur":30,"title":"星穹铁道 4.8 版本更新","status":"est","desc":"4.7 卡池排到 12/22 15:00，4.8 大概率 12/23 上线。"},{"g":"wuwa","ver":"4.0","kind":"release","dt":"2026-12-24 11:00","dur":30,"title":"鸣潮 4.0 版本更新","status":"est","desc":"推算日期，按 6 周周期（3.8 于 11/12 上线）。"},{"g":"endfield","ver":"1.8","kind":"preview","dt":"2026-12-29 19:30","dur":90,"title":"终末地 1.8 前瞻特别节目","status":"est","desc":"推算日期，按 42 天周期。"},{"g":"zzz","ver":"3.5","kind":"preview","dt":"2027-01-01 19:30","dur":90,"title":"绝区零 3.5 前瞻特别节目","status":"est","desc":"推算日期，按 42 天版本周期。\n\n兑换码有效期至 01/03 23:59（直播后第 2 天 23:59），即直播结束后 52 小时。"},{"g":"zzz","ver":"3.5","kind":"code","dt":"2027-01-03 23:59","dur":15,"title":"绝区零 3.5 前瞻兑换码失效","status":"rule","desc":"有效 52 小时：01/01 19:30 开播 → 01/03 23:59 截止（北京时间）。\n\n3 组码合计 300 菲林。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 更多 → 兑换码。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"endfield","ver":"1.8","kind":"release","dt":"2027-01-07 11:00","dur":30,"title":"终末地 1.8 版本更新","status":"est","desc":"推算日期，按 42 天周期。"},{"g":"zzz","ver":"3.5","kind":"release","dt":"2027-01-13 11:00","dur":30,"title":"绝区零 3.5 版本更新","status":"est","desc":"推算日期，按 42 天版本周期。"},{"g":"genshin","ver":"7.4","kind":"preview","dt":"2027-01-15 20:00","dur":60,"title":"原神 7.4 前瞻特别节目","status":"est","desc":"推算日期，官方一般提前约 12 天公布确切时间。\n\n兑换码有效期至 01/18 12:00（直播后第 3 天中午 12:00），即直播结束后 64 小时。"},{"g":"genshin","ver":"7.4","kind":"code","dt":"2027-01-18 12:00","dur":15,"title":"原神 7.4 前瞻兑换码失效","status":"rule","desc":"有效 64 小时：01/15 20:00 开播 → 01/18 12:00 截止（北京时间）。\n\n3 组码合计 300 原石，外加精锻用魔矿、大英雄的经验、摩拉。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 设置 → 账户 → 兑换码，或米游社「兑换中心」网页。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"hsr","ver":"5.0","kind":"preview","dt":"2027-01-22 19:30","dur":60,"title":"星穹铁道 5.0 前瞻特别节目","status":"est","desc":"推算日期，按 42 天周期。\n\n兑换码有效期至 01/23 23:59（直播次日 23:59），即直播结束后 28 小时。"},{"g":"hsr","ver":"5.0","kind":"code","dt":"2027-01-23 23:59","dur":15,"title":"星铁 5.0 前瞻兑换码失效","status":"rule","desc":"有效 28 小时：01/22 19:30 开播 → 01/23 23:59 截止（北京时间）。\n\n3 组码合计 300 星琼，外加角色与光锥培养材料。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 手机 → 右上角「···」→ 兑换码，或米哈游兑换中心网页。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"genshin","ver":"7.4","kind":"release","dt":"2027-01-27 11:00","dur":30,"title":"原神 7.4 版本更新（海灯节）","status":"est","desc":"海灯节版本，按 42 天周期推算。"},{"g":"hsr","ver":"5.0","kind":"release","dt":"2027-02-03 11:00","dur":30,"title":"星穹铁道 5.0 版本更新","status":"est","desc":"推算日期，按 42 天周期。"}],"statusLabel":{"official":"官方确认","est":"预估","tbd":"待定","rule":"规则推算"},"stamp":"20261102T120000Z","latest":"2027-02-03 11:00"}</script>
+<script id="data" type="application/json">{"games":[{"id":"genshin","name":"原神","short":"原神","ver":"7.2","color":"#C9A227"},{"id":"hsr","name":"崩坏：星穹铁道","short":"星铁","ver":"4.7","color":"#7B6CF6"},{"id":"zzz","name":"绝区零","short":"绝区零","ver":"3.3","color":"#D99A00"},{"id":"wuwa","name":"鸣潮","short":"鸣潮","ver":"3.7","color":"#2E7D8F"},{"id":"endfield","name":"明日方舟：终末地","short":"终末地","ver":"1.6","color":"#5A6472"},{"id":"nte","name":"异环","short":"异环","ver":"1.5","color":"#D94F3D"},{"id":"wwm","name":"燕云十六声","short":"燕云","ver":"2.3","color":"#7A5C3E"},{"id":"hokw","name":"王者荣耀世界","short":"王世界","ver":"S1","color":"#2B7CD3"}],"events":[{"g":"genshin","ver":"7.2","kind":"release","dt":"2026-11-04 11:00","dur":30,"status":"official","title":"原神 7.2「坏灭肇始之时」版本更新","desc":"06:00 起停服维护，预计 11:00 前后开服。新五星雷系「米提亚」+ 芙宁娜复刻，至冬新主线与新地图。"},{"g":"nte","ver":"1.5","kind":"release","dt":"2026-11-05 11:00","dur":30,"status":"official","title":"异环 1.5「致电，空想迷数」版本更新","desc":"新 S 级「曳尔沐」上半、Exe 下半，新增城市物流与坦克对战。版本持续到 12/17。"},{"g":"wwm","ver":"2.4","kind":"release","dt":"2026-11-06 10:00","dur":30,"status":"official","title":"燕云十六声 新赛季「南吕相和·下」+ 双枪「鸣金·霆」","desc":"国服节点。同日开放未央城新区域「幻术森林」、新侠迹「归兮归兮」。双枪是今年第三个新武学流派。"},{"g":"wuwa","ver":"3.8","kind":"preview","dt":"2026-11-06 19:00","dur":90,"status":"official","title":"鸣潮 3.8 前瞻通讯","desc":"官方直播间。公布 3.8 卡池与新五星「莉莉」，发 300 星声兑换码。\n\n兑换码有效期至 11/08 23:59（直播后第 2 天 23:59），即直播结束后 53 小时。"},{"g":"wuwa","ver":"3.8","kind":"code","dt":"2026-11-08 23:59","dur":15,"status":"rule","title":"鸣潮 3.8 前瞻兑换码失效","desc":"有效 53 小时：11/06 19:00 开播 → 11/08 23:59 截止（北京时间）。\n\n3 组码合计 300 星声。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 设置 → 其他设置（扳手图标）→ 兑换。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"hsr","ver":"4.7","kind":"release","dt":"2026-11-11 11:00","dur":30,"status":"official","title":"星穹铁道 4.7「此刻，将群星付之一笑」版本更新","desc":"星神「阿哈」首次进池，卡池一直开到 12/22 15:00。版本 11:00 前后开服。"},{"g":"wuwa","ver":"3.8","kind":"release","dt":"2026-11-12 11:00","dur":30,"status":"official","title":"鸣潮 3.8 版本更新","desc":"11/10 开放预下载。更新后邮件领 600 星声修复补偿。"},{"g":"wwm","ver":"2.4","kind":"release","dt":"2026-11-13 10:00","dur":30,"status":"official","title":"燕云十六声「滹沱」大版本 + 全球一周年","desc":"新战场区域「滹沱」、中渡桥之战主线、两名新世界 BOSS，同步开启一周年活动。国际服以此日期为准。"},{"g":"endfield","ver":"1.7","kind":"preview","dt":"2026-11-17 19:30","dur":90,"status":"est","title":"终末地 1.7 前瞻特别节目","desc":"1.6 前瞻比上线早 9 天（周二），照此外推。前瞻奖励需到专题网页领，不再直邮。"},{"g":"zzz","ver":"3.4","kind":"preview","dt":"2026-11-20 19:30","dur":90,"status":"official","title":"绝区零 3.4 前瞻特别节目","desc":"新虚狩「挽昼」登场，同时开启与崩坏：星穹铁道联动（知更鸟、卡芙卡），发 300 菲林兑换码。\n\n兑换码有效期至 11/22 23:59（直播后第 2 天 23:59），即直播结束后 52 小时。"},{"g":"zzz","ver":"3.4","kind":"code","dt":"2026-11-22 23:59","dur":15,"status":"rule","title":"绝区零 3.4 前瞻兑换码失效","desc":"有效 52 小时：11/20 19:30 开播 → 11/22 23:59 截止（北京时间）。\n\n3 组码合计 300 菲林。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 更多 → 兑换码。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"hokw","ver":"S2","kind":"release","dt":"2026-11-26 10:00","dur":30,"status":"tbd","title":"王者荣耀世界 S2 赛季更新（待定）","desc":"S2 体验服 11 月中上旬开测，正式服预计 11 月下旬。官方还没公布确切日期，这里是占位。"},{"g":"endfield","ver":"1.7","kind":"release","dt":"2026-11-26 11:00","dur":30,"status":"tbd","title":"终末地 1.7 版本更新","desc":"社区情报指向 11/26（周四），与 1.6 相隔 42 天。官方尚未正式公告，以官方为准。"},{"g":"zzz","ver":"3.4","kind":"release","dt":"2026-12-02 11:00","dur":30,"status":"official","title":"绝区零 3.4 版本更新","desc":"3.3 版本于 12/2 06:00 结束，3.4 同日开启。维护通常 06:00–11:00。"},{"g":"genshin","ver":"7.3","kind":"preview","dt":"2026-12-04 20:00","dur":60,"status":"est","title":"原神 7.3 前瞻特别节目","desc":"按 42 天周期推算。B站 / 抖音 / 米游社 官方直播间，直播中发 3 组兑换码，合计 300 原石。\n\n兑换码有效期至 12/07 12:00（直播后第 3 天中午 12:00），即直播结束后 64 小时。"},{"g":"genshin","ver":"7.3","kind":"code","dt":"2026-12-07 12:00","dur":15,"status":"rule","title":"原神 7.3 前瞻兑换码失效","desc":"有效 64 小时：12/04 20:00 开播 → 12/07 12:00 截止（北京时间）。\n\n3 组码合计 300 原石，外加精锻用魔矿、大英雄的经验、摩拉。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 设置 → 账户 → 兑换码，或米游社「兑换中心」网页。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"nte","ver":"1.6","kind":"preview","dt":"2026-12-09 19:30","dur":90,"status":"est","title":"异环 1.6 前瞻特别节目","desc":"1.5 前瞻比上线早 8 天（周三），照此外推。\n\n兑换码有效期至 12/13 23:59（直播后第 4 天 23:59），即直播结束后 100 小时。"},{"g":"hsr","ver":"4.8","kind":"preview","dt":"2026-12-11 19:30","dur":60,"status":"est","title":"星穹铁道 4.8 前瞻特别节目","desc":"按 42 天周期、前瞻提前 12 天推算（4.7 于 11/11 上线）。\n\n兑换码有效期至 12/12 23:59（直播次日 23:59），即直播结束后 28 小时。"},{"g":"hsr","ver":"4.8","kind":"code","dt":"2026-12-12 23:59","dur":15,"status":"rule","title":"星铁 4.8 前瞻兑换码失效","desc":"有效 28 小时：12/11 19:30 开播 → 12/12 23:59 截止（北京时间）。\n\n3 组码合计 300 星琼，外加角色与光锥培养材料。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 手机 → 右上角「···」→ 兑换码，或米哈游兑换中心网页。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"nte","ver":"1.6","kind":"code","dt":"2026-12-13 23:59","dur":15,"status":"rule","title":"异环 1.6 前瞻兑换码失效","desc":"有效 100 小时：12/09 19:30 开播 → 12/13 23:59 截止（北京时间）。\n\n3 组码合计 300 环石。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内手机 → 右上角「···」→ 兑换码。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"genshin","ver":"7.3","kind":"release","dt":"2026-12-16 11:00","dur":30,"status":"est","title":"原神 7.3 版本更新","desc":"按 42 天版本周期推算（7.2 于 11/4 上线）。"},{"g":"nte","ver":"1.6","kind":"release","dt":"2026-12-17 11:00","dur":30,"status":"official","title":"异环 1.6 版本更新","desc":"1.5 的卡池与活动排期全部写到 12/17 05:59，1.6 以此接档。"},{"g":"wuwa","ver":"4.0","kind":"preview","dt":"2026-12-18 19:00","dur":90,"status":"est","title":"鸣潮 4.0 前瞻通讯","desc":"推算日期。鸣潮约 6 周一个版本，前瞻一般安排在更新前 6 天。\n\n兑换码有效期至 12/20 23:59（直播后第 2 天 23:59），即直播结束后 53 小时。"},{"g":"wuwa","ver":"4.0","kind":"code","dt":"2026-12-20 23:59","dur":15,"status":"rule","title":"鸣潮 4.0 前瞻兑换码失效","desc":"有效 53 小时：12/18 19:00 开播 → 12/20 23:59 截止（北京时间）。\n\n3 组码合计 300 星声。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 设置 → 其他设置（扳手图标）→ 兑换。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"hsr","ver":"4.8","kind":"release","dt":"2026-12-23 11:00","dur":30,"status":"est","title":"星穹铁道 4.8 版本更新","desc":"4.7 卡池排到 12/22 15:00，4.8 大概率 12/23 上线。"},{"g":"wuwa","ver":"4.0","kind":"release","dt":"2026-12-24 11:00","dur":30,"status":"est","title":"鸣潮 4.0 版本更新","desc":"推算日期，按 6 周周期（3.8 于 11/12 上线）。"},{"g":"endfield","ver":"1.8","kind":"preview","dt":"2026-12-29 19:30","dur":90,"status":"est","title":"终末地 1.8 前瞻特别节目","desc":"推算日期，按 42 天周期。"},{"g":"zzz","ver":"3.5","kind":"preview","dt":"2027-01-01 19:30","dur":90,"status":"est","title":"绝区零 3.5 前瞻特别节目","desc":"推算日期，按 42 天版本周期。\n\n兑换码有效期至 01/03 23:59（直播后第 2 天 23:59），即直播结束后 52 小时。"},{"g":"zzz","ver":"3.5","kind":"code","dt":"2027-01-03 23:59","dur":15,"status":"rule","title":"绝区零 3.5 前瞻兑换码失效","desc":"有效 52 小时：01/01 19:30 开播 → 01/03 23:59 截止（北京时间）。\n\n3 组码合计 300 菲林。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 更多 → 兑换码。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"endfield","ver":"1.8","kind":"release","dt":"2027-01-07 11:00","dur":30,"status":"est","title":"终末地 1.8 版本更新","desc":"推算日期，按 42 天周期。"},{"g":"zzz","ver":"3.5","kind":"release","dt":"2027-01-13 11:00","dur":30,"status":"est","title":"绝区零 3.5 版本更新","desc":"推算日期，按 42 天版本周期。"},{"g":"genshin","ver":"7.4","kind":"preview","dt":"2027-01-15 20:00","dur":60,"status":"est","title":"原神 7.4 前瞻特别节目","desc":"推算日期，官方一般提前约 12 天公布确切时间。\n\n兑换码有效期至 01/18 12:00（直播后第 3 天中午 12:00），即直播结束后 64 小时。"},{"g":"genshin","ver":"7.4","kind":"code","dt":"2027-01-18 12:00","dur":15,"status":"rule","title":"原神 7.4 前瞻兑换码失效","desc":"有效 64 小时：01/15 20:00 开播 → 01/18 12:00 截止（北京时间）。\n\n3 组码合计 300 原石，外加精锻用魔矿、大英雄的经验、摩拉。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 设置 → 账户 → 兑换码，或米游社「兑换中心」网页。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"hsr","ver":"5.0","kind":"preview","dt":"2027-01-22 19:30","dur":60,"status":"est","title":"星穹铁道 5.0 前瞻特别节目","desc":"推算日期，按 42 天周期。\n\n兑换码有效期至 01/23 23:59（直播次日 23:59），即直播结束后 28 小时。"},{"g":"hsr","ver":"5.0","kind":"code","dt":"2027-01-23 23:59","dur":15,"status":"rule","title":"星铁 5.0 前瞻兑换码失效","desc":"有效 28 小时：01/22 19:30 开播 → 01/23 23:59 截止（北京时间）。\n\n3 组码合计 300 星琼，外加角色与光锥培养材料。\n过期立即作废，官方不补发，也不接受事后申诉。\n\n兑换入口：游戏内 手机 → 右上角「···」→ 兑换码，或米哈游兑换中心网页。\n没看直播也能补：官方前瞻回放的简介区、米游社前瞻专题页都会挂出这三组码。"},{"g":"genshin","ver":"7.4","kind":"release","dt":"2027-01-27 11:00","dur":30,"status":"est","title":"原神 7.4 版本更新（海灯节）","desc":"海灯节版本，按 42 天周期推算。"},{"g":"hsr","ver":"5.0","kind":"release","dt":"2027-02-03 11:00","dur":30,"status":"est","title":"星穹铁道 5.0 版本更新","desc":"推算日期，按 42 天周期。"}],"statusLabel":{"official":"官方确认","est":"预估","tbd":"待定","rule":"规则推算"},"ui":{"week":["周日","周一","周二","周三","周四","周五","周六"],"empty":"至少选一个游戏","pick_first":"先选一个游戏","add_btn":"加入手机日历（%d 条）","sorted":"按时间排序","kind_code":"兑换码","suf_release":" 开服","suf_code":" 失效","suf_preview":" 开播","current":"当前 %s","sub":"订阅","cancel":"取消","sub_count":"%d 条","all_label":"全部游戏 · 一个日历","cal_suffix":" · 版本日历","cal_prefix":"二游版本日历 · ","cal_join":"、","cx_title":"取消「%s」的提醒","toast_ios":"已生成 %d 条，去「文件」App 点开它","toast_gen":"已生成 %d 条，选「日历」打开","toast_copy":"订阅地址已复制，去日历 App「从网址添加」粘贴","file_one":"%s-版本日历.ics","file_many":"二游版本日历-%d款.ics","label_wrap":"（%s）","prodid":"CN","cal_desc":"前瞻与版本更新的提醒。不玩了：iPhone 直接删掉本日历；安卓在「日程账号管理」里关掉「显示」开关，别点删除（会连带其他订阅）。","ics_tail":"\n\n时间均为北京时间 UTC+8。\n标注「预估 / 待定」的日期是按版本周期推算的，官方公布后会有偏差。","loc":{"preview":" 官方直播间","release":"","code":" 兑换入口"},"alarm":{"preview":["前瞻直播 30 分钟后开始"],"code":["兑换码 2 小时后失效，还没换的现在去换","兑换码 30 分钟后失效，过期不补"],"release":["明天是版本更新日","版本更新，准备开服"]}},"stamp":"20261102T120000Z","latest":"2027-02-03 11:00"}</script>
 <script>
 (function () {
   var DATA = JSON.parse(document.getElementById('data').textContent);
-  var GAMES = DATA.games, EVENTS = DATA.events, LABEL = DATA.statusLabel, STAMP = DATA.stamp || '20260101T000000Z';
+  var GAMES = DATA.games, EVENTS = DATA.events, LABEL = DATA.statusLabel,
+      STAMP = DATA.stamp || '20260101T000000Z', U = DATA.ui;
   var GMAP = {};
   GAMES.forEach(function (g) { GMAP[g.id] = g; });
 
-  var WEEK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-  var KEY = 'gcal.static.picked.v1';
+  var WEEK = U.week;
+  var KEY = 'gcal.static.picked.v2';
   var IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   var IS_ANDROID = /Android/i.test(navigator.userAgent);
 
-  // 取消步骤按平台只留对应那一套，避免看错方法把别的日历一起删掉
+  // Keep only this platform's cancel steps, so nobody follows the wrong recipe
   (function () {
     var keep = IS_IOS ? 'ios' : (IS_ANDROID ? 'android' : '');
     if (!keep) return;
@@ -292,7 +298,8 @@
     for (var i = nodes.length - 1; i >= 0; i--) {
       if (nodes[i].getAttribute('data-plat') !== keep) nodes[i].parentNode.removeChild(nodes[i]);
     }
-    if (IS_IOS) {      var d = document.querySelector('#cxhelp .danger');
+    if (IS_IOS) {
+      var d = document.querySelector('#cxhelp .danger');
       if (d) d.parentNode.removeChild(d);
     }
   })();
@@ -303,16 +310,15 @@
   picked = picked.filter(function (id) { return !!GMAP[id]; });
   if (!picked.length) picked = GAMES.map(function (g) { return g.id; });
 
-  /* ---------- 时间：全程只用一个"北京时间墙上时钟"，不依赖设备时区 ---------- */
+  /* ---------- Time: one fixed Beijing wall clock, never the device timezone ---------- */
   function parseBJ(s) {
     var p = s.split(' '), d = p[0].split('-'), t = p[1].split(':');
     var y = +d[0], mo = +d[1], da = +d[2], hh = +t[0], mi = +t[1];
     return { y: y, mo: mo, da: da, hh: hh, mi: mi,
-             ts: Date.UTC(y, mo - 1, da, hh - 8, mi) };  // 真实的绝对时刻
+             ts: Date.UTC(y, mo - 1, da, hh - 8, mi) };  // the real absolute instant
   }
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-  /* ---------- ICS 生成：和 events.py 的 build_event() 保持一致 ---------- */
+  /* ---------- ICS generation: must stay byte-identical to build_event() in events.py ---------- */
   var TE = new TextEncoder();
   function blen(s) { return TE.encode(s).length; }
 
@@ -349,7 +355,8 @@
 
   function baseSlug(e) { return e.g + '-' + e.ver.replace(/\./g, '') + '-' + e.kind; }
 
-  // 同款同版本可能有多条同类型日程。最早那条保留原 UID（已导入的不会重复），其余补日期。
+  // One version can hold several events of the same kind (Where Winds Meet 2.4 has two updates).
+  // The earliest keeps the plain UID so existing imports do not duplicate; the rest get a date suffix.
   var SUFFIX = {};
   (function () {
     var seen = {};
@@ -365,14 +372,15 @@
     return SUFFIX[b + '|' + e.dt] ? b + '-' + e.dt.slice(0, 10).replace(/-/g, '') : b;
   }
 
+  var ALARM_TRIGGER = { preview: ['-PT30M'], code: ['-PT2H', '-PT30M'], release: ['-P1D', '-PT2H'] };
+
   function buildEvent(e) {
     var s = parseBJ(e.dt);
     var endTs = s.ts + (e.dur || 60) * 60000;
     var game = GMAP[e.g].name;
-    var label = e.status === 'official' ? '' : '（' + LABEL[e.status] + '）';
-    var place = { preview: ' 官方直播间', release: '', code: ' 兑换入口' }[e.kind] || '';
-    var body = e.desc + '\n\n时间均为北京时间 UTC+8。' +
-      '\n标注「预估 / 待定」的日期是按版本周期推算的，官方公布后会有偏差。';
+    var label = e.status === 'official' ? '' : U.label_wrap.replace('%s', LABEL[e.status]);
+    var place = U.loc[e.kind] || '';
+    var body = e.desc + U.ics_tail;
 
     var lines = [
       'BEGIN:VEVENT',
@@ -387,30 +395,21 @@
       'STATUS:CONFIRMED',
       'TRANSP:TRANSPARENT'
     ];
-    if (e.kind === 'preview') {
-      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY',
-        fold('DESCRIPTION:' + icsEsc('前瞻直播 30 分钟后开始')), 'END:VALARM']);
-    } else if (e.kind === 'code') {
-      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:-PT2H', 'ACTION:DISPLAY',
-        fold('DESCRIPTION:' + icsEsc('兑换码 2 小时后失效，还没换的现在去换')), 'END:VALARM',
-        'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY',
-        fold('DESCRIPTION:' + icsEsc('兑换码 30 分钟后失效，过期不补')), 'END:VALARM']);
-    } else {
-      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY',
-        fold('DESCRIPTION:' + icsEsc('明天是版本更新日')), 'END:VALARM',
-        'BEGIN:VALARM', 'TRIGGER:-PT2H', 'ACTION:DISPLAY',
-        fold('DESCRIPTION:' + icsEsc('版本更新，准备开服')), 'END:VALARM']);
-    }
+    var texts = U.alarm[e.kind] || [];
+    (ALARM_TRIGGER[e.kind] || []).forEach(function (trig, i) {
+      lines = lines.concat(['BEGIN:VALARM', 'TRIGGER:' + trig, 'ACTION:DISPLAY',
+        fold('DESCRIPTION:' + icsEsc(texts[i])), 'END:VALARM']);
+    });
     lines.push('END:VEVENT');
     return lines.join('\r\n');
   }
 
   function buildCalendar(rows, name) {
     var head = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\n' +
-      'PRODID:-//WorkBuddy//Game Version Calendar//CN\r\n' +
+      'PRODID:-//WorkBuddy//Game Version Calendar//' + (U.prodid || 'CN') + '\r\n' +
       'CALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n' +
       fold('X-WR-CALNAME:' + icsEsc(name)) + '\r\n' +
-      fold('X-WR-CALDESC:' + icsEsc('前瞻与版本更新的提醒。不玩了：iPhone 直接删掉本日历；安卓在「日程账号管理」里关掉「显示」开关，别点删除（会连带其他订阅）。')) + '\r\n' +
+      fold('X-WR-CALDESC:' + icsEsc(U.cal_desc)) + '\r\n' +
       'X-WR-TIMEZONE:Asia/Shanghai\r\n' +
       'REFRESH-INTERVAL;VALUE=DURATION:PT6H\r\n' +
       'X-PUBLISHED-TTL:PT6H\r\n';
@@ -418,7 +417,7 @@
       'END:VCALENDAR\r\n';
   }
 
-  /* ---------- 数据准备 ---------- */
+  /* ---------- Prepare data ---------- */
   var EV = EVENTS.map(function (e) {
     var s = parseBJ(e.dt);
     return { raw: e, bj: s };
@@ -426,7 +425,7 @@
 
   document.getElementById('latest').textContent = DATA.latest ? DATA.latest.slice(0, 10) : '—';
 
-  /* ---------- 勾选区 ---------- */
+  /* ---------- Game picker ---------- */
   var grid = document.getElementById('grid');
   GAMES.forEach(function (g) {
     var b = document.createElement('button');
@@ -439,7 +438,7 @@
     b.innerHTML =
       '<span class="gdot"></span>' +
       '<span class="gname">' + esc(g.name) + '</span>' +
-      '<span class="gver">当前 ' + esc(g.ver) + '</span>' +
+      '<span class="gver">' + esc(U.current.replace('%s', g.ver)) + '</span>' +
       '<span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2"' +
       ' stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.3l2.6 2.6L10 3.4"/></svg></span>';
     b.addEventListener('click', function () { toggle(g.id); });
@@ -474,7 +473,7 @@
 
     listEl.innerHTML = '';
     if (!rows.length) {
-      listEl.innerHTML = '<div class="empty">至少选一个游戏</div>';
+      listEl.innerHTML = '<div class="empty">' + esc(U.empty) + '</div>';
     } else {
       rows.forEach(function (x) {
         var e = x.raw, g = GMAP[e.g], d = x.bj;
@@ -486,9 +485,9 @@
           '<span>' + WEEK[new Date(Date.UTC(d.y, d.mo - 1, d.da)).getUTCDay()] + '</span></div>' +
           '<div class="b"><div class="tt">' + esc(e.title) + '</div>' +
           '<div class="mm">' +
-          (e.kind === 'code' ? '<span class="kk">兑换码</span>' : '') +
+          (e.kind === 'code' ? '<span class="kk">' + esc(U.kind_code) + '</span>' : '') +
           '<span>' + pad(d.hh) + ':' + pad(d.mi) +
-          (e.kind === 'release' ? ' 开服' : e.kind === 'code' ? ' 失效' : ' 开播') + '</span>' +
+          (e.kind === 'release' ? U.suf_release : e.kind === 'code' ? U.suf_code : U.suf_preview) + '</span>' +
           '<span class="tag ' + e.status + '">' + LABEL[e.status] + '</span></div></div>';
         listEl.appendChild(el);
       });
@@ -496,16 +495,16 @@
 
     document.getElementById('pn').textContent = picked.length;
     document.getElementById('en').textContent = rows.length;
-    document.getElementById('cnt').textContent = rows.length ? '按时间排序' : '';
+    document.getElementById('cnt').textContent = rows.length ? U.sorted : '';
 
     try { localStorage.setItem(KEY, JSON.stringify(picked)); } catch (e) {}
 
     var main = document.getElementById('mainBtn');
     if (!picked.length) {
-      main.textContent = '先选一个游戏';
+      main.textContent = U.pick_first;
       main.classList.add('off');
     } else {
-      main.textContent = '加入手机日历（' + rows.length + ' 条）';
+      main.textContent = U.add_btn.replace('%d', rows.length);
       main.classList.remove('off');
     }
   }
@@ -516,7 +515,7 @@
     });
   }
 
-  /* ---------- 下载 / 跳转 ---------- */
+  /* ---------- Download / redirect ---------- */
   function toast(msg) {
     var t = document.getElementById('toast');
     t.textContent = msg;
@@ -530,22 +529,22 @@
   }
 
   function icsDownloadName(ids) {
-    if (ids.length === 1) return GMAP[ids[0]].short + '-版本日历.ics';
-    return '二游版本日历-' + ids.length + '款.ics';
+    if (ids.length === 1) return U.file_one.replace('%s', GMAP[ids[0]].short);
+    return U.file_many.replace('%d', ids.length);
   }
 
   document.getElementById('mainBtn').addEventListener('click', function () {
     var ids = selectedIds();
     if (!ids.length) return;
 
-    // iPhone 只选一款：直接跳到事先做好的文件，Safari 会交给日历处理，体验最好
+    // iOS with a single game: go straight to the prebuilt file, Safari hands it to Calendar
     if (IS_IOS && ids.length === 1) {
       location.href = absUrl('ics/' + ids[0] + '.ics');
       return;
     }
 
     var rows = EV.filter(function (x) { return ids.indexOf(x.raw.g) > -1; });
-    var name = '二游版本日历 · ' + ids.map(function (id) { return GMAP[id].short; }).join('、');
+    var name = U.cal_prefix + ids.map(function (id) { return GMAP[id].short; }).join(U.cal_join);
     var text = buildCalendar(rows, name);
 
     var blob = new Blob([text], { type: 'text/calendar;charset=utf-8' });
@@ -560,12 +559,10 @@
       if (a.parentNode) a.parentNode.removeChild(a);
     }, 5000);
 
-    toast(IS_IOS
-      ? '已生成 ' + rows.length + ' 条，去「文件」App 点开它'
-      : '已生成 ' + rows.length + ' 条，选「日历」打开');
+    toast((IS_IOS ? U.toast_ios : U.toast_gen).replace('%d', rows.length));
   });
 
-  /* ---------- 订阅列表 ---------- */
+  /* ---------- Subscription list ---------- */
   var subRows = document.getElementById('subrows');
 
   function addSubRow(g, count, label, rel) {
@@ -575,19 +572,19 @@
 
     var info = document.createElement('div');
     info.className = 'sinfo';
-    info.innerHTML = '<b>' + esc(label) + '</b><span>' + count + ' 条</span>';
+    info.innerHTML = '<b>' + esc(label) + '</b><span>' + esc(U.sub_count.replace('%d', count)) + '</span>';
 
     var sub = document.createElement('button');
     sub.type = 'button';
     sub.className = 'sbtn';
-    sub.textContent = '订阅';
+    sub.textContent = U.sub;
     sub.addEventListener('click', function () { subscribe(rel); });
 
     var cx = document.createElement('button');
     cx.type = 'button';
     cx.className = 'scx';
-    cx.textContent = '取消';
-    cx.addEventListener('click', function () { askCancel(label); });
+    cx.textContent = U.cancel;
+    cx.addEventListener('click', function () { askCancel(label, g.short); });
 
     var row = document.createElement('div');
     row.className = 'srow';
@@ -600,9 +597,9 @@
 
   GAMES.forEach(function (g) {
     var n = EV.filter(function (x) { return x.raw.g === g.id; }).length;
-    addSubRow(g, n, g.short + ' · 版本日历', 'ics/' + g.id + '.ics');
+    addSubRow(g, n, g.short + U.cal_suffix, 'ics/' + g.id + '.ics');
   });
-  addSubRow({ color: '#1B1B1F' }, EV.length, '全部游戏 · 一个日历', 'ics/all.ics');
+  addSubRow({ color: '#1B1B1F' }, EV.length, U.all_label, 'ics/all.ics');
 
   function subscribe(rel) {
     var https = absUrl(rel);
@@ -610,9 +607,9 @@
       location.href = https.replace(/^https:/, 'webcal:');
       return;
     }
-    // 安卓 / 桌面：日历 App 普遍不吃 webcal，给 https 地址去粘贴
+    // Android / desktop: calendar apps usually reject webcal, so hand out the https URL to paste
     copy(https);
-    toast('订阅地址已复制，去日历 App「从网址添加」粘贴');
+    toast(U.toast_copy);
   }
 
   function copy(text) {
@@ -634,9 +631,9 @@
     document.body.removeChild(ta);
   }
 
-  function askCancel(label) {
+  function askCancel(label, shortName) {
     var box = document.getElementById('cxhelp');
-    document.getElementById('cxtitle').textContent = '取消「' + label.replace(' · 版本日历', '') + '」的提醒';
+    document.getElementById('cxtitle').textContent = U.cx_title.replace('%s', shortName);
     ['cxname', 'cxname2'].forEach(function (id) {
       var el = document.getElementById(id);
       if (el) el.textContent = label;
@@ -645,7 +642,7 @@
     box.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  /* ---------- 其他 ---------- */
+  /* ---------- Misc ---------- */
   document.getElementById('allBtn').addEventListener('click', function () {
     picked = GAMES.map(function (g) { return g.id; });
     render();

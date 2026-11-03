@@ -1,416 +1,414 @@
-# 二游版本日历 · Gacha Game Version Calendar
+# Gacha Game Version Calendar
 
-把国产二次元游戏的**版本前瞻直播**、**版本更新**、**前瞻兑换码失效时间**，变成手机日历里一条条带提醒的日程。
+**English** · [简体中文](README.zh-CN.md)
 
-在网页上勾选你在玩的游戏，点一下，日程就进手机日历了。退坑了就关掉对应的那个日历，提醒一起消失（安卓别直接删，见[怎么取消](#怎么取消)）。
+Every preview stream, version update and promo-code deadline for the gacha games you play — turned into calendar events with reminders on your phone.
 
-### 👉 在线直接用：[peterlikesfood453.github.io/Gacha-game-version-calendar](https://peterlikesfood453.github.io/Gacha-game-version-calendar/)
+Tick the games you play on the web page, tap once, and the schedule lands in your phone's calendar. Quit a game and you switch off that one calendar; the rest keep working.
 
-手机浏览器打开上面这个地址就能用，不用注册、不用装 App、完全免费。微信里打不开的话点右上角 `···` → 在浏览器打开。
+> **Android users: do not tap "Delete" to remove a subscription.** Many vendor calendar apps merge every URL subscription into one account called `Subscription Calendar`, so deleting one removes all of them. Switch the "show" toggle off instead. Details in [Removing a game](#removing-a-game) — this is the single most common support question.
+
+### 👉 Use it now: [peterlikesfood453.github.io/Gacha-game-version-calendar/en/](https://peterlikesfood453.github.io/Gacha-game-version-calendar/en/)
+
+No sign-up, no app install, no cost. Chinese version: [here](https://peterlikesfood453.github.io/Gacha-game-version-calendar/).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
-[![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](#在自己电脑上跑)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg)](#参与维护)
+[![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](#run-it-locally)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg)](#contributing)
 
-<img src="docs/screenshot.png" width="340" alt="页面截图">
+<img src="docs/screenshot-en.png" width="340" alt="Screenshot">
 
-> 本项目是非官方社区项目。所有游戏名称、商标、活动内容归各自厂商所有，本项目只做时间信息的汇总整理。
+> Unofficial community project. All game names, trademarks and event content belong to their respective publishers; this project only aggregates timing information.
 
 ---
 
-## 两种用法，先挑一个
+## Two builds, pick one
 
-仓库里有两套实现，数据是同一份（`events.py`），用法不同：
+The repo ships two implementations that share the same data (`events.py`):
 
-| | 静态版 | 完整版（Python） |
+| | Static build | Full build (Python) |
 |---|---|---|
-| 怎么用 | 打开网页就能用，不用装任何东西 | 自己跑 `python server.py`，或部署到服务器 |
-| 勾选几款后一键导入 | 可以 | 可以 |
-| 任意组合的**订阅**链接 | 不行，只能订阅「某款游戏」或「全部」 | 可以，一个网址按你选的组合现算 |
-| 运行成本 | 零，纯静态托管在 GitHub Pages | 要一台能跑 Python 的机器 |
-| 位置 | `static/` 目录 | 仓库根目录 |
+| How to use | Open the web page, nothing to install | Run `python server.py` yourself or deploy it |
+| Select games, one-tap import | Yes | Yes |
+| Subscribable URL for a **custom mix** | No — only per-game or everything | Yes, generated on the fly from your selection |
+| Running cost | Zero, hosted free on GitHub Pages | Needs a machine that runs Python |
+| Location | `static/` | repo root |
 
-**静态版在线地址**：https://peterlikesfood453.github.io/Gacha-game-version-calendar/
+**Static build:** https://peterlikesfood453.github.io/Gacha-game-version-calendar/en/
 
-想省事、想把这站分享给朋友 → 用静态版。想长期维护、需要「原神 + 鸣潮」这种自定义组合的订阅链接 → 用完整版。
+Want zero hassle and something to share with friends → static build. Want a long-lived instance where "Genshin + WuWa" is its own subscription URL → full build.
 
 ---
 
-## 目录
+## Contents
 
-- [这是什么](#这是什么)
-- [两种用法，先挑一个](#两种用法先挑一个)
-- [能做什么](#能做什么)
-- [手机上怎么用](#手机上怎么用)
-- [不想自己部署](#不想自己部署用现成链接)
-- [在自己电脑上跑](#在自己电脑上跑)
-- [数据在哪，怎么改](#数据在哪怎么改)
-- [兑换码失效时间是怎么算的](#兑换码失效时间是怎么算的)
-- [接口一览](#接口一览)
-- [部署静态版到 GitHub Pages](#部署静态版到-github-pages)
-- [部署完整版到自己的服务器](#部署完整版到自己的服务器)
-- [参与维护](#参与维护)
-- [常见问题](#常见问题)
-- [已知限制](#已知限制)
-- [路线图](#路线图)
+- [What this is](#what-this-is)
+- [What it does](#what-it-does)
+- [Project layout](#project-layout)
+- [On your phone](#on-your-phone)
+- [Removing a game](#removing-a-game)
+- [Run it locally](#run-it-locally)
+- [Where the data lives](#where-the-data-lives)
+- [How code expiry times are derived](#how-code-expiry-times-are-derived)
+- [Endpoints](#endpoints)
+- [Deploy the static build to GitHub Pages](#deploy-the-static-build-to-github-pages)
+- [Deploy the full build](#deploy-the-full-build)
+- [Translations](#translations)
+- [Contributing](#contributing)
+- [FAQ](#faq)
+- [Known limitations](#known-limitations)
+- [Roadmap](#roadmap)
 - [License](#license)
 
 ---
 
-## 这是什么
+## What this is
 
-米哈游自家的日历订阅（比如 [hoyo_calendar](https://github.com/BlueflameLi/hoyo_calendar)）已经做得很好，但只覆盖原神、星铁、绝区零三家。
+The official miHoYo calendar subscriptions (e.g. [hoyo_calendar](https://github.com/BlueflameLi/hoyo_calendar)) cover Genshin, Star Rail and ZZZ well. What was missing was something cross-publisher that lets you pick the games you actually play and build one calendar from them.
 
-跨厂商、还能自己挑要哪几款再生成一份日历的，当时没找到，于是自己写了一个。它解决三个很具体的问题：
+It solves three very concrete problems:
 
-| 你会遇到的问题 | 这个项目怎么解决 |
+| The annoyance | What this does |
 |---|---|
-| 前瞻直播错过，回来才知道发了兑换码 | 直播前 30 分钟提醒 |
-| 版本更新当天白等一上午，其实下午才开服 | 提前 1 天、提前 2 小时各提醒一次 |
-| 兑换码"几小时内失效"，到底几点？ | 单独一条日程，标题写着「XX 版本 前瞻兑换码失效」，时间精确到分钟 |
+| You miss a preview stream and only learn about the codes afterwards | Reminder 30 minutes before the stream |
+| You wait all morning on update day, but servers open in the afternoon | Reminders 1 day and 2 hours ahead |
+| "Codes expire in a few hours" — expires when, exactly? | A separate event titled `<Game> <version> - Redemption codes expire`, accurate to the minute |
 
-## 能做什么
+## What it does
 
-- **8 款游戏可勾选**：原神、崩坏：星穹铁道、绝区零、鸣潮、明日方舟：终末地、异环、燕云十六声、王者荣耀世界
-- **一键导入**：勾选完点按钮，生成一个 `.ics` 文件，iPhone 直接弹「全部添加」
-- **按游戏单独订阅**：一款游戏一份日历，退坑只停那一个，其他游戏不受影响
-- **合并订阅**：也可以把几款游戏塞进同一个日历
-- **自动刷新**：订阅的日历每 6 小时拉取一次，作者更新数据后手机自动跟上
-- **状态标注**：每条日程都标了 `官方确认` / `预估` / `待定` / `规则推算`，不会把猜的当官方
-- **零依赖**：只用 Python 标准库，不用 `pip install` 任何东西
+- **8 games to tick**: Genshin Impact, Honkai: Star Rail, Zenless Zone Zero, Wuthering Waves, Arknights: Endfield, Neverness to Everness, Where Winds Meet, Honor of Kings: World
+- **One-tap import**: pick games, tap the button, get an `.ics` file. On iPhone it opens straight into Calendar.
+- **Subscribe per game**: one calendar per game, so quitting one game stops only that one
+- **Merged subscription**: or put several games into a single calendar
+- **Auto refresh**: subscribed calendars re-fetch every 6 hours; when the maintainer updates the data your phone follows
+- **Status labels**: every event is marked `Confirmed` / `Estimated` / `TBC` / `Computed`, so guesses are never passed off as official
+- **Zero dependencies**: Python standard library only, no `pip install`
+- **Bilingual**: Chinese at `/`, English at `/en/`, generated from a single template
 
-## 项目结构
+## Project layout
 
 ```
 .
-├── events.py                 全部数据 + ICS 生成逻辑（改数据只碰这个文件）
-├── server.py                 完整版：单端口 HTTP 服务
-├── index.html                完整版的页面模板
-├── build_static.py           静态版：把 events.py 编译成 static/
-├── static/                   静态版（可直接发布到 GitHub Pages）
-│   ├── template.html         页面模板，含 JS 版 ICS 生成器
-│   ├── index.html            由 build_static.py 生成，请勿手改
-│   └── ics/                  每个游戏一份订阅文件，另有 all.ics
-├── docs/screenshot.png       README 用的截图
+├── events.py               All data + ICS generation (the only file you edit for content)
+├── strings.py              UI copy for both languages
+├── server.py               Full build: single-port HTTP server
+├── index.html              Full build page template
+├── build_static.py         Static build: compiles events.py into static/
+├── static/                 Static build (ready for GitHub Pages)
+│   ├── template.html       Page template with the in-browser ICS generator
+│   ├── index.html          Generated (Chinese) - do not edit by hand
+│   ├── ics/                One file per game + all.ics (Chinese)
+│   └── en/                 English page and ics/ tree
+├── docs/screenshot-en.png  Screenshot used in this README
 └── LICENSE
 ```
 
-`static/index.html` 和 `static/ics/*.ics` 都是**生成物**。要改内容，改 `events.py` 或 `static/template.html`，然后重新生成，别直接改产物。
+`static/index.html`, `static/en/index.html` and every `*.ics` are **build artifacts**. Edit `events.py`, `strings.py` or `static/template.html`, then rebuild.
 
-## 手机上怎么用
+## On your phone
 
 ### iPhone / iPad
 
-1. 用 **Safari** 打开网页（不要用微信）
-2. 点最下面黑色的 **「加入手机日历」**
-3. 弹窗点 **「全部添加」**
+1. Open the page in **Safari**
+2. Tap the black **Add to phone calendar** button
+3. Tap **Add All** in the popup
 
-想长期跟着更新，就点下面那行「订阅日历」，日历 App 会记住这个地址，以后自动同步。
+To follow future updates, use **Subscribe** below instead — iOS remembers the URL and syncs automatically.
 
-### 安卓 / 华为 / 小米 / 鸿蒙
+### Android / HarmonyOS
 
-1. 用系统浏览器打开网页
-2. 点 **「加入手机日历」**，下载 `.ics` 文件
-3. 打开系统日历 App，找「导入」「从文件导入」一类的入口，选中刚下载的文件
+1. Open the page in your browser
+2. Tap **Add to phone calendar** — this downloads an `.ics` file
+3. Open your calendar app, find **Import**, and select the file
 
-想长期同步，用日历 App 的「从网址添加日历」，填网页上给的 `https://` 订阅地址。
+For automatic updates use the app's **Add calendar from URL / Subscribe by URL** entry with the `https://` URL the page gives you. Read the warning above first: multiple URL subscriptions usually end up under one account.
 
-### 微信里打不开怎么办
+### WeChat's built-in browser
 
-微信内置浏览器不允许导入日历。点右上角 `···`，选 **「在浏览器打开」**，再按上面的步骤操作。
+WeChat blocks calendar imports. Tap `···` (top right) → **Open in browser**, then follow the steps above.
 
-### 怎么取消
+## Removing a game
 
-页面拉到最下面有「订阅与取消」卡片，每个游戏一行，点「取消」会按你的手机系统展开对应步骤。
+Scroll to the **Subscribe & remove** card on the page. Each game has its own row; tapping **Remove** expands the steps for your platform.
 
-**iPhone**：日历 App → 底部「日历」→ 找到「原神 · 版本日历」→ ⓘ → 删除日历。iOS 每个订阅互相独立，删一个就是一个。
+**iPhone**: Calendar app → **Calendars** at the bottom → find *Genshin - Version Calendar* → ⓘ → **Delete Calendar**. iOS keeps every subscription independent, so only that one goes away.
 
-**安卓（重要）**：很多国产日历（vivo / OPPO / 小米 / 华为）用「导入账号 · 从网址订阅」加进去的多个日历，会全部塞进同一个叫 `Subscription Calendar` 的账号下面。**在账号管理里删掉其中一个，会把所有同类订阅一起删掉** —— 原神和星铁同时消失就是这么来的。这是厂商日历的实现方式，不是本站的 bug，本站无法从服务器端干预。
+**Android — this is the part that bites.** Many vendor calendar apps (vivo / OPPO / Xiaomi / Huawei) put every URL subscription you add under a single account named `Subscription Calendar`. **Deleting one of them there deletes all of them.** That is why Genshin and Star Rail vanished together. It is the app's behaviour, not a bug in this project, and no server-side change can prevent it.
 
-所以安卓要单独关掉某一款，请这样做：
+So on Android, to stop one game:
 
-1. 日历 App → 设置 → 日程账号管理
-2. 点对应的那一行（标题都写 `Subscription Calendar`，靠下面那行小字区分是哪款游戏）
-3. 用里面的 **「显示」开关关掉**，**不要点「删除」**
-4. 关掉后该游戏的提醒立即停止，其他游戏不受影响
+1. Calendar app → Settings → Calendar accounts
+2. Tap the matching row (the titles all read `Subscription Calendar`; the small text underneath tells you which game)
+3. Switch **"show" off** — **do not tap Delete**
+4. Reminders for that game stop immediately; the others are unaffected
 
-想真正逐个删干净，改用 [ICSx⁵](https://icsx5.bitfire.at/)（开源免费的订阅日历 App）：每条订阅在里面是独立日历，删哪条就删哪条，不会连带。
+If you want to delete them properly one at a time, use [ICSx⁵](https://icsx5.bitfire.at/) (free, open source): each subscription becomes an independent calendar there, and deleting one never touches the rest.
 
-如果是当初**一次性导入**的，那些日程已经写进手机本地，只能手动逐条删：在日历里搜游戏名，一条条删掉。
+If you **imported the file once**, those events live on your phone. Nothing here can reach them — search for the game name in your calendar app and delete the events one by one, or switch to subscribing so removal becomes a single calendar.
 
-## 不想自己部署：用现成链接
+## Run it locally
 
-**静态版（推荐，永久免费，作者已验证可用）**
-
-https://peterlikesfood453.github.io/Gacha-game-version-calendar/
-
-托管在 GitHub Pages 上，只要仓库还在就不会挂，速度也够用。缺点是订阅链接只有「单款游戏」和「全部」两种组合。
-
-**完整版（作者的个人实例，可能随时下线）**
-
-```
-https://game-version-calendar-88236.app.workbuddy.host/?sharecode=ZLRI2TFV7G
-```
-
-好处是可以订阅任意勾选组合（比如只要原神 + 鸣潮）。但这是临时性的托管，**别把它当成长期服务**，想稳定就自己部署一份（见下文），或者用上面的静态版。
-
-## 在自己电脑上跑
-
-需要装 [Python 3.8 或更高版本](https://www.python.org/downloads/)。安装时 Windows 用户记得勾选 **Add Python to PATH**。
+You need [Python 3.8+](https://www.python.org/downloads/). On Windows, tick **Add Python to PATH** during install.
 
 ```bash
-# 1. 下载代码
 git clone https://github.com/peterlikesfood453/Gacha-game-version-calendar.git
 cd Gacha-game-version-calendar
-
-# 2. 启动
 python3 server.py
 ```
 
-Windows 上如果 `python3` 不认，用 `python server.py`。
+Then open `http://localhost:8000/` (Chinese) or `http://localhost:8000/en` (English).
 
-然后在浏览器打开 `http://localhost:8000/` 就能看到页面。
-
-默认端口 8000，想换端口就设环境变量：
+Default port is 8000; override it with an environment variable:
 
 ```bash
-PORT=8080 python3 server.py     # macOS / Linux
-$env:PORT=8080; python server.py  # Windows PowerShell
+PORT=8080 python3 server.py        # macOS / Linux
+$env:PORT=8080; python server.py   # Windows PowerShell
 ```
 
-不需要数据库，不需要 `npm install`，没有任何第三方依赖。
+No database, no `npm install`, no third-party packages.
 
-## 数据在哪，怎么改
+## Where the data lives
 
-**所有数据都在 `events.py` 这一个文件里**，改数据不用碰前端。
+**Everything is in `events.py`.** Content changes never touch the front end. Every entry carries both languages: `title` / `title_en`, `desc` / `desc_en`, `name` / `name_en`. If an English field is missing the generator falls back to Chinese, so partial translations never break the build.
 
-### 游戏列表
+### Games
 
 ```python
 GAMES = [
-    {"id": "genshin", "name": "原神", "short": "原神", "ver": "7.2",
-     "color": "#C9A227", "cycle": "42 天 · 周三更新 · 前瞻约提前 12 天"},
+    {"id": "genshin", "name": "原神", "name_en": "Genshin Impact",
+     "short": "原神", "short_en": "Genshin", "ver": "7.2",
+     "color": "#C9A227", "cycle": "42 天 · 周三更新 · 前瞻约提前 12 天",
+     "cycle_en": "42-day cycle · Wednesday updates · Special Program ~12 days earlier"},
     ...
 ]
 ```
 
-`id` 是网址里用的短名，一旦定了别改（别人订阅的链接会失效）；`ver` 是当前版本号，显示在网页上；`cycle` 是更新周期说明，纯展示用。
+`id` is the slug used in URLs — never change it once published, or people's subscriptions break. `ver` is the current version shown on the card. `cycle` / `cycle_en` are display-only notes.
 
-### 日程
+### Events
 
 ```python
 EVENTS = [
     {"g": "genshin", "ver": "7.3", "kind": "preview",
      "dt": "2026-12-04 20:00", "dur": 60,
      "title": "原神 7.3 前瞻特别节目", "status": "est",
-     "desc": "按 42 天周期推算。B站 / 抖音 / 米游社 官方直播间..."},
+     "desc": "按 42 天周期推算...",
+     "title_en": "Genshin Impact 7.3 Special Program",
+     "desc_en": "Projected from the 42-day cycle..."},
     ...
 ]
 ```
 
-| 字段 | 含义 |
+| Field | Meaning |
 |---|---|
-| `g` | 游戏 id，要和 `GAMES` 里的一致 |
-| `ver` | 版本号，比如 `7.3` |
-| `kind` | `preview` 前瞻直播 / `release` 版本更新 / `code` 兑换码失效（`code` 由程序自动生成，不用手写） |
-| `dt` | 北京时间，格式固定 `YYYY-MM-DD HH:MM` |
-| `dur` | 时长，单位分钟 |
-| `title` | 日历里显示的标题 |
-| `status` | `official` 官方确认 / `est` 按周期推算 / `tbd` 官方未公布 / `rule` 按规则推算 |
-| `desc` | 点开日程看到的详情，写清楚来源 |
+| `g` | game id, must match `GAMES` |
+| `ver` | version string, e.g. `7.3` |
+| `kind` | `preview` stream / `release` update / `code` code expiry (`code` is generated, do not hand-write it) |
+| `dt` | Beijing time, format `YYYY-MM-DD HH:MM` |
+| `dur` | duration in minutes |
+| `title` / `title_en` | event title shown in the calendar |
+| `status` | `official` / `est` projected / `tbd` not announced / `rule` computed |
+| `desc` / `desc_en` | event details, with the source when it is official |
 
-### 一个真实例子：官方公布了日期
+### Real example: the date becomes official
 
-假设官方宣布原神 7.3 前瞻改到 12 月 5 日 20:00，你只需要这样改：
+Say Genshin 7.3 moves its stream to Dec 5, 20:00:
 
 ```python
-# 改之前
+# before
 {"g": "genshin", "ver": "7.3", "kind": "preview",
  "dt": "2026-12-04 20:00", "dur": 60,
  "title": "原神 7.3 前瞻特别节目", "status": "est",
  "desc": "按 42 天周期推算..."},
 
-# 改之后：日期改对，状态改成 official，把来源写进 desc
+# after: fix the date, flip status, record the source
 {"g": "genshin", "ver": "7.3", "kind": "preview",
  "dt": "2026-12-05 20:00", "dur": 60,
  "title": "原神 7.3 前瞻特别节目", "status": "official",
- "desc": "官方公告：https://... （在此贴上公告链接）"},
+ "desc": "官方公告：https://..."},
 ```
 
-改完**重启服务**就生效。订阅了日历的人，手机六小时内会自动收到新时间。
+Restart the server and it is live. Subscribers pick it up within six hours.
 
-> 注意：兑换码失效那条日程是程序按 `CODE_RULE` 自动算的，你改了前瞻时间，它会跟着自动重算，不用动。
+> The code-expiry event is derived from `CODE_RULE`, so it recalculates itself when you move the stream time.
 
-### 改完还要重新生成静态版
+### Rebuild the static site
 
-静态版不读 `events.py`，它读的是编译好的结果。所以改完数据要跑一次：
+The static build does not read `events.py` at runtime — it reads compiled output:
 
 ```bash
 python build_static.py
 ```
 
-它会重写 `static/index.html` 和 `static/ics/*.ics`，把 `static/` 一起提交即可。
+This rewrites `static/index.html`, `static/en/index.html` and both `ics/` trees. Commit `static/` with your data change.
 
-如果你是在 GitHub 网页上直接改的 `events.py`，**不用手动跑**：仓库里配了 GitHub Actions，推送后会自己重新生成并发布到 Pages。
+If you edit `events.py` directly on GitHub you do **not** need to run it: the included GitHub Actions workflow rebuilds and publishes to Pages on push.
 
-## 兑换码失效时间是怎么算的
+## How code expiry times are derived
 
-不是拍的"几小时"，是拿 2026 年每款游戏真实的一场直播对出来的规则：
+Not a vague "a few hours" — each rule is matched against a real 2026 stream:
 
-| 游戏 | 失效规则 | 实际例子 |
+| Game | Rule | Real example |
 |---|---|---|
-| 原神 | 直播后第 3 天 12:00 | 10/23 晚播 → 10/26 12:00 失效 |
-| 崩坏：星穹铁道 | 直播次日 23:59 | 10/30 播 → 10/31 23:59 失效 |
-| 绝区零 | 直播后第 2 天 23:59 | 10/9 播 → 10/11 23:59 失效 |
-| 鸣潮 | 直播后第 2 天 23:59 | 9/19 播 → 9/21 23:59 失效 |
-| 异环 | 直播后第 4 天 23:59 | 10/28 播 → 11/1 23:59 失效 |
-| 终末地 / 燕云十六声 / 王者荣耀世界 | 不发前瞻兑换码 | 所以没有这一类日程 |
+| Genshin Impact | 12:00 on day 3 after the stream | streamed Oct 23 evening → expired Oct 26, 12:00 |
+| Honkai: Star Rail | 23:59 the next day | streamed Oct 30 → expired Oct 31, 23:59 |
+| Zenless Zone Zero | 23:59 on day 2 | streamed Oct 9 → expired Oct 11, 23:59 |
+| Wuthering Waves | 23:59 on day 2 | streamed Sep 19 → expired Sep 21, 23:59 |
+| Neverness to Everness | 23:59 on day 4 | streamed Oct 28 → expired Nov 1, 23:59 |
+| Endfield / Where Winds Meet / HoK: World | no preview codes at all | so no such event exists |
 
-规则集中写在 `events.py` 的 `CODE_RULE` 里：
+The rules live in `CODE_RULE`:
 
 ```python
 CODE_RULE = {
-    "genshin": dict(day=3, at="12:00", note="直播后第 3 天中午 12:00"),
-    "hsr":     dict(day=1, at="23:59", note="直播次日 23:59"),
+    "genshin": dict(day=3, at="12:00", note="直播后第 3 天中午 12:00", note_en="12:00 on day 3 after the stream"),
+    "hsr":     dict(day=1, at="23:59", note="直播次日 23:59", note_en="23:59 the day after the stream"),
     ...
 }
 ```
 
-发现某款游戏的规则变了，改这里一处，全局生效。
+Change one entry and every event recomputes.
 
-因为官方只在直播结尾字幕里报具体时刻，所以这类日程标注为 `规则推算`，不冒充官方确认。误差一般在 1 小时内。
+Because publishers only state the exact minute in the stream's closing credits, these events are labelled `Computed` rather than `Confirmed`. Expect an error margin under one hour.
 
-## 接口一览
+## Endpoints
 
-| 路径 | 说明 |
+| Path | What it returns |
 |---|---|
-| `/` | 选择页，勾选游戏、预览日程 |
-| `/calendar.ics?games=genshin,zzz` | 按所选游戏生成日历。未知 id 自动忽略，参数为空等于全选 |
-| `/all.ics` | 全部游戏 |
-| `/sub/<id>.ics` | 单个游戏的订阅日历，日历详情里带取消说明 |
-| `/game/<id>.ics` | 单游戏日历（旧路径，保留兼容） |
+| `/` | Chinese picker page |
+| `/en` | English picker page |
+| `/calendar.ics?games=genshin,zzz` | Calendar for the selected games. Unknown ids are ignored; an empty parameter means all games. Add `&lang=en` for English |
+| `/all.ics` | All games |
+| `/sub/<id>.ics` | Single-game subscription calendar, with removal instructions in the calendar description |
+| `/game/<id>.ics` | Same, legacy path kept for compatibility |
 
-游戏 id 对照：
+Game ids:
 
-| id | 游戏 | id | 游戏 |
+| id | Game | id | Game |
 |---|---|---|---|
-| `genshin` | 原神 | `endfield` | 明日方舟：终末地 |
-| `hsr` | 崩坏：星穹铁道 | `nte` | 异环 |
-| `zzz` | 绝区零 | `wwm` | 燕云十六声 |
-| `wuwa` | 鸣潮 | `hokw` | 王者荣耀世界 |
+| `genshin` | Genshin Impact | `endfield` | Arknights: Endfield |
+| `hsr` | Honkai: Star Rail | `nte` | Neverness to Everness |
+| `zzz` | Zenless Zone Zero | `wwm` | Where Winds Meet |
+| `wuwa` | Wuthering Waves | `hokw` | Honor of Kings: World |
 
-iOS 订阅用 `webcal://你的域名/sub/genshin.ics`；安卓在日历 App 里「从网址添加」，填 `https://` 开头的同一个地址。
+On iOS subscribe with `webcal://your-domain/sub/genshin.ics`; on Android use **Add calendar from URL** with the same address as `https://`.
 
-## 部署静态版到 GitHub Pages
+Language resolution: `?lang=en` wins, then the `/en` path prefix, then `Accept-Language` (English first for anything that is not Chinese).
 
-自己 fork 一份就能白嫖一个永久在线的站，不用服务器、不花钱。
+## Deploy the static build to GitHub Pages
 
-1. fork 本仓库（页面右上角 **Fork** → **Create fork**）
-2. 进你自己的仓库：**Settings** → 左侧菜单 **Pages**
-3. **Source** 选 **GitHub Actions**（不是 Deploy from a branch）
-4. 打开 **Actions** 标签页，等 `Build static site` 变成绿色，约 1 分钟
-5. 访问 `https://你的用户名.github.io/仓库名/`
+Fork it and you get a permanent free site — no server, no cost.
 
-配好之后，`.github/workflows/pages.yml` 会在每次 `events.py` 或 `static/` 有改动时自动重新生成并发布。也就是说**你只管改数据，站点自己更新**。
+1. **Fork** this repo (top right → **Create fork**)
+2. In your fork: **Settings** → **Pages**
+3. Set **Source** to **GitHub Actions** (not *Deploy from a branch*)
+4. Open the **Actions** tab and wait for `Build static site` to go green (~1 minute)
+5. Visit `https://<your-name>.github.io/<repo>/` for Chinese, `.../en/` for English
 
-本地预览有两种方式：
+After that `.github/workflows/pages.yml` rebuilds and republishes whenever `events.py`, `strings.py` or `static/` changes — you only maintain the data.
+
+Local preview:
 
 ```bash
-# 方式一：生成后直接双击 static/index.html（数据已内联，不需要服务器）
+# Option 1: build, then open static/index.html directly (data is inlined)
 python build_static.py
 
-# 方式二：起个本地服务，链接和线上行为一致
+# Option 2: serve it so URLs behave exactly like production
 python build_static.py
 python -m http.server 8000 --directory static
 ```
 
-## 部署完整版到自己的服务器
+## Deploy the full build
 
-这是个单端口的 Python 小程序，任何能跑 Python 的地方都能部署，配置只需要一条命令：`python server.py`，端口读环境变量 `PORT`。
+A single-port Python program. Anywhere that runs Python works; configuration is one command, `python server.py`, with the port read from `PORT`.
 
-几个免费或低成本的选择：
+- **Render / Railway**: new Web Service, connect the repo, start command `python server.py`, the platform injects `PORT`
+- **Your own VPS**: `git clone`, then keep it alive with `systemd` or `nohup` behind Nginx
+- **A home machine or NAS**: fine on your LAN; expose it with a tunnel if you need outside access
 
-- **Render / Railway**：新建 Web Service，连接这个仓库，Start Command 填 `python server.py`，平台会自动注入 `PORT`
-- **自己的 VPS**：`git clone` 之后用 `systemd` 或 `nohup` 挂着，前面套 Nginx
-- **家里的电脑 / NAS**：局域网内可用；想让外网访问需要做内网穿透
+## Translations
 
-部署完成后把域名填进网页，或者直接把 `/sub/genshin.ics` 这样的地址贴进手机日历。
+The project follows the usual two-language open-source layout:
 
-## 参与维护
+- `README.md` is English (the GitHub default), `README.zh-CN.md` is Chinese; each links to the other at the top
+- The site serves Chinese at `/` and English at `/en/`, with a language switch in the top-right corner and mutual `<link rel="alternate" hreflang>` tags for search engines
+- **One template, two builds.** `static/template.html` and `index.html` contain `{{key}}` placeholders; `strings.py` holds the copy for both languages and `build_static.py` renders each language at build time. Nothing is swapped at runtime, so `<html lang>`, `<title>` and the calendar files are genuinely English.
 
-数据会过期，官方每周都在公布新日期，所以这个项目**最需要的贡献是改日期，不是写代码**。
+Adding a language means adding one dictionary to `strings.py` and one set of `*_xx` fields in `events.py` — the templates do not change.
 
-### 方式一：你会用 GitHub（推荐）
+Notes for translators: keep times written as "Beijing time (UTC+8)" and never soften `Estimated` / `TBC` into `Confirmed`.
 
-1. 点右上角 **Fork**，把仓库复制到你自己的账号下
-2. 在你的仓库里打开 `events.py`，点右上角铅笔图标直接网页编辑
-3. 改完在页面底部写一句改了什么，点 **Commit changes**
-4. 回到原仓库点 **Pull requests** → **New pull request**，把你的改动提上来
+## Contributing
 
-### 方式二：你完全不会写代码
+Data goes stale every week, so **the most valuable contribution is a date correction, not code**.
 
-直接开一个 [Issue](https://github.com/peterlikesfood453/Gacha-game-version-calendar/issues)，写清楚这四件事就够了：
+### With GitHub (preferred)
+
+1. **Fork** the repo
+2. Open `events.py` in your fork and use the pencil icon to edit in the browser
+3. Describe the change at the bottom and hit **Commit changes**
+4. Open **Pull requests** → **New pull request** against the original repo
+
+### Without writing any code
+
+Open an [issue](https://github.com/peterlikesfood453/Gacha-game-version-calendar/issues) with these four lines:
 
 ```
-游戏：原神
-版本：7.3
-正确日期：2026-12-05 20:00（北京时间）
-来源：https://官方公告链接
+Game: Genshin Impact
+Version: 7.3
+Correct time: 2026-12-05 20:00 (UTC+8)
+Source: https://official-announcement-link
 ```
 
-维护者会替你改进代码里。
+### Before you submit
 
-### 提交前请自查
+- Times are always Beijing time, format `YYYY-MM-DD HH:MM`
+- Unsure? Use `est` or `tbd`. **Never** mark something `official` to make it look better
+- `official` requires a source link in `desc`
+- Do not delete confirmed entries from others; only update them
+- Adding a game means updating both `GAMES` and `CODE_RULE` (if it hands out codes), and adding the `_en` fields
 
-- 日期一律北京时间，格式 `YYYY-MM-DD HH:MM`
-- 不确定就标 `est` 或 `tbd`，**不要**为了好看标成 `official`
-- `official` 必须附官方来源链接，写在 `desc` 里
-- 不要删除别人已确认的条目，只做更新
-- 新增游戏时，同时补 `GAMES` 和 `CODE_RULE`（如果它发兑换码）
+## FAQ
 
-## 常见问题
+**I see every event twice.**
+You probably imported the file *and* subscribed to the same calendar. Keep one: on iOS untick the subscribed calendar; on Android switch its "show" toggle off (do not delete it).
 
-**问：导入后发现日程重复了两份？**
-答：你可能既导入了一次性文件，又订阅了同一个日历。只留一种即可 —— iPhone 可以在日历列表里取消勾选订阅的那个；安卓别删，用「显示」开关关掉订阅的那个。
+**I deleted one game's subscription and the others disappeared.**
+A known Android vendor-calendar behaviour — see [Removing a game](#removing-a-game). Several URL subscriptions share one account, so a delete hits the account. No data is lost; add them back. From now on, switch "show" off instead of deleting.
 
-**问：我删了一个游戏的订阅，结果其他游戏也没了？**
-答：这是安卓厂商日历的已知问题（详见[怎么取消](#怎么取消)）。多个网址订阅被塞进同一个账号，删除操作打到账号上，所以连带全没了。数据本身没丢，重新把订阅加回来就行。以后要停某一个，用「显示」开关关掉，不要点「删除」。
+**Why are some dates marked Estimated?**
+Games follow fixed cycles (miHoYo titles: 42 days, Wednesday updates) and publishers only confirm one or two weeks ahead. Until then the date is projected and may slip by a few days. The label tells you which entries you can rely on.
 
-**问：为什么有些日期标着"预估"？**
-答：各游戏按固定周期更新（米哈游系 42 天、周三），官方通常提前一两周才公布。没公布之前只能按周期推，误差可能有几天。标出来是为了让你知道哪条能当真、哪条仅供参考。
+**Does it update by itself?**
+If you subscribe, yes — your phone re-fetches within six hours of any data change. If you imported a file, you need to import again.
 
-**问：能自动更新吗？我什么都不想管。**
-答：用「订阅」就是自动的。订阅后你什么都不用做，作者更新了数据，你手机六小时内自动同步。用「一次性导入」则需要重新导一次。
+**Why can't the site delete events from my calendar with one tap?**
+Calendar subscriptions are read-only: the server publishes, and only your phone knows what you subscribed to. Remote deletion would require tracking every subscriber's identity, and losing that record would silently empty everyone's calendar. Keeping the calendar reliable matters more, so removal happens on your device — in three taps.
 
-**问：为什么不能在网页上点一下就把别人日历里的日程删掉？**
-答：日历订阅是只读协议，服务器只负责发内容，谁订了、存了哪些日程，只有那台手机自己知道。想做到网页远程删除，就必须在服务器记录每个订阅者的身份，而这份记录一旦丢失，所有人的日历会静默变空。比起远程删除的便利，手上这份日历的可靠性更重要，所以选择了一游戏一日历、删除在手机上完成。
+**Are these dates accurate?**
+`Confirmed` comes from official announcements. `Estimated`, `TBC` and `Computed` are derived and will drift once the official date lands. If you spot an error, open an issue.
 
-**问：微信里点开会跳到下载页？**
-答：微信内置浏览器禁止导入日历。点右上角 `···` → 在浏览器打开即可。
+## Known limitations
 
-**问：这些日期准吗？**
-答：标 `官方确认` 的来自官方公告，基本可信；标 `预估`、`待定`、`规则推算` 的都是推算结果，官方公布后会有偏差。发现错误欢迎提 Issue。
+- **Data is maintained by hand.** There is no scraper; a date only changes when someone updates it
+- **Code expiry is rule-derived**, so it can be off by up to an hour once officially announced
+- **Imported events are decoupled from the server** — cancelling means deleting them one by one. Subscribe if you want easy removal
+- **The server cannot delete events from anyone's phone.** Removal is a client-side action by design
+- **Android vendor calendars merge URL subscriptions into one account**, so deleting one deletes all. A client limitation this project cannot fix
+- **Honor of Kings: World is season-driven and Where Winds Meet has no preview streams**, so those two are naturally sparser — nothing is missing
+- **Only 8 games are covered.** See [Contributing](#contributing) to add more
+- **The static build cannot subscribe to a custom mix** — only per-game or everything. Use the full build for "Genshin + WuWa"
 
-## 已知限制
+## Roadmap
 
-- **数据是人工维护的**，没有自动抓官方接口，官方改档期后需要有人更新才会变
-- **兑换码失效时刻是规则推算**，官方公布后可能有 1 小时内的偏差
-- **一次性导入的日程与服务器脱钩**，取消只能手动逐条删；想随时取消请用订阅
-- **服务端无法远程删除任何人手机上的日程**，所以取消动作在手机端完成
-- **安卓厂商日历把多条网址订阅并到同一个账号**，删除其中一个会连带全部，只能用「显示」开关关闭。这是客户端限制，本站改不了
-- **王者荣耀世界按赛季推进、燕云十六声没有前瞻直播**，这两款的条目天生比米哈游系稀疏，不是漏了
-- **只覆盖 8 款游戏**，不是所有二游。想加新游戏请看[参与维护](#参与维护)
-- **静态版的订阅不能任意组合**，只能「某款游戏」或「全部」。要「原神 + 鸣潮」这样的自定义订阅，用完整版
-
-## 路线图
-
-- **v1 完整版（已完成）**：Python 服务端，任意游戏组合都能生成可订阅的网址，退坑按游戏单独停。需要自己部署一份。
-- **v2 静态版（已完成并上线）**：纯静态，日历在浏览器里现算，托管到 GitHub Pages，零成本、零服务器，谁都能开一份。多选后一键导入照样能用，只是订阅只能"按游戏一份"。线上地址：https://peterlikesfood453.github.io/Gacha-game-version-calendar/
-- **v3（可选）**：接入社区数据源自动更新排期，减少人工维护成本。
+- **v1 full build (done)**: Python server, subscribable URL for any combination, per-game removal
+- **v2 static build (done and live)**: pure static, calendar computed in the browser, free on GitHub Pages
+- **v2.1 English build (done)**: `/en/` plus English calendar files, same data
+- **v3 (optional)**: pull from community data sources to cut manual maintenance
 
 ## License
 
-[MIT](LICENSE)。随便用、随便改、随便分发，保留版权声明即可。
+[MIT](LICENSE). Use it, change it, redistribute it — keep the copyright notice.
 
-如果这个项目帮你省了几次"早知道昨天直播就发了"，给个 Star 就够了。
+If this saved you from missing a code drop, a star is enough.
