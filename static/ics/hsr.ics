@@ -5,7 +5,9 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:星铁 · 版本日历
 X-WR-CALDESC:只订阅「崩坏：星穹铁道」的前瞻与版本更新
- 。不玩了就删掉这个日历，其他游戏不受影响。
+ 。不玩了：iPhone 直接删掉本日历；安卓在「日程账号管
+ 理」里关掉「显示」开关，别点删除（会连带其他订阅
+ ）。
 X-WR-TIMEZONE:Asia/Shanghai
 REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H

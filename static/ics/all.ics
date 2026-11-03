@@ -4,8 +4,9 @@ PRODID:-//WorkBuddy//Game Version Calendar//CN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:二游版本日历 · 全部
-X-WR-CALDESC:前瞻直播与版本更新的提醒。退坑了就在日历 A
- pp 里删掉本日历，提醒会一起消失。
+X-WR-CALDESC:前瞻与版本更新的提醒。不玩了：iPhone 直接删
+ 掉本日历；安卓在「日程账号管理」里关掉「显示」开
+ 关，别点删除（会连带其他订阅）。
 X-WR-TIMEZONE:Asia/Shanghai
 REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H

@@ -84,7 +84,7 @@ class Handler(BaseHTTPRequestHandler):
             if gid in E.GAME_BY_ID:
                 g = E.GAME_BY_ID[gid]
                 self._ics([gid], g["short"] + " · 版本日历",
-                          "只订阅「%s」的前瞻与版本更新。不玩了就删掉这个日历，其他游戏不受影响。"
+                          "只订阅「%s」的前瞻与版本更新。不玩了：iPhone 直接删掉本日历；安卓在「日程账号管理」里关掉「显示」开关，别点删除（会连带其他订阅）。"
                           % g["name"])
                 return
             self._send(404, b"unknown game", "text/plain; charset=utf-8")

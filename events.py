@@ -307,7 +307,7 @@ def calendar(game_ids, name="二游版本日历", desc=None) -> str:
     picked = [e for e in EVENTS if e["g"] in game_ids]
     picked.sort(key=lambda e: e["dt"])
     if desc is None:
-        desc = "前瞻直播与版本更新的提醒。退坑了就在日历 App 里删掉本日历，提醒会一起消失。"
+        desc = "前瞻与版本更新的提醒。不玩了：iPhone 直接删掉本日历；安卓在「日程账号管理」里关掉「显示」开关，别点删除（会连带其他订阅）。"
     head = ("BEGIN:VCALENDAR\r\nVERSION:2.0\r\n"
             "PRODID:-//WorkBuddy//Game Version Calendar//CN\r\n"
             "CALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n")
