@@ -13,6 +13,7 @@ UI = {
         "meta_desc": "勾选在玩的二游，一键把前瞻直播、版本更新、兑换码失效时间加进手机日历。",
         "lang_switch": "English",
         "lang_href": "en/",
+        "alt_lang": "en",
 
         # ---- header ----
         "h1": "我的二游版本日历",
@@ -102,6 +103,7 @@ UI = {
         "meta_desc": "Pick the gacha games you play and add every preview stream, version update and promo-code expiry to your phone calendar in one tap.",
         "lang_switch": "中文",
         "lang_href": "../",
+        "alt_lang": "zh-CN",
 
         "h1": "Gacha Version Calendar",
         "sub": "Pick the games you play, get a calendar that only has what you need",
