@@ -103,6 +103,12 @@
   .cxhelp ol{padding-left:17px;margin-top:4px}
   .cxhelp .hd{font-size:12.5px;font-weight:700;color:#1B1B1F;margin-bottom:5px}
   .cxhelp .alt{margin-top:9px;padding-top:9px;border-top:1px dashed #E6D9C2;color:#7A6446}
+  .cxhelp .danger{background:#FDECEA;border:1px solid #F3C7C1;border-radius:9px;
+                  padding:9px 10px;margin:6px 0 10px;color:#A3342A;font-size:12px;line-height:1.68}
+  .cxhelp .danger b{color:#8A2318}
+  .cxhelp .plat{font-size:11.5px;font-weight:700;color:#8A6A3C;letter-spacing:.3px;
+                margin:10px 0 2px;text-transform:uppercase}
+  .cxhelp .plat:first-of-type{margin-top:8px}
 
   details.imp{margin-top:12px;border-top:1px solid #F2F1EC;padding-top:10px}
   details.imp summary{font-size:12.5px;font-weight:600;color:#5B5BE0;cursor:pointer;list-style:none}
@@ -176,28 +182,50 @@
 
   <div class="note" id="sub">
     <h3>订阅与取消</h3>
-    <p class="lead">一个游戏一个日历。退坑了，删掉对应那一个日历，那个游戏的前瞻和更新提醒就一起没了，其他游戏照常。</p>
+    <p class="lead">一个游戏一个日历。退坑了，关掉或删掉对应那一个日历，那个游戏的前瞻和更新提醒就一起没了，其他游戏照常。iPhone 可以直接删；安卓要看清下面那条红字。</p>
 
     <div class="sh">按游戏订阅</div>
     <div id="subrows"></div>
 
     <div class="cxhelp" id="cxhelp" hidden>
       <div class="hd" id="cxtitle">取消「」的提醒</div>
-      <ol>
-        <li>打开手机自带的<b>日历</b> App，点底部的「日历」列表</li>
-        <li>找到 <b id="cxname">原神 · 版本日历</b>，点它右边的 <b>ⓘ</b>（安卓是长按或点右上角菜单）</li>
-        <li>选 <b>删除日历</b> 并确认，这个游戏的提醒就全清掉了</li>
+
+      <div class="danger">
+        <b>安卓先看这条，别直接点删除。</b>很多国产日历（vivo / OPPO / 小米 / 华为）用「导入账号 · 从网址订阅」加进去的多个日历，会全部塞在同一个叫
+        <b>Subscription Calendar</b> 的账号下面。你在账号管理里删掉其中一个，会把<b>所有同类订阅一起删掉</b>，原神和星铁同时消失就是这么来的。
+        这不是本站的问题，是厂商日历 App 的实现方式。安卓请按下面第 2 条做。
+      </div>
+
+      <div class="plat" data-plat="ios">iPhone / iPad</div>
+      <ol data-plat="ios">
+        <li>打开<b>日历</b> App，点屏幕最下方的<b>「日历」</b>按钮</li>
+        <li>找到 <b id="cxname">原神 · 版本日历</b>，点它右边的 <b>ⓘ</b></li>
+        <li>往下滑，点<b>删除日历</b>并确认。iOS 每个订阅是独立的，只删这一个</li>
       </ol>
-      <div class="alt">只是暂时不想被打扰，不用删：把那个日历前面的勾去掉（隐藏），提醒也会停；或者进订阅设置点「移除提醒」。</div>
+
+      <div class="plat" data-plat="android">安卓（想单独关掉某一款）</div>
+      <ol data-plat="android">
+        <li>进日历 App 的<b>设置 → 日程账号管理</b>（各家叫法略有不同）</li>
+        <li>点 <b id="cxname2">原神 · 版本日历</b> 那一行（这几行的标题都写「Subscription Calendar」，认下面那行小字）</li>
+        <li>用里面<b>「显示」开关关掉</b>，<b>不要点「删除」</b></li>
+        <li>关掉后这个游戏的提醒立刻停，其他游戏不受影响。想真正逐个删干净，用下面说的 ICSx⁵</li>
+      </ol>
+
+      <div class="plat" data-plat="android">不想折腾：换一个日历 App</div>
+      <p data-plat="android" style="margin-top:4px">装 <b>ICSx⁵</b>（开源免费，应用商店搜得到），每条订阅在它里面是独立日历，删哪条就删哪条，不会连带。把订阅地址粘进去即可，本站的「订阅」按钮复制出来的就是地址。</p>
+
+      <div class="alt">只是暂时不想被打扰，不用删：把那个日历的「显示」关掉（隐藏），提醒也会停；或者进订阅设置点「移除提醒」，日程留着。</div>
     </div>
 
     <details class="imp">
       <summary>安卓怎么订阅（按钮提示"已复制"时看这里）</summary>
-      <p>安卓的日历 App 不吃 <b class="k">webcal://</b> 开头的地址，所以按钮会改成复制 <b class="k">https://</b> 开头的地址。复制之后：</p>
+      <p>安卓的日历 App 不吃 <b class="k">webcal://</b> 开头的地址，所以按钮会改成复制 <b class="k">https://</b> 开头的地址。</p>
+      <p><b>推荐做法</b>：装 <b>ICSx⁵</b>（开源免费）。打开它 → 右上角「+」→ 粘贴地址 → 保存。以后每款游戏在它里面是一个独立日历，删哪个都不会连带，也不受厂商日历的账号机制影响。</p>
+      <p>用系统日历也行，但有代价：</p>
       <ol>
         <li>打开日历 App，找「设置」或「添加日历」里的 <b>从网址添加</b> / <b>通过网址订阅</b></li>
         <li>把地址粘进去，命名随便写，确认</li>
-        <li>之后他会定期去这个网址拉最新数据</li>
+        <li>它会定期去这个网址拉最新数据。注意：这样加的多个订阅会被塞进同一个账号，删一个会全删，取消时改用「显示」开关</li>
       </ol>
     </details>
 
@@ -254,6 +282,20 @@
   var KEY = 'gcal.static.picked.v1';
   var IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var IS_ANDROID = /Android/i.test(navigator.userAgent);
+
+  // 取消步骤按平台只留对应那一套，避免看错方法把别的日历一起删掉
+  (function () {
+    var keep = IS_IOS ? 'ios' : (IS_ANDROID ? 'android' : '');
+    if (!keep) return;
+    var nodes = document.querySelectorAll('#cxhelp [data-plat]');
+    for (var i = nodes.length - 1; i >= 0; i--) {
+      if (nodes[i].getAttribute('data-plat') !== keep) nodes[i].parentNode.removeChild(nodes[i]);
+    }
+    if (IS_IOS) {      var d = document.querySelector('#cxhelp .danger');
+      if (d) d.parentNode.removeChild(d);
+    }
+  })();
   var picked;
 
   try { picked = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { picked = null; }
@@ -305,7 +347,23 @@
       'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z';
   }
 
-  function slug(e) { return e.g + '-' + e.ver.replace(/\./g, '') + '-' + e.kind; }
+  function baseSlug(e) { return e.g + '-' + e.ver.replace(/\./g, '') + '-' + e.kind; }
+
+  // 同款同版本可能有多条同类型日程。最早那条保留原 UID（已导入的不会重复），其余补日期。
+  var SUFFIX = {};
+  (function () {
+    var seen = {};
+    EVENTS.slice().sort(function (a, b) { return a.dt < b.dt ? -1 : a.dt > b.dt ? 1 : 0; })
+      .forEach(function (e) {
+        var b = baseSlug(e);
+        if (seen[b]) { SUFFIX[b + '|' + e.dt] = 1; } else { seen[b] = 1; }
+      });
+  })();
+
+  function slug(e) {
+    var b = baseSlug(e);
+    return SUFFIX[b + '|' + e.dt] ? b + '-' + e.dt.slice(0, 10).replace(/-/g, '') : b;
+  }
 
   function buildEvent(e) {
     var s = parseBJ(e.dt);
@@ -579,7 +637,10 @@
   function askCancel(label) {
     var box = document.getElementById('cxhelp');
     document.getElementById('cxtitle').textContent = '取消「' + label.replace(' · 版本日历', '') + '」的提醒';
-    document.getElementById('cxname').textContent = label;
+    ['cxname', 'cxname2'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = label;
+    });
     box.hidden = false;
     box.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }

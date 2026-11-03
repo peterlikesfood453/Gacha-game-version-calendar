@@ -238,8 +238,27 @@ def utc_str(dt: datetime) -> str:
     return dt.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
 
-def slug(e: dict) -> str:
+def _base_slug(e: dict) -> str:
     return "%s-%s-%s" % (e["g"], e["ver"].replace(".", ""), e["kind"])
+
+
+# 同款同版本可能有多条同类型日程（如燕云 2.4 有两场更新）。
+# UID 冲突时，最早那一条保留原 UID（已导入的不会重复），其余补日期区分。
+_SUFFIX = set()
+_seen = set()
+for _e in sorted(EVENTS, key=lambda x: x["dt"]):
+    _b = _base_slug(_e)
+    if _b in _seen:
+        _SUFFIX.add((_b, _e["dt"]))
+    else:
+        _seen.add(_b)
+
+
+def slug(e: dict) -> str:
+    b = _base_slug(e)
+    if (b, e["dt"]) in _SUFFIX:
+        return "%s-%s" % (b, e["dt"][:10].replace("-", ""))
+    return b
 
 
 def build_event(e: dict) -> str:
