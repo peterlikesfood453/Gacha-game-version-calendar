@@ -7,7 +7,7 @@ build_event() / calendar() 接收 lang 参数，缺英文时回落到中文，�
 from datetime import datetime, timedelta, timezone
 
 BJ = timezone(timedelta(hours=8))
-STAMP = "20261102T120000Z"
+STAMP = "20261114T120000Z"
 
 # 顺序即页面展示顺序
 GAMES = [
@@ -43,6 +43,18 @@ GAMES = [
      "ver": "S1", "color": "#2B7CD3",
      "cycle": "按赛季推进，S2 尚未公布确切日期",
      "cycle_en": "Season-based; Season 2 date not announced yet"},
+
+    # 不是二游，按「可选附加项」处理：optin=True 让页面默认不勾选，想要的人自己加。
+    {"id": "epic", "name": "Epic 喜加一", "name_en": "Epic Free Games",
+     "short": "Epic", "short_en": "Epic", "ver": "每周",
+     "ver_label": "每周五 0 点换新", "ver_label_en": "New game every Fri 00:00",
+     "color": "#2A2A2E",
+     "cycle": "每周四 11:00（美东）换新；冬促期间改成每天一款、只挂 24 小时",
+     "cycle_en": "New free game every Thursday 11:00 ET; the Winter Sale switches to one a day, 24-hour windows",
+     "optin": True,
+     "cal_name": "Epic 喜加一 · 日历", "cal_name_en": "Epic Free Games - Calendar",
+     "cal_desc": "Epic 商城每周免费游戏与冬促神秘喜加一的提醒。",
+     "cal_desc_en": "Reminders for Epic's weekly free games and the Winter Sale mystery giveaways. "},
 ]
 
 # status: official 官方确认 / est 按周期推算 / tbd 日期待官方公布
@@ -216,8 +228,9 @@ EVENTS = [
 
 STATUS_LABEL = {"official": "官方确认", "est": "预估", "tbd": "待定", "rule": "规则推算"}
 STATUS_LABEL_EN = {"official": "Confirmed", "est": "Estimated", "tbd": "TBC", "rule": "Computed"}
-KIND_LABEL = {"preview": "前瞻直播", "release": "版本更新", "code": "兑换码失效"}
-KIND_LABEL_EN = {"preview": "Preview stream", "release": "Version update", "code": "Codes expire"}
+KIND_LABEL = {"preview": "前瞻直播", "release": "版本更新", "code": "兑换码失效", "giveaway": "免费游戏换新"}
+KIND_LABEL_EN = {"preview": "Preview stream", "release": "Version update", "code": "Codes expire",
+                 "giveaway": "Free game rotation"}
 
 GAME_BY_ID = {g["id"]: g for g in GAMES}
 
@@ -323,7 +336,104 @@ def add_code_events():
     return added
 
 
+# ---------- Epic 免费游戏 ----------
+# 换新时刻：美东时间每周四 11:00。冬令时 UTC-5 → 北京时间周五 00:00；
+# 夏令时 UTC-4 → 北京时间周四 23:00。本表覆盖的区间都在冬令时内，统一按周五 00:00。
+EPIC_WEEK_FROM = "2026-11-20"
+EPIC_WEEK_TO = "2027-02-12"
+# 冬促每天一款的推算区间：只在首尾各放一条锚点，中间不重复生成周更
+EPIC_MYSTERY = ("2026-12-18", "2027-01-01")
+EPIC_CLAIM = "epicgames.com/store/free-games"
+
+
+def add_epic_events():
+    out = []
+    day = datetime.strptime(EPIC_WEEK_FROM + " 00:00", "%Y-%m-%d %H:%M").replace(tzinfo=BJ)
+    last = datetime.strptime(EPIC_WEEK_TO + " 00:00", "%Y-%m-%d %H:%M").replace(tzinfo=BJ)
+    while day <= last:
+        ds = day.strftime("%Y-%m-%d")
+        if not (EPIC_MYSTERY[0] <= ds <= EPIC_MYSTERY[1]):
+            out.append(dict(
+                g="epic", ver=day.strftime("%Y%m%d"), kind="giveaway",
+                dt=ds + " 00:00", dur=15, status="rule",
+                title="Epic 本周免费游戏换新",
+                title_en="Epic free game rotation",
+                desc="\n".join([
+                    "Epic 每周四 11:00（美东时间）换一款免费游戏，折成北京时间是周五 0:00。",
+                    "美国夏令时期间（3 月中到 11 月初）会提前一小时，变成周四 23:00。",
+                    "",
+                    "这款领了就永久入库，领取窗口 7 天，到下周五 0:00 换成下一款。",
+                    "",
+                    "领取入口：" + EPIC_CLAIM + "，或 Epic 客户端「商城 → 免费游戏」。",
+                    "部分作品锁区，国区账号可能显示「当前不可用」。",
+                ]),
+                desc_en="\n".join([
+                    "Epic swaps its free game every Thursday at 11:00 ET, which is 00:00 Friday in Beijing time.",
+                    "While US daylight saving is on (mid-March to early November) it lands an hour earlier, at 23:00 Thursday.",
+                    "",
+                    "Whatever you claim stays in your library permanently. The window is open 7 days, until the next rotation.",
+                    "",
+                    "Claim at " + EPIC_CLAIM + " or in the launcher under Store > Free Games.",
+                    "Some titles are region-locked and show as unavailable on certain accounts.",
+                ]),
+            ))
+        day += timedelta(days=7)
+
+    out.append(dict(
+        g="epic", ver="Winter", kind="giveaway",
+        dt=EPIC_MYSTERY[0] + " 00:00", dur=15, status="est",
+        title="Epic 冬促「神秘喜加一」开送",
+        title_en="Epic Winter Sale mystery giveaways begin",
+        desc="\n".join([
+            "按往年规律推算：Epic 冬促在 12 月中旬开启，从开启当天起每天送一款神秘游戏，",
+            "每款只挂 24 小时，连续约 15 天。",
+            "",
+            "2026 年的确切日程官方还没公布，本条日期是估算，可能有几天偏差；",
+            "官方公布后这个日历会更正。",
+            "",
+            "和平时不一样：平时一款挂 7 天，冬促期间每天 0 点换新，错过当天那款就没了。",
+            "",
+            "领取入口：" + EPIC_CLAIM,
+        ]),
+        desc_en="\n".join([
+            "Projected from past years: the Epic Winter Sale starts in mid-December and, from day one,",
+            "gives away one mystery game per day, each claimable for only 24 hours, for roughly 15 days.",
+            "",
+            "Epic has not announced the 2026 dates yet, so this one is an estimate and may be off by a few days;",
+            "the entry is corrected once the dates go official.",
+            "",
+            "Mind the difference: normally a game stays claimable for 7 days, but during the sale it changes",
+            "at 00:00 every day and a missed day is gone for good.",
+            "",
+            "Claim at " + EPIC_CLAIM,
+        ]),
+    ))
+
+    out.append(dict(
+        g="epic", ver="Winter", kind="giveaway",
+        dt=EPIC_MYSTERY[1] + " 00:00", dur=15, status="est",
+        title="Epic 神秘喜加一最后一天",
+        title_en="Last day of Epic mystery giveaways",
+        desc="\n".join([
+            "这是冬促神秘喜加一期间的最后一款，0 点之后回到每周一款的常规节奏。",
+            "",
+            "当天没领的补不回来：第二天就换成常规周更了。",
+            "",
+            "领取入口：" + EPIC_CLAIM,
+        ]),
+        desc_en="\n".join([
+            "The last mystery game of the Winter Sale - after 00:00 the store returns to the weekly rhythm.",
+            "",
+            "Skip it and it is gone: the next rotation replaces it and there is no way back.",
+            "",
+            "Claim at " + EPIC_CLAIM,
+        ]),
+    ))
+    return out
+
+
 EVENTS += add_code_events()
+EVENTS += add_epic_events()
 EVENTS.sort(key=lambda e: e["dt"])
 
 
@@ -390,12 +500,13 @@ def build_event(e: dict, lang: str = "zh") -> str:
     label = "" if e["status"] == "official" else (" (%s)" if en else "（%s）") % labels[e["status"]]
 
     if en:
-        place = {"preview": " - Official stream", "release": "", "code": " - Redemption page"}[e["kind"]]
+        place = {"preview": " - Official stream", "release": "", "code": " - Redemption page",
+                 "giveaway": " - Claim page"}[e["kind"]]
         tail = "\n".join([
             "",
             "",
             "All times are Beijing time (UTC+8).",
-            "Entries marked Estimated or TBC are projected from version cycles and may shift once officially announced.",
+            "Entries marked Estimated or TBC are projected from version cycles or past schedules and may shift once officially announced.",
         ])
         alarm = {
             "preview": [("-PT30M", "Special Program starts in 30 minutes")],
@@ -403,14 +514,17 @@ def build_event(e: dict, lang: str = "zh") -> str:
                      ("-PT30M", "Codes expire in 30 minutes, no reissues")],
             "release": [("-P1D", "Version update tomorrow"),
                         ("-PT2H", "Version update - servers opening soon")],
+            "giveaway": [("-PT1H", "Epic rotates its free game in 1 hour"),
+                         ("PT0S", "Epic swapped its free game - claim it now")],
         }[e["kind"]]
     else:
-        place = {"preview": " 官方直播间", "release": "", "code": " 兑换入口"}[e["kind"]]
+        place = {"preview": " 官方直播间", "release": "", "code": " 兑换入口",
+                 "giveaway": " 领取入口"}[e["kind"]]
         tail = "\n".join([
             "",
             "",
             "时间均为北京时间 UTC+8。",
-            "标注「预估 / 待定」的日期是按版本周期推算的，官方公布后会有偏差。",
+            "标注「预估 / 待定」的日期是按版本周期或往年规律推算的，官方公布后会有偏差。",
         ])
         alarm = {
             "preview": [("-PT30M", "前瞻直播 30 分钟后开始")],
@@ -418,6 +532,8 @@ def build_event(e: dict, lang: str = "zh") -> str:
                      ("-PT30M", "兑换码 30 分钟后失效，过期不补")],
             "release": [("-P1D", "明天是版本更新日"),
                         ("-PT2H", "版本更新，准备开服")],
+            "giveaway": [("-PT1H", "Epic 1 小时后换新免费游戏"),
+                         ("PT0S", "Epic 已换新，去领这款免费游戏")],
         }[e["kind"]]
 
     lines = [
@@ -446,30 +562,43 @@ CAL_QUIT_EN = ("Leaving a game? On iPhone just delete that calendar. "
                "On Android, switch OFF \"show\" in Calendar account settings instead of tapping Delete - "
                "deleting one URL subscription removes all of them.")
 
-CAL_DESC = "前瞻与版本更新的提醒。" + CAL_QUIT
-CAL_DESC_EN = "Preview streams and version updates. " + CAL_QUIT_EN
+CAL_DESC = "前瞻、版本更新与免费游戏换新的提醒。" + CAL_QUIT
+CAL_DESC_EN = "Preview streams, version updates and free game rotations. " + CAL_QUIT_EN
 
 
 def game_cal_name(g: dict, lang: str = "zh") -> str:
-    return (g["short_en"] + " - Version Calendar") if lang == "en" else (g["short"] + " · 版本日历")
+    if lang == "en":
+        return g.get("cal_name_en") or (g["short_en"] + " - Version Calendar")
+    return g.get("cal_name") or (g["short"] + " · 版本日历")
 
 
 def game_cal_desc(g: dict, lang: str = "zh") -> str:
     if lang == "en":
-        return ("Only %s previews and version updates. " % g["name_en"]) + CAL_QUIT_EN
-    return ("只订阅「%s」的前瞻与版本更新。" % g["name"]) + CAL_QUIT
+        return (g.get("cal_desc_en") or "Only %s previews and version updates. " % g["name_en"]) + CAL_QUIT_EN
+    return (g.get("cal_desc") or "只订阅「%s」的前瞻与版本更新。" % g["name"]) + CAL_QUIT
 
 
 def page_games(lang: str = "zh"):
     """页面只需要展示字段，把另一种语言的文案剥掉，减小体积。"""
     en = lang == "en"
-    return [{
-        "id": g["id"],
-        "name": g["name_en"] if en else g["name"],
-        "short": g["short_en"] if en else g["short"],
-        "ver": g["ver"],
-        "color": g["color"],
-    } for g in GAMES]
+    out = []
+    for g in GAMES:
+        d = {
+            "id": g["id"],
+            "name": g["name_en"] if en else g["name"],
+            "short": g["short_en"] if en else g["short"],
+            "ver": g["ver"],
+            "color": g["color"],
+            "calName": game_cal_name(g, lang),
+            "calDesc": game_cal_desc(g, lang),
+        }
+        label = g.get("ver_label_en") if en else g.get("ver_label")
+        if label:
+            d["verLabel"] = label
+        if g.get("optin"):
+            d["optIn"] = True
+        out.append(d)
+    return out
 
 
 def page_events(lang: str = "zh"):

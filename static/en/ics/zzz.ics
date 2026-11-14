@@ -13,7 +13,7 @@ REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
 BEGIN:VEVENT
 UID:zzz-34-preview@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20261120T113000Z
 DTEND:20261120T130000Z
 SUMMARY:Zenless Zone Zero 3.4 Special Program
@@ -21,8 +21,8 @@ DESCRIPTION:Introduces a new Void Hunter alongside a Honkai: Star Rail cros
  sover (Robin and Kafka). Three redemption codes worth 300 Polychrome.\n\nC
  odes expire at Nov 22\, 23:59 (UTC+8)\, 23:59 on day 2 after the stream - 
  52 hours after the stream ends.\n\nAll times are Beijing time (UTC+8).\nEn
- tries marked Estimated or TBC are projected from version cycles and may sh
- ift once officially announced.
+ tries marked Estimated or TBC are projected from version cycles or past sc
+ hedules and may shift once officially announced.
 LOCATION:Zenless Zone Zero - Official stream
 CATEGORIES:Zenless Zone Zero
 STATUS:CONFIRMED
@@ -35,7 +35,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:zzz-34-code@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20261122T155900Z
 DTEND:20261122T161400Z
 SUMMARY:ZZZ 3.4 - Redemption codes expire (Computed)
@@ -45,7 +45,7 @@ DESCRIPTION:Valid 52 hours: stream starts Nov 20\, 19:30\, codes die Nov 22
  e > Redemption Code.\nMissed the stream? The VOD description and the offic
  ial preview page usually list all three codes.\n\nAll times are Beijing ti
  me (UTC+8).\nEntries marked Estimated or TBC are projected from version cy
- cles and may shift once officially announced.
+ cles or past schedules and may shift once officially announced.
 LOCATION:Zenless Zone Zero - Redemption page
 CATEGORIES:Zenless Zone Zero
 STATUS:CONFIRMED
@@ -63,14 +63,14 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:zzz-34-release@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20261202T030000Z
 DTEND:20261202T033000Z
 SUMMARY:Zenless Zone Zero 3.4 Version Update
 DESCRIPTION:Version 3.3 ends at 06:00 on Dec 2 and 3.4 starts the same day.
   Maintenance usually runs 06:00-11:00 (UTC+8).\n\nAll times are Beijing ti
  me (UTC+8).\nEntries marked Estimated or TBC are projected from version cy
- cles and may shift once officially announced.
+ cles or past schedules and may shift once officially announced.
 LOCATION:Zenless Zone Zero
 CATEGORIES:Zenless Zone Zero
 STATUS:CONFIRMED
@@ -88,15 +88,15 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:zzz-35-preview@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20270101T113000Z
 DTEND:20270101T130000Z
 SUMMARY:Zenless Zone Zero 3.5 Special Program (Estimated)
 DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nCodes expire at 
  Jan 03\, 23:59 (UTC+8)\, 23:59 on day 2 after the stream - 52 hours after 
  the stream ends.\n\nAll times are Beijing time (UTC+8).\nEntries marked Es
- timated or TBC are projected from version cycles and may shift once offici
- ally announced.
+ timated or TBC are projected from version cycles or past schedules and may
+  shift once officially announced.
 LOCATION:Zenless Zone Zero - Official stream
 CATEGORIES:Zenless Zone Zero
 STATUS:CONFIRMED
@@ -109,7 +109,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:zzz-35-code@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20270103T155900Z
 DTEND:20270103T161400Z
 SUMMARY:ZZZ 3.5 - Redemption codes expire (Computed)
@@ -119,7 +119,7 @@ DESCRIPTION:Valid 52 hours: stream starts Jan 01\, 19:30\, codes die Jan 03
  e > Redemption Code.\nMissed the stream? The VOD description and the offic
  ial preview page usually list all three codes.\n\nAll times are Beijing ti
  me (UTC+8).\nEntries marked Estimated or TBC are projected from version cy
- cles and may shift once officially announced.
+ cles or past schedules and may shift once officially announced.
 LOCATION:Zenless Zone Zero - Redemption page
 CATEGORIES:Zenless Zone Zero
 STATUS:CONFIRMED
@@ -137,13 +137,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:zzz-35-release@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20270113T030000Z
 DTEND:20270113T033000Z
 SUMMARY:Zenless Zone Zero 3.5 Version Update (Estimated)
 DESCRIPTION:Projected date\, based on the 42-day cycle.\n\nAll times are Be
  ijing time (UTC+8).\nEntries marked Estimated or TBC are projected from ve
- rsion cycles and may shift once officially announced.
+ rsion cycles or past schedules and may shift once officially announced.
 LOCATION:Zenless Zone Zero
 CATEGORIES:Zenless Zone Zero
 STATUS:CONFIRMED

@@ -13,15 +13,15 @@ REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
 BEGIN:VEVENT
 UID:nte-15-release@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20261105T030000Z
 DTEND:20261105T033000Z
 SUMMARY:Neverness to Everness 1.5 Version Update
 DESCRIPTION:A new S-rank character in the first half and an EX-tier in the 
  second half\, plus a new city logistics mode and tank battles. The version
   runs until Dec 17.\n\nAll times are Beijing time (UTC+8).\nEntries marked
-  Estimated or TBC are projected from version cycles and may shift once off
- icially announced.
+  Estimated or TBC are projected from version cycles or past schedules and 
+ may shift once officially announced.
 LOCATION:Neverness to Everness
 CATEGORIES:Neverness to Everness
 STATUS:CONFIRMED
@@ -39,7 +39,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:nte-16-preview@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20261209T113000Z
 DTEND:20261209T130000Z
 SUMMARY:Neverness to Everness 1.6 Special Program (Estimated)
@@ -47,7 +47,8 @@ DESCRIPTION:The 1.5 program aired 8 days before launch (a Wednesday)\, so t
  his follows the same pattern.\n\nCodes expire at Dec 13\, 23:59 (UTC+8)\, 
  23:59 on day 4 after the stream - 100 hours after the stream ends.\n\nAll 
  times are Beijing time (UTC+8).\nEntries marked Estimated or TBC are proje
- cted from version cycles and may shift once officially announced.
+ cted from version cycles or past schedules and may shift once officially a
+ nnounced.
 LOCATION:Neverness to Everness - Official stream
 CATEGORIES:Neverness to Everness
 STATUS:CONFIRMED
@@ -60,7 +61,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:nte-16-code@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20261213T155900Z
 DTEND:20261213T161400Z
 SUMMARY:NTE 1.6 - Redemption codes expire (Computed)
@@ -70,8 +71,8 @@ DESCRIPTION:Valid 100 hours: stream starts Dec 09\, 19:30\, codes die Dec 1
  der Phone > the ... menu (top right) > Redemption Code.\nMissed the stream
  ? The VOD description and the official preview page usually list all three
   codes.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated o
- r TBC are projected from version cycles and may shift once officially anno
- unced.
+ r TBC are projected from version cycles or past schedules and may shift on
+ ce officially announced.
 LOCATION:Neverness to Everness - Redemption page
 CATEGORIES:Neverness to Everness
 STATUS:CONFIRMED
@@ -89,14 +90,14 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:nte-16-release@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20261217T030000Z
 DTEND:20261217T033000Z
 SUMMARY:Neverness to Everness 1.6 Version Update
 DESCRIPTION:Every 1.5 banner and event is scheduled to end Dec 17\, 05:59 (
  UTC+8)\, so 1.6 takes over from there.\n\nAll times are Beijing time (UTC+
- 8).\nEntries marked Estimated or TBC are projected from version cycles and
-  may shift once officially announced.
+ 8).\nEntries marked Estimated or TBC are projected from version cycles or 
+ past schedules and may shift once officially announced.
 LOCATION:Neverness to Everness
 CATEGORIES:Neverness to Everness
 STATUS:CONFIRMED

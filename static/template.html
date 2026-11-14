@@ -44,6 +44,7 @@
   .g .gname{font-size:14px;font-weight:600;letter-spacing:-.15px;color:#1B1B1F;
             padding-right:20px;line-height:1.35;overflow-wrap:break-word;word-break:break-word}
   .g .gver{font-size:11px;color:#9A9AA4;font-variant-numeric:tabular-nums}
+  .gsep{grid-column:1/-1;font-size:11px;color:#9A9AA4;letter-spacing:.3px;padding:8px 2px 0}
   .g .gdot{width:7px;height:7px;border-radius:50%;background:var(--c);margin-bottom:5px}
   .g .tick{position:absolute;top:11px;right:11px;width:16px;height:16px;border-radius:50%;
            border:1.5px solid #D6D5CF;background:#fff;display:flex;align-items:center;
@@ -306,9 +307,12 @@
   var picked;
 
   try { picked = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { picked = null; }
-  if (!Array.isArray(picked) || !picked.length) picked = GAMES.map(function (g) { return g.id; });
+  var defaultPicked = function () {
+    return GAMES.filter(function (g) { return !g.optIn; }).map(function (g) { return g.id; });
+  };
+  if (!Array.isArray(picked)) picked = defaultPicked();
   picked = picked.filter(function (id) { return !!GMAP[id]; });
-  if (!picked.length) picked = GAMES.map(function (g) { return g.id; });
+  if (!picked.length) picked = defaultPicked();
 
   /* ---------- Time: one fixed Beijing wall clock, never the device timezone ---------- */
   function parseBJ(s) {
@@ -372,7 +376,9 @@
     return SUFFIX[b + '|' + e.dt] ? b + '-' + e.dt.slice(0, 10).replace(/-/g, '') : b;
   }
 
-  var ALARM_TRIGGER = { preview: ['-PT30M'], code: ['-PT2H', '-PT30M'], release: ['-P1D', '-PT2H'] };
+  var ALARM_TRIGGER = { preview: ['-PT30M'], code: ['-PT2H', '-PT30M'], release: ['-P1D', '-PT2H'],
+                        giveaway: ['-PT1H', 'PT0S'] };
+  var SUF = { release: U.suf_release, code: U.suf_code, giveaway: U.suf_giveaway };
 
   function buildEvent(e) {
     var s = parseBJ(e.dt);
@@ -404,12 +410,12 @@
     return lines.join('\r\n');
   }
 
-  function buildCalendar(rows, name) {
+  function buildCalendar(rows, name, desc) {
     var head = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\n' +
       'PRODID:-//WorkBuddy//Game Version Calendar//' + (U.prodid || 'CN') + '\r\n' +
       'CALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n' +
       fold('X-WR-CALNAME:' + icsEsc(name)) + '\r\n' +
-      fold('X-WR-CALDESC:' + icsEsc(U.cal_desc)) + '\r\n' +
+      fold('X-WR-CALDESC:' + icsEsc(desc || U.cal_desc)) + '\r\n' +
       'X-WR-TIMEZONE:Asia/Shanghai\r\n' +
       'REFRESH-INTERVAL;VALUE=DURATION:PT6H\r\n' +
       'X-PUBLISHED-TTL:PT6H\r\n';
@@ -427,7 +433,15 @@
 
   /* ---------- Game picker ---------- */
   var grid = document.getElementById('grid');
+  var sepDone = false;
   GAMES.forEach(function (g) {
+    if (g.optIn && !sepDone) {
+      sepDone = true;
+      var sep = document.createElement('div');
+      sep.className = 'gsep';
+      sep.textContent = U.other_label;
+      grid.appendChild(sep);
+    }
     var b = document.createElement('button');
     b.type = 'button';
     b.className = 'g';
@@ -438,7 +452,7 @@
     b.innerHTML =
       '<span class="gdot"></span>' +
       '<span class="gname">' + esc(g.name) + '</span>' +
-      '<span class="gver">' + esc(U.current.replace('%s', g.ver)) + '</span>' +
+      '<span class="gver">' + esc(g.verLabel || U.current.replace('%s', g.ver)) + '</span>' +
       '<span class="tick"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2"' +
       ' stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.3l2.6 2.6L10 3.4"/></svg></span>';
     b.addEventListener('click', function () { toggle(g.id); });
@@ -487,7 +501,7 @@
           '<div class="mm">' +
           (e.kind === 'code' ? '<span class="kk">' + esc(U.kind_code) + '</span>' : '') +
           '<span>' + pad(d.hh) + ':' + pad(d.mi) +
-          (e.kind === 'release' ? U.suf_release : e.kind === 'code' ? U.suf_code : U.suf_preview) + '</span>' +
+          (SUF[e.kind] || U.suf_preview) + '</span>' +
           '<span class="tag ' + e.status + '">' + LABEL[e.status] + '</span></div></div>';
         listEl.appendChild(el);
       });
@@ -544,8 +558,10 @@
     }
 
     var rows = EV.filter(function (x) { return ids.indexOf(x.raw.g) > -1; });
-    var name = U.cal_prefix + ids.map(function (id) { return GMAP[id].short; }).join(U.cal_join);
-    var text = buildCalendar(rows, name);
+    var name = ids.length === 1
+      ? (GMAP[ids[0]].calName || U.cal_prefix + GMAP[ids[0]].short)
+      : U.cal_prefix + ids.map(function (id) { return GMAP[id].short; }).join(U.cal_join);
+    var text = buildCalendar(rows, name, ids.length === 1 ? GMAP[ids[0]].calDesc : null);
 
     var blob = new Blob([text], { type: 'text/calendar;charset=utf-8' });
     var url = URL.createObjectURL(blob);

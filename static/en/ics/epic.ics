@@ -1,0 +1,372 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WorkBuddy//Game Version Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Epic Free Games - Calendar
+X-WR-CALDESC:Reminders for Epic's weekly free games and the Winter Sale mys
+ tery giveaways. Leaving a game? On iPhone just delete that calendar. On An
+ droid\, switch OFF "show" in Calendar account settings instead of tapping 
+ Delete - deleting one URL subscription removes all of them.
+X-WR-TIMEZONE:Asia/Shanghai
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:epic-20261120-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20261119T160000Z
+DTEND:20261119T161500Z
+SUMMARY:Epic free game rotation (Computed)
+DESCRIPTION:Epic swaps its free game every Thursday at 11:00 ET\, which is 
+ 00:00 Friday in Beijing time.\nWhile US daylight saving is on (mid-March t
+ o early November) it lands an hour earlier\, at 23:00 Thursday.\n\nWhateve
+ r you claim stays in your library permanently. The window is open 7 days\,
+  until the next rotation.\n\nClaim at epicgames.com/store/free-games or in
+  the launcher under Store > Free Games.\nSome titles are region-locked and
+  show as unavailable on certain accounts.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ or past schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-20261127-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20261126T160000Z
+DTEND:20261126T161500Z
+SUMMARY:Epic free game rotation (Computed)
+DESCRIPTION:Epic swaps its free game every Thursday at 11:00 ET\, which is 
+ 00:00 Friday in Beijing time.\nWhile US daylight saving is on (mid-March t
+ o early November) it lands an hour earlier\, at 23:00 Thursday.\n\nWhateve
+ r you claim stays in your library permanently. The window is open 7 days\,
+  until the next rotation.\n\nClaim at epicgames.com/store/free-games or in
+  the launcher under Store > Free Games.\nSome titles are region-locked and
+  show as unavailable on certain accounts.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ or past schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-20261204-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20261203T160000Z
+DTEND:20261203T161500Z
+SUMMARY:Epic free game rotation (Computed)
+DESCRIPTION:Epic swaps its free game every Thursday at 11:00 ET\, which is 
+ 00:00 Friday in Beijing time.\nWhile US daylight saving is on (mid-March t
+ o early November) it lands an hour earlier\, at 23:00 Thursday.\n\nWhateve
+ r you claim stays in your library permanently. The window is open 7 days\,
+  until the next rotation.\n\nClaim at epicgames.com/store/free-games or in
+  the launcher under Store > Free Games.\nSome titles are region-locked and
+  show as unavailable on certain accounts.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ or past schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-20261211-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20261210T160000Z
+DTEND:20261210T161500Z
+SUMMARY:Epic free game rotation (Computed)
+DESCRIPTION:Epic swaps its free game every Thursday at 11:00 ET\, which is 
+ 00:00 Friday in Beijing time.\nWhile US daylight saving is on (mid-March t
+ o early November) it lands an hour earlier\, at 23:00 Thursday.\n\nWhateve
+ r you claim stays in your library permanently. The window is open 7 days\,
+  until the next rotation.\n\nClaim at epicgames.com/store/free-games or in
+  the launcher under Store > Free Games.\nSome titles are region-locked and
+  show as unavailable on certain accounts.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ or past schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-Winter-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20261217T160000Z
+DTEND:20261217T161500Z
+SUMMARY:Epic Winter Sale mystery giveaways begin (Estimated)
+DESCRIPTION:Projected from past years: the Epic Winter Sale starts in mid-D
+ ecember and\, from day one\,\ngives away one mystery game per day\, each c
+ laimable for only 24 hours\, for roughly 15 days.\n\nEpic has not announce
+ d the 2026 dates yet\, so this one is an estimate and may be off by a few 
+ days\;\nthe entry is corrected once the dates go official.\n\nMind the dif
+ ference: normally a game stays claimable for 7 days\, but during the sale 
+ it changes\nat 00:00 every day and a missed day is gone for good.\n\nClaim
+  at epicgames.com/store/free-games\n\nAll times are Beijing time (UTC+8).
+ \nEntries marked Estimated or TBC are projected from version cycles or pas
+ t schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-Winter-giveaway-20270101@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20261231T160000Z
+DTEND:20261231T161500Z
+SUMMARY:Last day of Epic mystery giveaways (Estimated)
+DESCRIPTION:The last mystery game of the Winter Sale - after 00:00 the stor
+ e returns to the weekly rhythm.\n\nSkip it and it is gone: the next rotati
+ on replaces it and there is no way back.\n\nClaim at epicgames.com/store/f
+ ree-games\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimated
+  or TBC are projected from version cycles or past schedules and may shift 
+ once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-20270108-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20270107T160000Z
+DTEND:20270107T161500Z
+SUMMARY:Epic free game rotation (Computed)
+DESCRIPTION:Epic swaps its free game every Thursday at 11:00 ET\, which is 
+ 00:00 Friday in Beijing time.\nWhile US daylight saving is on (mid-March t
+ o early November) it lands an hour earlier\, at 23:00 Thursday.\n\nWhateve
+ r you claim stays in your library permanently. The window is open 7 days\,
+  until the next rotation.\n\nClaim at epicgames.com/store/free-games or in
+  the launcher under Store > Free Games.\nSome titles are region-locked and
+  show as unavailable on certain accounts.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ or past schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-20270115-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20270114T160000Z
+DTEND:20270114T161500Z
+SUMMARY:Epic free game rotation (Computed)
+DESCRIPTION:Epic swaps its free game every Thursday at 11:00 ET\, which is 
+ 00:00 Friday in Beijing time.\nWhile US daylight saving is on (mid-March t
+ o early November) it lands an hour earlier\, at 23:00 Thursday.\n\nWhateve
+ r you claim stays in your library permanently. The window is open 7 days\,
+  until the next rotation.\n\nClaim at epicgames.com/store/free-games or in
+  the launcher under Store > Free Games.\nSome titles are region-locked and
+  show as unavailable on certain accounts.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ or past schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-20270122-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20270121T160000Z
+DTEND:20270121T161500Z
+SUMMARY:Epic free game rotation (Computed)
+DESCRIPTION:Epic swaps its free game every Thursday at 11:00 ET\, which is 
+ 00:00 Friday in Beijing time.\nWhile US daylight saving is on (mid-March t
+ o early November) it lands an hour earlier\, at 23:00 Thursday.\n\nWhateve
+ r you claim stays in your library permanently. The window is open 7 days\,
+  until the next rotation.\n\nClaim at epicgames.com/store/free-games or in
+  the launcher under Store > Free Games.\nSome titles are region-locked and
+  show as unavailable on certain accounts.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ or past schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-20270129-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20270128T160000Z
+DTEND:20270128T161500Z
+SUMMARY:Epic free game rotation (Computed)
+DESCRIPTION:Epic swaps its free game every Thursday at 11:00 ET\, which is 
+ 00:00 Friday in Beijing time.\nWhile US daylight saving is on (mid-March t
+ o early November) it lands an hour earlier\, at 23:00 Thursday.\n\nWhateve
+ r you claim stays in your library permanently. The window is open 7 days\,
+  until the next rotation.\n\nClaim at epicgames.com/store/free-games or in
+  the launcher under Store > Free Games.\nSome titles are region-locked and
+  show as unavailable on certain accounts.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ or past schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-20270205-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20270204T160000Z
+DTEND:20270204T161500Z
+SUMMARY:Epic free game rotation (Computed)
+DESCRIPTION:Epic swaps its free game every Thursday at 11:00 ET\, which is 
+ 00:00 Friday in Beijing time.\nWhile US daylight saving is on (mid-March t
+ o early November) it lands an hour earlier\, at 23:00 Thursday.\n\nWhateve
+ r you claim stays in your library permanently. The window is open 7 days\,
+  until the next rotation.\n\nClaim at epicgames.com/store/free-games or in
+  the launcher under Store > Free Games.\nSome titles are region-locked and
+  show as unavailable on certain accounts.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ or past schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:epic-20270212-giveaway@game-version-calendar
+DTSTAMP:20261114T120000Z
+DTSTART:20270211T160000Z
+DTEND:20270211T161500Z
+SUMMARY:Epic free game rotation (Computed)
+DESCRIPTION:Epic swaps its free game every Thursday at 11:00 ET\, which is 
+ 00:00 Friday in Beijing time.\nWhile US daylight saving is on (mid-March t
+ o early November) it lands an hour earlier\, at 23:00 Thursday.\n\nWhateve
+ r you claim stays in your library permanently. The window is open 7 days\,
+  until the next rotation.\n\nClaim at epicgames.com/store/free-games or in
+  the launcher under Store > Free Games.\nSome titles are region-locked and
+  show as unavailable on certain accounts.\n\nAll times are Beijing time (U
+ TC+8).\nEntries marked Estimated or TBC are projected from version cycles 
+ or past schedules and may shift once officially announced.
+LOCATION:Epic Free Games - Claim page
+CATEGORIES:Epic Free Games
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Epic rotates its free game in 1 hour
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT0S
+ACTION:DISPLAY
+DESCRIPTION:Epic swapped its free game - claim it now
+END:VALARM
+END:VEVENT
+END:VCALENDAR

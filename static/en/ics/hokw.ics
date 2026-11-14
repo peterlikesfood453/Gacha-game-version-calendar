@@ -13,15 +13,15 @@ REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
 BEGIN:VEVENT
 UID:hokw-S2-release@game-version-calendar
-DTSTAMP:20261102T120000Z
+DTSTAMP:20261114T120000Z
 DTSTART:20261126T020000Z
 DTEND:20261126T023000Z
 SUMMARY:Honor of Kings: World - Season 2 Update (TBC) (TBC)
 DESCRIPTION:Season 2 hits the test server in mid-November and the live serv
  er is expected in late November. No official date yet - this entry is a pl
  aceholder.\n\nAll times are Beijing time (UTC+8).\nEntries marked Estimate
- d or TBC are projected from version cycles and may shift once officially a
- nnounced.
+ d or TBC are projected from version cycles or past schedules and may shift
+  once officially announced.
 LOCATION:Honor of Kings: World
 CATEGORIES:Honor of Kings: World
 STATUS:CONFIRMED

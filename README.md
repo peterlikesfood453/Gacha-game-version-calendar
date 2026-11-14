@@ -77,7 +77,7 @@ It solves three very concrete problems:
 
 ## What it does
 
-- **8 games to tick**: Genshin Impact, Honkai: Star Rail, Zenless Zone Zero, Wuthering Waves, Arknights: Endfield, Neverness to Everness, Where Winds Meet, Honor of Kings: World
+- **8 gacha games to tick**, plus one optional extra: Genshin Impact, Honkai: Star Rail, Zenless Zone Zero, Wuthering Waves, Arknights: Endfield, Neverness to Everness, Where Winds Meet, Honor of Kings: World — and **Epic Free Games** (off by default, see [Epic free games](#epic-free-games))
 - **One-tap import**: pick games, tap the button, get an `.ics` file. On iPhone it opens straight into Calendar.
 - **Subscribe per game**: one calendar per game, so quitting one game stops only that one
 - **Merged subscription**: or put several games into a single calendar
@@ -291,6 +291,7 @@ Game ids:
 | `hsr` | Honkai: Star Rail | `nte` | Neverness to Everness |
 | `zzz` | Zenless Zone Zero | `wwm` | Where Winds Meet |
 | `wuwa` | Wuthering Waves | `hokw` | Honor of Kings: World |
+| `epic` | Epic Free Games | | |
 
 On iOS subscribe with `webcal://your-domain/sub/genshin.ics`; on Android use **Add calendar from URL** with the same address as `https://`.
 
@@ -397,8 +398,23 @@ Calendar subscriptions are read-only: the server publishes, and only your phone 
 - **The server cannot delete events from anyone's phone.** Removal is a client-side action by design
 - **Android vendor calendars merge URL subscriptions into one account**, so deleting one deletes all. A client limitation this project cannot fix
 - **Honor of Kings: World is season-driven and Where Winds Meet has no preview streams**, so those two are naturally sparser — nothing is missing
-- **Only 8 games are covered.** See [Contributing](#contributing) to add more
+- **Only these 9 entries are covered.** See [Contributing](#contributing) to add more
 - **The static build cannot subscribe to a custom mix** — only per-game or everything. Use the full build for "Genshin + WuWa"
+
+## Epic free games
+
+Epic is not a gacha game, so it sits in the **Extras** group and is **not ticked by default** — tick it if you want it.
+
+Two kinds of entries:
+
+| Entry | When | Marked |
+|---|---|---|
+| `Epic free game rotation` | Every Friday 00:00 Beijing time, until the Winter Sale | Computed |
+| `Epic Winter Sale mystery giveaways begin` / `... last day` | Mid-December, roughly 15 days of one game per day | Estimated |
+
+**Why Friday 00:00 and not Thursday.** Epic rotates at 11:00 ET. In winter (UTC-5) that is 16:00 UTC = **00:00 Friday** in Beijing. While US daylight saving is on (mid-March to early November) it moves an hour earlier to 23:00 Thursday. Everything in the table above falls inside the winter window.
+
+**Why the Winter Sale dates say Estimated.** Epic does not announce the sale calendar far ahead; historically it opens in mid-December and runs one mystery game per day, each claimable for only 24 hours. The two anchor entries are projections and get corrected once Epic publishes the real dates. Bulk data lives in `add_epic_events()` in `events.py` — one constant pair (`EPIC_WEEK_FROM` / `EPIC_WEEK_TO`) controls how far ahead the weekly entries are generated.
 
 ## Roadmap
 
