@@ -7,6 +7,10 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# 本地宣传/素材草稿，不进仓库
+marketing/
+video/
+
 # 本地临时产物（截图、调试页、手工导出的日历）
 _*.ics
 _*.png
