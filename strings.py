@@ -90,6 +90,7 @@ UI = {
         "foot1": "标「官方确认」的来自官方公告，「预估」是按版本周期推算，「待定」是官方还没公布日期。",
         "foot2": "「规则推算」是兑换码截止时刻：官方还没公布，但按每款游戏历次的口径能卡到分钟，误差一般在 1 小时内。",
         "foot3": "过期不补发，这条日程别当参考价看。",
+        "foot4": '代码开源（MIT 协议），数据全在一个文件里，改日期不用会编程：<a href="https://github.com/peterlikesfood453/Gacha-game-version-calendar" target="_blank" rel="noopener">GitHub 仓库</a>',
 
         # ---- 底栏 ----
         "bar_meta": '已选 <b id="pn">0</b> 个游戏 · <b id="en">0</b> 条日程',
@@ -174,6 +175,7 @@ UI = {
         "foot1": "Confirmed comes from official announcements, Estimated is projected from the version cycle, TBC means no date announced yet.",
         "foot2": "Computed is the code expiry time: not announced officially, but derived from each game's past record to the minute - usually within an hour.",
         "foot3": "Expired codes are never reissued, so do not treat that entry as a price reference.",
+        "foot4": 'Open source (MIT). All the data sits in one file - fixing a date needs no coding: <a href="https://github.com/peterlikesfood453/Gacha-game-version-calendar" target="_blank" rel="noopener">GitHub repo</a>',
 
         "bar_meta": '<b id="pn">0</b> games · <b id="en">0</b> events',
         "bar_btn": "Add to phone calendar",
